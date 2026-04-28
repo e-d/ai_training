@@ -21,9 +21,14 @@ interface AnswerRecord {
 }
 
 const quizResetStyle = `
-  .quiz-choice:focus, .quiz-choice:focus-visible {
-    outline: none;
-    border-color: #e2e8f0;
+  .quiz-choice:focus,
+  .quiz-choice:focus-visible,
+  .quiz-choice:focus-within,
+  .quiz-choice:active {
+    outline: none !important;
+    border-color: #e2e8f0 !important;
+    box-shadow: none !important;
+    -webkit-appearance: none;
   }
 `;
 
@@ -42,6 +47,12 @@ export default function Quiz({ title, questions }: QuizProps) {
       nextButtonRef.current.focus();
     }
   }, [isAnswered]);
+
+  useEffect(() => {
+    document.querySelectorAll('.quiz-choice').forEach((el) => {
+      (el as HTMLElement).blur();
+    });
+  }, [currentQuestion]);
 
   const q = questions[currentQuestion];
   const total = questions.length;
