@@ -6,4 +6,59 @@ order: 2
 description: "Learn the key differences between AI, machine learning, and deep learning, and when each approach is the right fit."
 ---
 
-Content for this lesson is coming soon. Check back for a clear breakdown of the AI landscape and how these technologies relate to each other.
+## The Relationship Between AI, ML, and DL
+
+The terms artificial intelligence, machine learning, and deep learning are often used interchangeably, but they describe different things. Think of them as nested layers:
+
+- **Artificial intelligence** is the broadest category — any system designed to mimic human cognitive functions
+- **Machine learning** is a subset of AI — systems that learn from data without being explicitly programmed for each scenario
+- **Deep learning** is a subset of machine learning — systems that use layered neural networks to learn from large amounts of unstructured data
+
+Understanding which layer you're working with determines what problems you can solve, how much data you need, and what infrastructure is required.
+
+## Artificial Intelligence: The Big Umbrella
+
+AI encompasses any technique that enables machines to simulate human intelligence. This includes both simple rule-based systems and sophisticated learning algorithms.
+
+A rule-based AI system follows "if-then" logic that a programmer defines explicitly. For example, an email filter that routes messages based on keywords in the subject line is a form of AI — it's making decisions — but it cannot improve on its own.
+
+**When to use rule-based AI:** When the problem has clear, well-defined rules and the decision space is small. Examples include automated invoice routing, simple chatbot decision trees, and compliance checks against a fixed set of regulations.
+
+## Machine Learning: Systems That Learn from Data
+
+Machine learning is the approach that gave AI its modern momentum. Instead of programming every rule, you feed an ML system historical data and let it discover patterns on its own. The system builds a statistical model that can make predictions or decisions on new, unseen data.
+
+ML comes in three flavors, each suited to different business problems:
+
+- **Supervised learning** trains on labeled data where the correct answer is known. A bank trains a fraud model on millions of transactions labeled "fraudulent" or "legitimate" — Mastercard's Decision Intelligence system uses this approach across 143 billion transactions annually, reducing false declines by up to 50%.
+- **Unsupervised learning** finds structure in unlabeled data. A retailer discovers natural customer segments — loyalists, seasonal shoppers, bargain hunters — without pre-defining categories, enabling targeted marketing that would be impossible to design manually.
+- **Reinforcement learning** optimizes through trial and error. Walmart uses it to dynamically adjust inventory levels and shipping routes based on demand signals and supplier constraints.
+
+## Deep Learning: The Power Behind Modern AI
+
+Deep learning uses artificial neural networks — computational structures inspired by the human brain — with many layers (hence "deep"). Each layer extracts increasingly abstract features from the data. A deep learning model analyzing an image might detect edges in the first layer, shapes in the second, facial features in the third, and individual identities in the fourth.
+
+Deep learning excels with unstructured data — images, audio, text, and video — that traditional machine learning struggles to process effectively. It requires significantly more data and computing power, but it achieves results that were impossible just a decade ago.
+
+**Business examples:**
+
+- **ChatGPT and large language models** use deep learning to generate human-quality text, translate languages, summarize documents, and write code. Enterprises are deploying these models for customer support, content generation, and internal knowledge management.
+- **Computer vision in manufacturing:** BMW uses deep learning to inspect vehicles on the production line, detecting paint defects invisible to the human eye with 99.9% accuracy, reducing quality control costs while improving consistency.
+- **Medical imaging:** Google Health's deep learning model for breast cancer screening demonstrated accuracy matching or exceeding radiologists in a study published in *Nature*, analyzing mammograms to identify cancers that human reviewers missed.
+
+## When to Use Each Approach
+
+| Approach | Best For | Data Needed | Examples |
+|---|---|---|---|
+| **Rule-based AI** | Well-defined problems with clear logic | Minimal — rules are coded | Invoice routing, compliance checks, basic chatbots |
+| **Machine Learning** | Pattern recognition in structured data | Thousands to millions of labeled records | Fraud detection, demand forecasting, customer segmentation |
+| **Deep Learning** | Complex patterns in unstructured data | Millions of examples + significant compute | Image recognition, language generation, speech synthesis |
+
+> **Key takeaway:** You don't always need deep learning. Many high-value business problems are best solved with simpler ML models or even rule-based systems. Start by defining the problem clearly, then choose the simplest approach that can solve it. Over-engineering with deep learning when a logistic regression model would suffice wastes time, money, and compute resources.
+
+## Sources
+
+- McKinsey & Company (2025). "The State of AI: Global Survey." McKinsey Digital.
+- Mastercard (2024). "Decision Intelligence Technology." Mastercard Newsroom.
+- McKinney, S.M. et al. (2020). "International evaluation of an AI system for breast cancer screening." *Nature*, 577, 89–94.
+- Goodfellow, I., Bengio, Y., & Courville, A. (2016). *Deep Learning*. MIT Press.
