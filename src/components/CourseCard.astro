@@ -1,0 +1,102 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  lessonCount: number;
+  slug: string;
+  order: number;
+  status: 'active' | 'coming-soon';
+}
+
+const { title, description, lessonCount, slug, order, status } = Astro.props;
+const isActive = status === 'active';
+---
+
+{isActive ? (
+  <a href={`/courses/${slug}/`} class="course-card course-card--active">
+    <span class="course-card__number">Course {order}</span>
+    <h3 class="course-card__title">{title}</h3>
+    <p class="course-card__desc">{description}</p>
+    <span class="course-card__meta">{lessonCount} lessons</span>
+  </a>
+) : (
+  <div class="course-card course-card--coming-soon">
+    <span class="course-card__badge">Coming Soon</span>
+    <span class="course-card__number">Course {order}</span>
+    <h3 class="course-card__title">{title}</h3>
+    <p class="course-card__desc">{description}</p>
+    <span class="course-card__meta">{lessonCount} lessons</span>
+  </div>
+)}
+
+<style>
+  .course-card {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background-color: var(--color-bg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .course-card--active {
+    color: inherit;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  .course-card--active:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+    color: inherit;
+  }
+
+  .course-card--coming-soon {
+    opacity: 0.65;
+  }
+
+  .course-card__badge {
+    position: absolute;
+    top: var(--space-3);
+    right: var(--space-3);
+    background-color: var(--color-primary-light);
+    color: #ffffff;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .course-card__number {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-accent);
+    margin-bottom: var(--space-2);
+  }
+
+  .course-card__title {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    margin-bottom: var(--space-3);
+    line-height: var(--line-height-tight);
+  }
+
+  .course-card__desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-light);
+    line-height: var(--line-height-relaxed);
+    flex: 1;
+    margin-bottom: var(--space-4);
+  }
+
+  .course-card__meta {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text-light);
+  }
+</style>

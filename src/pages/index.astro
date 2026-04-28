@@ -1,12 +1,35 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import CourseCard from '../components/CourseCard.astro';
+
+const courses = (await getCollection('courses')).sort((a, b) => a.data.order - b.data.order);
 ---
 
 <BaseLayout title="Home">
   <section class="hero">
     <div class="container">
       <h1>AI for Business Leaders</h1>
-      <p>Practical AI training designed for executives and decision-makers.</p>
+      <p class="hero__tagline">In 8 lessons you'll gain the tools to boost productivity and lead in the age of AI, equipped to harness emerging technologies for real business impact.</p>
+      <a href="#courses" class="hero__cta">Explore Courses</a>
+    </div>
+  </section>
+
+  <section id="courses" class="courses">
+    <div class="container">
+      <h2 class="courses__heading">Course Catalog</h2>
+      <div class="courses__grid">
+        {courses.map((course) => (
+          <CourseCard
+            title={course.data.title}
+            description={course.data.description}
+            lessonCount={course.data.lessonCount}
+            slug={course.data.slug}
+            order={course.data.order}
+            status={course.data.status}
+          />
+        ))}
+      </div>
     </div>
   </section>
 </BaseLayout>
@@ -24,10 +47,57 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     margin-bottom: var(--space-4);
   }
 
-  .hero p {
+  .hero__tagline {
     font-size: var(--text-lg);
     color: var(--color-text-light);
-    max-width: 36rem;
+    max-width: 40rem;
     margin-inline: auto;
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-8);
+  }
+
+  .hero__cta {
+    display: inline-block;
+    padding: var(--space-3) var(--space-8);
+    background-color: var(--color-accent);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: var(--text-base);
+    border-radius: var(--radius-md);
+    transition: background-color 0.15s ease;
+  }
+
+  .hero__cta:hover {
+    background-color: var(--color-accent-hover);
+    color: #ffffff;
+  }
+
+  .courses {
+    padding: var(--space-16) 0;
+  }
+
+  .courses__heading {
+    font-size: var(--text-3xl);
+    color: var(--color-primary);
+    margin-bottom: var(--space-8);
+    text-align: center;
+  }
+
+  .courses__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 640px) {
+    .courses__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .courses__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 </style>
