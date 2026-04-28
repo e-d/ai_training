@@ -20,6 +20,13 @@ interface AnswerRecord {
   correct: boolean;
 }
 
+const quizResetStyle = `
+  .quiz-choice:focus, .quiz-choice:focus-visible {
+    outline: none;
+    border-color: #e2e8f0;
+  }
+`;
+
 export default function Quiz({ title, questions }: QuizProps) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
@@ -78,6 +85,7 @@ export default function Quiz({ title, questions }: QuizProps) {
     const pct = Math.round((score / total) * 100);
     return (
       <div style={styles.container}>
+        <style dangerouslySetInnerHTML={{ __html: quizResetStyle }} />
         <div style={styles.summaryHeader}>
           <h2 style={styles.summaryTitle}>Quiz Complete!</h2>
           <div style={styles.scoreCircle}>
@@ -124,6 +132,7 @@ export default function Quiz({ title, questions }: QuizProps) {
 
   return (
     <div style={styles.container}>
+      <style dangerouslySetInnerHTML={{ __html: quizResetStyle }} />
       <div style={styles.header}>
         <span style={styles.questionCount}>Question {currentQuestion + 1} of {total}</span>
       </div>
@@ -166,6 +175,7 @@ export default function Quiz({ title, questions }: QuizProps) {
           return (
             <button
               key={i}
+              class="quiz-choice"
               style={choiceStyle}
               onClick={() => handleAnswer(i)}
               disabled={isAnswered}
