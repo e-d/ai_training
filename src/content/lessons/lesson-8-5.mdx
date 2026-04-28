@@ -1,0 +1,143 @@
+---
+title: "Implementing AI Agents"
+slug: "implementing-ai-agents"
+course: "ai-agents"
+order: 5
+description: "Navigate the practical decisions of agent implementation — from framework selection and model choice to deployment, monitoring, and iterative improvement."
+---
+
+## From Design to Deployment
+
+You've designed your agent system — defined the patterns, mapped the tools, planned the memory architecture. Now comes the harder part: building and deploying it in a production environment where real users depend on it, real data flows through it, and real money is at stake.
+
+This lesson covers the implementation decisions that business leaders need to understand — not to write code, but to make informed investment decisions, ask the right questions of engineering teams, and set realistic expectations for timelines and capabilities.
+
+## Choosing Your Framework
+
+The agent framework landscape evolved rapidly between 2023 and 2025. The right choice depends on your team's capabilities, your deployment environment, and your integration requirements.
+
+### LangChain / LangGraph
+
+The most widely adopted open-source framework. LangChain provides building blocks for tool use, memory, and retrieval. LangGraph extends it with stateful graph-based orchestration — essential for complex multi-step agents. Used by companies including Elastic, Rakuten, and Replit.
+
+**Best for:** Teams with Python expertise that need maximum flexibility and a large ecosystem of integrations.
+
+### Amazon Bedrock Agents
+
+A fully managed service within AWS that handles infrastructure, scaling, and orchestration. You define the agent's instructions and connect it to knowledge bases and action groups — AWS manages the rest.
+
+**Best for:** Organizations already invested in AWS that want to minimize operational overhead and leverage existing IAM security controls.
+
+### Microsoft AutoGen / Semantic Kernel
+
+Microsoft's agent frameworks integrate natively with Azure OpenAI Service and the Microsoft 365 ecosystem. AutoGen excels at multi-agent orchestration; Semantic Kernel provides a plugin-based approach for extending agents with enterprise connectors.
+
+**Best for:** Organizations in the Microsoft ecosystem that need agents integrated with Teams, SharePoint, Dynamics 365, and Azure services.
+
+### Anthropic's Claude with Tool Use
+
+Claude's native tool-use capability allows building agents directly on the API without a separate framework. Define tools as JSON schemas, and the model generates structured calls within its reasoning loop. The simplicity is the advantage — fewer moving parts, fewer failure modes.
+
+**Best for:** Teams that want the most direct path to production without framework overhead, especially for single-agent systems with well-defined tool sets.
+
+### CrewAI
+
+Purpose-built for multi-agent collaboration with role-based agent definitions. Each agent has a role, goal, backstory, and set of tools — making the system configuration readable and maintainable by non-engineers.
+
+**Best for:** Teams building multi-agent workflows who value readable configuration and rapid prototyping.
+
+## Model Selection
+
+Not every agent role needs your most expensive model. Strategic model selection across agent roles can reduce costs by 60-80% without sacrificing quality.
+
+**Frontier models (Claude 3.5 Opus, GPT-4o, Gemini Ultra):** Use for supervisor agents, complex reasoning tasks, and customer-facing interactions where quality is paramount.
+
+**Mid-tier models (Claude 3.5 Sonnet, GPT-4o-mini, Gemini Pro):** Use for specialist agents that handle well-defined tasks like data extraction, summarization, or classification. These models are 5-10x cheaper and often perform comparably on structured tasks.
+
+**Small models (Claude 3 Haiku, Gemini Flash):** Use for routing, classification, and simple tool-calling agents where speed matters more than sophistication. These models respond in under 500ms and cost fractions of a cent per call.
+
+Notion's AI features use this tiered approach — complex writing and analysis tasks route to larger models, while simple operations like classification and formatting use smaller, faster models. The result is a responsive user experience at a sustainable cost.
+
+## Building Your Tool Layer
+
+Your agent is only as capable as its tools. The tool layer is the integration surface between your agent and your enterprise systems.
+
+### API Integration
+
+Most enterprise tools are accessed through REST or GraphQL APIs. Your tool layer wraps these APIs with:
+
+- **Authentication management:** Securely storing and rotating API keys, OAuth tokens, and service credentials
+- **Input validation:** Ensuring the agent provides valid parameters before making external calls
+- **Output parsing:** Converting API responses into structured data the agent can reason about
+- **Rate limiting:** Preventing the agent from overwhelming external services during high-volume operation
+
+### Database Access
+
+Agents that need to query internal data should use read-only database connections with query constraints. Never give an agent unconstrained database write access. Stripe's internal AI agents access production data through a purpose-built query layer that enforces row-level access control and query complexity limits.
+
+### Knowledge Base Integration
+
+Vector databases (Pinecone, Weaviate, Qdrant, or pgvector in PostgreSQL) store your enterprise knowledge for RAG retrieval. Implementation decisions include:
+
+- **Chunking strategy:** How you split documents affects retrieval quality. Too large, and irrelevant content dilutes useful information. Too small, and context is lost. Most production systems use 500-1000 token chunks with 100-200 token overlaps.
+- **Embedding model:** OpenAI's ada-002, Cohere's embed-v3, or open-source alternatives like BGE. The embedding model determines how well queries match relevant documents.
+- **Indexing cadence:** How often you refresh the knowledge base. Policies and product information change; stale knowledge bases produce stale agent responses.
+
+## Deployment and Operations
+
+### Environment Strategy
+
+Follow the same rigor as any production software deployment:
+
+- **Development:** Engineers iterate on prompts, tools, and agent configuration
+- **Staging:** Integration testing with realistic scenarios and synthetic data
+- **Production:** Gradual rollout with monitoring and rollback capability
+
+### Monitoring and Observability
+
+Production agents need specialized monitoring beyond standard application metrics:
+
+**Task completion rate:** What percentage of tasks does the agent resolve without human escalation? Aim for 70-80% initially, improving with iteration.
+
+**Tool call accuracy:** Is the agent selecting the right tools? Misrouted tool calls are the most common cause of agent failure.
+
+**Latency by step:** Where is the agent spending time? Is it the model inference, the tool execution, or the retrieval that's creating bottlenecks?
+
+**Cost per interaction:** Total API spend divided by interactions handled. Track this by agent role to identify optimization opportunities.
+
+**User satisfaction:** Direct feedback from users who interact with the agent. Thumbs-up/down signals are simple but invaluable.
+
+LangSmith provides purpose-built agent observability — trace-level visibility into every reasoning step, tool call, and decision point. Datadog and New Relic have added agent monitoring capabilities to their existing platforms.
+
+### Iterative Improvement
+
+Agent systems improve through a continuous cycle:
+
+1. **Monitor** production conversations for failures, escalations, and low-satisfaction interactions
+2. **Analyze** failure patterns — is the agent choosing wrong tools, misinterpreting inputs, or lacking relevant knowledge?
+3. **Fix** the root cause — update the system prompt, add or modify tools, enhance the knowledge base, or add training examples
+4. **Test** the fix against the failure cases and a regression suite
+5. **Deploy** and monitor the impact
+
+Intercom reports that their Fin AI agent improved its resolution rate from 28% to over 50% through six months of this iterative cycle — each round addressing the most common remaining failure mode.
+
+## Build vs. Buy
+
+The classic technology decision applies to agents as it does to everything else:
+
+**Build** when your agent workflow is core to your competitive advantage, requires deep integration with proprietary systems, or handles sensitive data that can't leave your infrastructure. Custom agents give you maximum control and differentiation.
+
+**Buy** when the use case is common (customer support, IT helpdesk, HR inquiries) and a vendor has already solved the hard problems. Solutions like Ada, Forethought, and Moveworks offer pre-built agent platforms for specific domains.
+
+**Compose** when you need custom logic with managed infrastructure. Using a framework like LangGraph on managed infrastructure like AWS Bedrock gives you design flexibility with reduced operational burden.
+
+> **Key takeaway:** Implementing AI agents requires deliberate choices about frameworks, models, tools, and operational infrastructure. The most successful teams start with the simplest architecture that solves their problem, instrument everything for observability, and improve iteratively based on production data. Resist the temptation to over-engineer on day one — a well-monitored simple agent outperforms an unmonitored complex one every time.
+
+## Sources
+
+- LangChain (2024). "LangGraph: State-of-the-Art Agent Orchestration." LangChain Documentation.
+- Amazon Web Services (2024). "Amazon Bedrock Agents: Build, Deploy, and Manage AI Agents." AWS Documentation.
+- Anthropic (2025). "Tool Use in Claude: Implementation Guide." Anthropic Documentation.
+- Stripe (2024). "How Stripe Uses AI Agents for Internal Operations." Stripe Engineering Blog.
+- Intercom (2024). "Fin AI Agent: From 28% to 50% Resolution Rate." Intercom Blog.
+- Notion (2024). "Building Notion AI: Model Routing and Cost Optimization." Notion Engineering Blog.

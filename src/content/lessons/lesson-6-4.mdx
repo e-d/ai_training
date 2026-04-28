@@ -1,0 +1,104 @@
+---
+title: "Fine-Tuning AI Models"
+slug: "fine-tuning-ai-models"
+course: "adopting-ai-in-your-organization"
+order: 4
+description: "Understand when and how to fine-tune AI models for your organization's specific needs, including the costs, tradeoffs, and alternatives to full model training."
+---
+
+## What Fine-Tuning Actually Means
+
+Fine-tuning is the process of taking a pre-trained AI model and further training it on your organization's specific data to improve its performance on your particular tasks. Think of it as the difference between hiring a generally knowledgeable professional and training that professional on your company's specific products, terminology, and processes.
+
+A foundation model like Claude or GPT-4 has been trained on broad internet-scale data. It knows a lot about many things. Fine-tuning narrows that broad knowledge into deep expertise on your domain — your medical terminology, your legal frameworks, your product catalog, your customer communication style.
+
+## When Fine-Tuning Makes Sense
+
+Fine-tuning is not always the right approach. It's expensive, time-consuming, and introduces ongoing maintenance obligations. Use fine-tuning when:
+
+### You Need Consistent Domain-Specific Behavior
+
+If your AI system must reliably use industry-specific terminology, follow particular formatting conventions, or maintain a specific communication style across thousands of interactions, fine-tuning can embed these patterns more reliably than prompting alone.
+
+Bloomberg built BloombergGPT, a 50-billion-parameter model fine-tuned on financial data, because general-purpose models consistently misinterpreted financial terminology. "Spread" means something different in finance than in everyday language. "Yield" has a precise technical meaning. Fine-tuning on financial corpora produced a model that handled these distinctions natively.
+
+### Prompt Engineering Has Hit Its Ceiling
+
+Before fine-tuning, most organizations should exhaust prompt engineering and RAG approaches. If you've optimized your prompts, provided relevant context through retrieval, and the model still doesn't perform adequately on your specific task, fine-tuning is the next lever. But if you haven't tried prompt engineering thoroughly, fine-tuning is premature optimization.
+
+### You Have Sufficient High-Quality Training Data
+
+Fine-tuning requires labeled examples of the behavior you want. For a customer service model, that means thousands of examples of ideal customer interactions. For a medical summarization model, that means thousands of correctly summarized clinical notes. If you don't have this data — or can't create it — fine-tuning will produce a model that's confidently wrong in your domain.
+
+## The Fine-Tuning Spectrum
+
+Fine-tuning isn't a single technique — it's a spectrum from lightweight adaptation to full model retraining:
+
+### Prompt Tuning and Prefix Tuning
+
+The lightest approach: rather than modifying model weights, you learn a set of optimized prompt tokens that steer model behavior. This requires minimal compute and preserves the base model entirely. It's effective for style adaptation and simple task specialization.
+
+### LoRA (Low-Rank Adaptation)
+
+LoRA modifies a small fraction of the model's parameters — typically 0.1-1% — rather than the entire model. This reduces training time from weeks to hours, GPU costs from hundreds of thousands to thousands of dollars, and storage from terabytes to megabytes. LoRA has become the default fine-tuning approach for most enterprise applications.
+
+Intuit used LoRA to fine-tune models for tax preparation assistance. Rather than training a full model on tax code, they adapted a foundation model using LoRA with examples of correct tax guidance, reducing training costs by 90% while achieving performance comparable to full fine-tuning on their tax-specific benchmarks.
+
+### Full Fine-Tuning
+
+Modifying all model parameters using your domain data. This produces the highest performance but requires significant GPU resources, large training datasets, and deep ML engineering expertise. Full fine-tuning is typically reserved for organizations building AI as a core product — not a support tool.
+
+## The Cost Reality
+
+Fine-tuning costs scale with model size, dataset size, and training duration. Realistic 2024-2025 cost ranges:
+
+- **LoRA fine-tuning of a 7B parameter model**: $500-$5,000 in cloud GPU costs, 1-3 days of training, achievable by a small ML team
+- **LoRA fine-tuning of a 70B parameter model**: $5,000-$50,000 in cloud GPU costs, 1-2 weeks of training, requires experienced ML engineers
+- **Full fine-tuning of a 70B+ parameter model**: $100,000-$1,000,000+, weeks to months, requires a dedicated ML infrastructure team
+
+These are training costs only. Ongoing costs include model hosting (inference), periodic retraining as your data evolves, evaluation and testing, and the engineering time to maintain the pipeline.
+
+A 2024 analysis by a]16z found that for most enterprise use cases, the combination of a frontier model API plus RAG plus carefully engineered prompts delivers 80-90% of the performance of a fine-tuned model at 10-20% of the cost. Fine-tuning closes the last 10-20% gap — whether that gap justifies the investment depends on your use case.
+
+## Building Your Training Dataset
+
+The quality of your fine-tuned model is determined entirely by the quality of your training data. Constructing a good training dataset requires:
+
+**Volume** — Most LoRA fine-tuning approaches need 1,000-10,000 high-quality examples. Full fine-tuning may require 100,000+. More data generally helps, but only if the data is high quality.
+
+**Diversity** — Your training examples should cover the full range of scenarios the model will encounter in production. A customer service model trained only on simple inquiries will fail on complex complaints.
+
+**Quality control** — Every training example should represent the behavior you want. If your training data includes mediocre responses alongside excellent ones, the model learns to produce mediocre output. Human review of training data is expensive but essential.
+
+**Annotation guidelines** — The people creating or reviewing training data need clear, detailed instructions on what "correct" looks like. Ambiguous guidelines produce inconsistent data, which produces an inconsistent model.
+
+## Alternatives to Fine-Tuning
+
+Before committing to fine-tuning, evaluate whether these lighter-weight approaches meet your needs:
+
+**Few-shot prompting** — Provide 3-10 examples of desired behavior directly in the prompt. This costs nothing to implement and can be remarkably effective for format and style consistency.
+
+**RAG (Retrieval-Augmented Generation)** — Ground the model's responses in your specific documents and data without modifying the model itself. RAG is easier to maintain because you update documents rather than retrain models.
+
+**System prompts and guardrails** — Detailed system prompts that specify tone, terminology, and constraints can shape model behavior substantially. Combined with output validation rules, this approach handles many enterprise requirements.
+
+**Structured outputs** — If your primary need is consistent output formatting (JSON, XML, specific templates), most modern APIs support structured output constraints that enforce format without fine-tuning.
+
+## The Maintenance Burden
+
+A fine-tuned model is a living asset that requires ongoing care:
+
+- **Model drift** — As your business evolves, the fine-tuned model's training data becomes stale. Plan for quarterly or semi-annual retraining cycles.
+- **Evaluation pipelines** — You need automated tests that continuously measure model performance against your success criteria. Without these, you won't know when performance degrades.
+- **Version management** — Track which model version is in production, what data it was trained on, and how it performs relative to previous versions.
+
+> **Key takeaway:** Fine-tuning is powerful but expensive, and most organizations should exhaust prompt engineering and RAG before pursuing it. When fine-tuning is warranted, LoRA offers the best cost-performance tradeoff for enterprise use cases. The quality of your training data is the single biggest determinant of success.
+
+## Sources
+
+- Wu, S. et al. (2023). "BloombergGPT: A Large Language Model for Finance." *arXiv preprint arXiv:2303.17564*.
+- Hu, E. et al. (2022). "LoRA: Low-Rank Adaptation of Large Language Models." *International Conference on Learning Representations (ICLR)*.
+- Intuit (2024). "AI-Powered Tax Assistance: Fine-Tuning for Financial Accuracy." Intuit Engineering Blog.
+- Andreessen Horowitz (a16z) (2024). "The Cost of Enterprise AI: Build, Buy, or Fine-Tune?" a16z Research.
+- OpenAI (2024). "Fine-Tuning Best Practices." OpenAI Documentation.
+- Google DeepMind (2024). "Efficient Fine-Tuning Methods for Large Language Models." Google AI Blog.

@@ -1,0 +1,138 @@
+{
+  "title": "Course 2: AI and Business Transformation — Resistance Isn't Futile",
+  "slug": "course-2-quiz",
+  "course": "ai-and-business-transformation",
+  "description": "Test your understanding of AI adoption strategies, transformation case studies, and emerging trends with 10 scenario-based questions.",
+  "questions": [
+    {
+      "id": 1,
+      "scenario": "Your company's CEO returns from a conference and wants to 'deploy AI across every department by year-end.' She's ready to approve a $5 million budget immediately. Your CTO is excited, but your VP of Operations warns that the company's customer data is scattered across six incompatible systems with no unified access layer.",
+      "question": "What should you recommend as the first step before committing the budget?",
+      "choices": [
+        "Proceed with the full deployment — the budget is available and momentum matters more than perfect data",
+        "Conduct a data readiness audit across availability, quality, and accessibility before selecting any AI use cases",
+        "Hire a team of data scientists first and let them determine what's possible with the existing data",
+        "Purchase an enterprise AI platform that can work with any data format"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI runs on data, and most organizations overestimate how ready theirs is. Before committing to any initiative, you need to audit data availability (do you collect what the model needs?), quality (is it clean and consistent?), and accessibility (can your team actually reach it?). Scattered data across incompatible systems is one of the most common reasons AI projects fail. The audit should happen before technology selection, hiring, or budget commitment."
+    },
+    {
+      "id": 2,
+      "scenario": "You lead digital transformation at a mid-size retailer. Your team has identified three potential AI projects: (A) a chatbot for customer inquiries, (B) an AI-powered demand forecasting system for inventory, and (C) a computer vision system to automate warehouse sorting. All three have strong business cases, but you can only start with one.",
+      "question": "How should you prioritize which AI project to launch first?",
+      "choices": [
+        "Choose the most technically impressive project to build internal excitement about AI",
+        "Choose the project that is data-rich, repetitive, and currently bottlenecked by human bandwidth — with a clear measurable target achievable within 60-90 days",
+        "Choose the least expensive project to minimize financial risk",
+        "Let the IT department decide based on which technology is easiest to implement"
+      ],
+      "correctIndex": 1,
+      "explanation": "The best first AI project is one that is data-rich (you already have the data), repetitive (the task follows learnable patterns), and bottlenecked (human bandwidth is the constraint). It should also deliver measurable results within 60-90 days to build organizational confidence and generate internal case studies for securing larger budgets. Technical impressiveness and low cost are secondary to business impact and feasibility."
+    },
+    {
+      "id": 3,
+      "scenario": "Your company successfully piloted an AI-powered invoice processing system in one department. It reduced processing time by 70% and cut errors by 85%. The CFO wants to roll it out across all 12 regional offices simultaneously next month.",
+      "question": "What is the most prudent approach to scaling this successful pilot?",
+      "choices": [
+        "Roll out to all 12 offices simultaneously to capture the efficiency gains as quickly as possible",
+        "Expand incrementally — one or two offices at a time — treating each expansion as a mini-pilot with its own success criteria",
+        "Wait a full year to confirm the pilot results hold before expanding",
+        "Rebuild the system from scratch using a different technology stack before scaling"
+      ],
+      "correctIndex": 1,
+      "explanation": "Scaling too fast amplifies problems that were manageable at pilot scale. Each regional office may have different data formats, workflows, and integration requirements. Expanding incrementally allows you to discover and address these variations before they compound. The goal is fast enough to capture value, slow enough to maintain quality — not all-at-once deployment."
+    },
+    {
+      "id": 4,
+      "scenario": "A software vendor pitches your executive team on an 'AI agent' that will autonomously manage your company's IT helpdesk — detecting incidents, diagnosing root causes, and executing fixes without human intervention. The vendor promises 90% reduction in IT support costs.",
+      "question": "What is the most important concern a business leader should raise about deploying an autonomous AI agent?",
+      "choices": [
+        "Whether the agent can integrate with existing IT monitoring tools",
+        "Whether the agent has well-defined boundaries, human oversight at critical decision points, and comprehensive audit trails for accountability",
+        "Whether the 90% cost reduction claim can be verified against industry benchmarks",
+        "Whether the vendor offers a money-back guarantee if the agent underperforms"
+      ],
+      "correctIndex": 1,
+      "explanation": "Agentic AI that acts autonomously needs guardrails — clear boundaries on what it can and cannot do, human oversight at high-stakes decision points, and audit trails for accountability. An IT agent that autonomously executes fixes could cause cascading outages if it makes a wrong decision without human review. Integration, cost claims, and guarantees are secondary to ensuring the system has the governance structures that prevent autonomous errors from escalating."
+    },
+    {
+      "id": 5,
+      "scenario": "Your HR team wants to deploy an AI resume screening tool. You recall that Amazon built a similar system in 2014 that had to be scrapped in 2018 because it penalized female candidates. Your HR director says, 'That was years ago — AI is much better now. We should be fine.'",
+      "question": "What is the correct response to your HR director's confidence?",
+      "choices": [
+        "She's right — modern AI models have eliminated the bias problem that affected Amazon's tool",
+        "AI bias has nothing to do with the technology's sophistication — it reflects the training data. If your historical hiring data has demographic imbalances, the model will learn to replicate them unless you specifically audit and mitigate bias",
+        "The solution is to use a pre-built vendor tool instead of building custom, since vendors have already solved the bias problem",
+        "Resume screening is too risky for AI — the company should continue manual review only"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI bias is a data problem, not a technology generation problem. More sophisticated models are still trained on historical data, and if that data reflects inequitable practices — like a decade of gender-imbalanced hiring — the model will learn those patterns. Mitigation requires diverse training data, bias audits at every stage, and ongoing monitoring after deployment. Neither avoiding AI entirely nor assuming vendors have solved it are responsible approaches."
+    },
+    {
+      "id": 6,
+      "scenario": "Your company deployed an AI demand forecasting model six months ago. Initially, it was 15% more accurate than the old spreadsheet-based approach. But over the past two months, forecast accuracy has been declining steadily. The data science team says the model hasn't changed.",
+      "question": "What is the most likely cause of the declining forecast accuracy?",
+      "choices": [
+        "The computing hardware running the model needs to be upgraded",
+        "Model drift — real-world data has shifted away from the patterns in the training data, and the model needs to be retrained on fresh data",
+        "A competitor has deployed a superior AI model that is disrupting market patterns",
+        "The data science team made an error in the original model that is only now becoming apparent"
+      ],
+      "correctIndex": 1,
+      "explanation": "Model drift is the gradual degradation of AI performance as real-world data shifts away from the training data. Markets change, customer behavior evolves, and new patterns emerge that the original training data didn't capture. This is why production AI requires automated retraining pipelines — companies like Uber and Airbnb retrain core models on weekly or monthly cycles to maintain accuracy. Without monitoring and retraining, every model eventually becomes stale."
+    },
+    {
+      "id": 7,
+      "scenario": "You're building the business case for your company's first AI initiative. The VP of Sales is skeptical: 'Our team has been successful without AI for 20 years. Why change now?' He's influential on the executive committee, and his opposition could kill the project.",
+      "question": "What is the most effective way to build executive alignment for the AI initiative?",
+      "choices": [
+        "Present a detailed technical overview of how machine learning algorithms work to educate the VP",
+        "Frame the case in business outcomes — show competitor AI adoption data, quantify the cost of inaction, and propose a 60-day pilot with specific KPIs that the VP can evaluate objectively",
+        "Escalate to the CEO and bypass the VP's objections",
+        "Delay the project until the VP retires or moves to a different role"
+      ],
+      "correctIndex": 1,
+      "explanation": "Executive alignment requires speaking in business language, not technology language. 'Reduce customer churn by 15%' resonates with executives; 'deploy a gradient-boosted classifier' does not. Framing the cost of inaction — competitors using AI to reduce costs by 20% while you stand still — makes the strategic urgency concrete. A time-bounded pilot with predefined KPIs gives skeptics an objective way to evaluate results rather than debating predictions."
+    },
+    {
+      "id": 8,
+      "scenario": "Your company is evaluating whether to build a custom AI model for product recommendations or buy an off-the-shelf solution from a SaaS vendor. Your competitive advantage comes from a unique product catalog and deep customer purchase history data that no competitor has. The engineering team estimates a custom build would take 8 months and cost 5x the annual SaaS subscription.",
+      "question": "Given the company's unique data advantage, which approach is most strategically sound?",
+      "choices": [
+        "Buy the SaaS solution because it's faster and cheaper — the unique data advantage doesn't matter for recommendations",
+        "Build custom because your competitive advantage depends on proprietary data that a generic SaaS model can't leverage — the higher cost is justified when the AI itself is your competitive moat",
+        "Build a custom solution but outsource the development to reduce costs",
+        "Buy the SaaS solution now and plan to build custom in 3-5 years"
+      ],
+      "correctIndex": 1,
+      "explanation": "The build-vs-buy decision hinges on whether the AI itself is your competitive advantage. When your unique product catalog and deep customer data are the moat, a generic SaaS recommendation engine can't leverage what makes you different. Custom development costs 5-10x more and takes 3-5x longer — but it's worth it when the model trained on your proprietary data is what separates you from competitors using the same off-the-shelf tools."
+    },
+    {
+      "id": 9,
+      "scenario": "Your company just learned that the EU AI Act, effective August 2024, classifies your customer credit scoring system as 'high-risk AI.' This means mandatory bias testing, human oversight, transparency disclosures, and documentation requirements — with fines up to 35 million euros or 7% of global revenue for non-compliance.",
+      "question": "How should your organization respond to this regulatory development?",
+      "choices": [
+        "Shut down the AI credit scoring system immediately and return to manual underwriting",
+        "Build compliance requirements — bias testing, human oversight, transparency, and documentation — into the existing system now, before enforcement actions begin",
+        "Wait to see if the regulation is actually enforced before making changes",
+        "Move the system to a jurisdiction where the EU AI Act doesn't apply"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI regulation is no longer a future concern — it's current operating reality. The EU AI Act's requirements for high-risk AI systems are specific and enforceable, with significant financial penalties. Building compliance into existing systems proactively is far less costly than retrofitting after an enforcement action. Waiting, avoiding, or shutting down productive AI systems are all worse strategies than integrating governance as a core engineering requirement."
+    },
+    {
+      "id": 10,
+      "scenario": "At a strategy retreat, your leadership team debates how to prepare for the next wave of AI capabilities — agentic systems, small language models, and multimodal AI. One executive argues for massive immediate investment. Another says it's too early and the company should wait until the technology matures. You've been asked to break the tie.",
+      "question": "What is the most strategically sound position?",
+      "choices": [
+        "Invest heavily now in specific emerging technologies to secure a first-mover advantage",
+        "Wait until the technologies are proven and widely adopted to minimize risk",
+        "Build foundational capabilities now — clean data, skilled teams, governance frameworks, and a culture of AI collaboration — so the organization can adopt emerging technologies rapidly as they mature",
+        "Focus exclusively on optimizing current AI deployments and ignore emerging trends"
+      ],
+      "correctIndex": 2,
+      "explanation": "The next wave of AI will be adopted fastest by organizations that have already built the foundations: clean and accessible data, skilled teams, established governance processes, and a culture that embraces AI as a partner in the work. Betting heavily on specific immature technologies is risky. Waiting until they're proven means falling behind on the data flywheel. Building foundations is the strategy that pays off regardless of which specific technologies mature first."
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+---
+title: "AI Risks and Risk Management"
+slug: "ai-risks-and-risk-management"
+course: "ai-leadership-and-management"
+order: 6
+description: "Identify the key risks AI introduces to your organization and learn frameworks for managing them without stifling innovation."
+---
+
+## AI Risk Is Business Risk
+
+When business leaders think about AI risk, they typically think about robots gone wrong or biased algorithms making headlines. The reality is broader and more mundane — and more dangerous for exactly that reason. AI risk includes operational failures, security vulnerabilities, regulatory exposure, reputational damage, and strategic missteps that can cost millions before anyone realizes something went wrong.
+
+A 2024 MIT Sloan Management Review study found that 67% of organizations deploying AI had experienced at least one AI-related incident — a model failure, a data breach through an AI system, a biased output that reached customers, or a regulatory violation. Yet only 23% had a formal AI risk management framework in place. The gap between risk exposure and risk preparedness is where leaders must focus.
+
+## The AI Risk Taxonomy
+
+### Operational Risks
+
+**Model failure.** AI models fail silently. Unlike traditional software that crashes with an error message, an AI model can produce plausible but wrong outputs indefinitely. A demand forecasting model that drifts out of calibration doesn't stop working — it keeps generating forecasts that look reasonable but are increasingly inaccurate. By the time someone notices, inventory decisions based on bad forecasts have already cost money.
+
+Zillow learned this lesson at scale. The company's AI-powered home-buying program, Zillow Offers, used ML models to estimate home values and make instant purchase offers. When the housing market shifted faster than the models could adapt, Zillow accumulated $881 million in losses and shut down the program entirely, laying off 2,000 employees. The models didn't crash — they confidently produced estimates that were wrong.
+
+**Cascading failures.** As organizations integrate AI across multiple systems, a failure in one model can cascade. An AI-driven supply chain system that miscalculates demand can trigger incorrect purchase orders, which create warehouse overstocking, which distorts financial projections. Each downstream system trusts the upstream AI's output, amplifying the original error.
+
+### Security Risks
+
+**Adversarial attacks.** AI models can be deliberately fooled. Researchers have demonstrated that adding carefully crafted noise to images can cause computer vision systems to misclassify objects with high confidence. In 2024, multiple reports documented prompt injection attacks against LLM-powered applications — where adversaries embed hidden instructions in documents or web pages that hijack the model's behavior.
+
+**Data poisoning.** If attackers can influence the training data, they can influence the model's behavior. A content moderation model trained on data that includes adversary-submitted examples could learn to approve harmful content. This risk is particularly acute for models that continuously learn from user interactions.
+
+**Intellectual property exposure.** Employees feeding proprietary data into AI tools — customer lists into ChatGPT, source code into coding assistants, financial projections into AI analysis tools — risk exposing trade secrets to third-party model providers. Samsung banned employee use of generative AI tools in 2023 after discovering that engineers had uploaded proprietary semiconductor code to ChatGPT.
+
+### Bias and Fairness Risks
+
+AI models learn patterns from historical data, and historical data reflects historical inequities. Amazon's AI recruiting tool, trained on a decade of hiring data from a male-dominated industry, learned to penalize resumes containing the word "women's" — not because anyone programmed it to, but because the training data showed a pattern of preferring male candidates.
+
+Bias risks are highest in applications that affect people's lives: hiring, lending, insurance, healthcare, and criminal justice. But bias can surface in unexpected places — a marketing AI that disproportionately shows high-priced products to users from affluent zip codes, or a customer service AI that provides faster responses to native English speakers.
+
+### Reputational Risks
+
+AI failures become news. When Air Canada's AI chatbot gave a customer incorrect information about bereavement fares — and the company initially refused to honor the AI's commitment — the resulting lawsuit and coverage damaged brand trust. Microsoft's Tay chatbot became a hate-speech machine within 24 hours of launch. Google's Gemini generated historically inaccurate images that became a viral controversy.
+
+The reputational risk is asymmetric: an AI that works well generates modest positive coverage; an AI that fails spectacularly generates massive negative coverage. Leaders must account for this asymmetry in deployment decisions.
+
+### Strategic Risks
+
+**Vendor dependency.** Organizations that build core capabilities on a single AI vendor's platform face concentration risk. If that vendor changes pricing, terms, or capabilities — or goes out of business — the dependent organization has limited options. OpenAI's governance crisis in November 2023, when the board briefly fired CEO Sam Altman, caused customer organizations to scramble for contingency plans.
+
+**Capability overestimation.** Leaders who overestimate what AI can do make commitments the technology cannot deliver. Promising customers AI-powered features that don't work reliably, or restructuring teams based on AI capabilities that prove inadequate, creates strategic vulnerabilities.
+
+## The AI Risk Management Framework
+
+### Establish an AI Risk Registry
+
+Document every AI system in production, its purpose, its data sources, its decision authority, and its potential failure modes. This inventory is the foundation of risk management — you cannot manage risks you haven't identified.
+
+For each system, assess:
+- **Severity** — What happens if this AI fails? Minor inconvenience or major business impact?
+- **Probability** — How likely is failure? Models operating in stable environments are lower risk than those in volatile markets
+- **Detectability** — How quickly will you know if the AI fails? Real-time monitoring catches failures fast; quarterly audits do not
+
+### Implement Model Monitoring
+
+Production AI requires continuous monitoring — not just for uptime, but for performance degradation:
+
+- **Accuracy monitoring** — Track model predictions against actual outcomes on an ongoing basis. Set alert thresholds that trigger investigation when performance drops below acceptable levels
+- **Drift detection** — Monitor the statistical distribution of input data. When incoming data shifts significantly from training data, the model's predictions become less reliable
+- **Fairness monitoring** — Continuously audit model outputs across demographic groups for disparate impact. Don't rely on pre-deployment testing alone; bias can emerge over time as user populations shift
+
+### Define Escalation Protocols
+
+When AI fails, who decides what to do? Define clear escalation paths:
+
+- **Level 1: Automated response** — Model confidence drops below threshold; system automatically falls back to rules-based processing or routes to human review
+- **Level 2: Technical investigation** — Performance degradation detected; data science team investigates root cause within defined SLA
+- **Level 3: Business decision** — Material model failure with business impact; leadership decides whether to continue, pause, or shut down the AI system
+- **Level 4: Crisis management** — AI failure causes customer harm, regulatory exposure, or public attention; invoke crisis management protocols
+
+### Conduct AI-Specific Red Teams
+
+Borrow from cybersecurity: designate a team to actively try to break your AI systems before adversaries or edge cases do. Red teams should test:
+
+- Can the model be tricked into producing harmful outputs?
+- How does the model behave with adversarial or out-of-distribution inputs?
+- What happens when upstream data sources fail or provide corrupted data?
+- Can the model's decision-making be explained to a regulator or a customer?
+
+Microsoft, Google, and Anthropic all conduct red-team exercises on their AI models before release. Enterprise organizations should apply the same discipline to their deployed AI applications.
+
+### Build a Human Override Capability
+
+Every AI system with business-critical decision authority must have a "kill switch" — the ability for authorized humans to override or shut down the AI immediately. This is not optional; it's a safety requirement. The override must be accessible to operational staff, not just engineers, and it must be tested regularly.
+
+> **Key takeaway:** AI risks are not theoretical — they are operational, financial, and reputational realities that affect organizations today. Effective AI risk management requires a risk registry, continuous model monitoring, defined escalation protocols, red-team testing, and human override capabilities. The organizations that treat AI risk management as seriously as cybersecurity or financial risk management will avoid the failures that destroy value and erode trust. Those that treat it as an afterthought are building on a foundation that will eventually crack.
+
+## Sources
+
+- MIT Sloan Management Review (2024). "The State of Responsible AI." MIT Sloan.
+- Zillow (2021). "Zillow Group to Wind Down Zillow Offers." Zillow Investor Relations.
+- Samsung (2023). "Samsung Bans Employee Use of Generative AI Tools." Reported by Bloomberg.
+- Air Canada (2024). "Moffatt v. Air Canada." Civil Resolution Tribunal of British Columbia.
+- NIST (2023). "AI Risk Management Framework (AI RMF 1.0)." National Institute of Standards and Technology.
+- Microsoft (2024). "AI Red Team Operations." Microsoft Security Blog.

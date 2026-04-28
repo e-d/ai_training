@@ -1,0 +1,98 @@
+---
+title: "Prompting for Financial and Legal Analysis"
+slug: "prompting-for-financial-and-legal-analysis"
+course: "prompt-engineering"
+order: 6
+description: "Learn specialized prompt engineering techniques for financial modeling, contract review, regulatory compliance, and risk assessment — where precision and accuracy are non-negotiable."
+---
+
+## High-Stakes Prompting: When the Output Has Consequences
+
+Marketing content that's slightly off-tone is a nuisance. A financial analysis with a wrong number or a legal review that misses a critical clause is a liability. Prompt engineering for financial and legal work operates under different rules: precision matters more than creativity, caveats matter more than confidence, and verification is mandatory rather than optional.
+
+This lesson covers the techniques that finance and legal professionals use to extract reliable, auditable AI outputs for high-stakes business decisions.
+
+## Financial Analysis Prompts
+
+### Earnings and Financial Statement Analysis
+
+**Basic prompt (produces generic output):**
+
+"Analyze Apple's latest earnings report."
+
+**Professional-grade prompt:**
+
+"You are a sell-side equity research analyst covering Apple Inc. I'm sharing Apple's Q4 2024 10-Q filing. Analyze it using the following framework: (1) Revenue decomposition — break down revenue by segment and geography. Identify which segments are accelerating and which are decelerating vs. prior quarter and prior year. (2) Margin analysis — calculate and compare gross margin, operating margin, and net margin vs. the prior four quarters. Identify the primary drivers of any margin expansion or compression. (3) Cash flow analysis — compare operating cash flow to net income. Flag any divergence and explain what it might indicate. (4) Forward indicators — identify any language in the MD&A section that signals management's expectations for next quarter. Use exact quotes. Present findings in a structured format with a summary table at the top."
+
+This prompt produces analysis comparable to a junior analyst's first draft — structured, specific, and grounded in the actual filing rather than the model's general knowledge about Apple.
+
+### Financial Modeling Assistance
+
+AI cannot replace a spreadsheet for financial modeling, but it excels at structuring assumptions, checking logic, and drafting formulas.
+
+**Example prompt:**
+
+"I'm building a 3-year DCF model for a SaaS company with the following characteristics: $50M ARR, 30% YoY growth (decelerating 5 points annually), 70% gross margin, 25% operating margin at scale, $15M in annual capex. Help me: (1) List every assumption I need to define, organized by category (revenue, costs, working capital, terminal value). (2) For each assumption, suggest a reasonable range based on SaaS industry benchmarks. (3) Identify which 3 assumptions will have the largest impact on the final valuation — these are where I should focus my sensitivity analysis. Show your reasoning step by step."
+
+### Ratio Analysis and Benchmarking
+
+**Example prompt:**
+
+"Calculate and interpret the following ratios from the attached balance sheet and income statement: Current ratio, Quick ratio, Debt-to-equity, Interest coverage, Return on equity, Asset turnover. For each ratio: (1) Show the calculation with actual numbers, (2) State whether the result is above or below industry median for [specific industry], (3) Explain what the ratio tells us about the company's financial health, (4) Flag any ratios that are trending in a concerning direction compared to the prior year figures I've provided. If you don't have reliable industry benchmarks, say so rather than estimating."
+
+That last instruction — "say so rather than estimating" — is critical for financial prompting. It transforms the AI from a confident-sounding generator into an honest analyst who flags uncertainty.
+
+## Legal Analysis Prompts
+
+### Contract Review
+
+**Example prompt:**
+
+"You are a corporate attorney reviewing a vendor services agreement. Review the attached contract and identify: (1) Termination provisions — what are the notice requirements, termination-for-convenience rights, and termination-for-cause triggers? Quote the relevant sections. (2) Liability and indemnification — what are the liability caps? Are there any unlimited liability carve-outs? Who indemnifies whom, and for what? (3) IP ownership — who owns work product created during the engagement? Are there any license-back provisions? (4) Data handling — what are the data protection obligations? Do they align with GDPR and CCPA requirements? (5) Non-standard terms — flag any provisions that deviate from market-standard terms for this type of agreement. For each issue identified, rate it as Low Risk, Medium Risk, or High Risk, and explain your reasoning. Important: This analysis is for internal review purposes. Do not present findings as legal advice. Flag any provisions where you are uncertain of the interpretation."
+
+Allen & Overy, one of the world's largest law firms, reported that their AI tool Harvey reduced initial contract review time by 50% — but emphasized that every AI-generated review undergoes attorney verification before being shared with clients. The AI accelerates the first pass; it does not replace professional judgment.
+
+### Regulatory Compliance Analysis
+
+**Example prompt:**
+
+"Our company processes health data for insurance clients. We need to ensure compliance with HIPAA, state privacy laws in California (CCPA/CPRA) and New York, and our SOC 2 Type II certification requirements. Review our current data handling policy [attached] and: (1) Identify specific provisions that satisfy each regulatory requirement, (2) Identify gaps — requirements that our policy doesn't address, (3) For each gap, draft recommended policy language that would address the requirement, (4) Rate each gap by severity: Critical (immediate compliance risk), Important (should address within 90 days), or Advisory (best practice improvement). Organize findings in a compliance matrix format."
+
+### Litigation Risk Assessment
+
+**Example prompt:**
+
+"You are outside litigation counsel assessing risk for a potential breach of contract claim. The facts are: [describe situation]. Analyze the following: (1) Elements of the claim — can the opposing party establish each required element? Rate the strength of their position for each element (Strong, Moderate, Weak). (2) Available defenses — identify all potentially applicable defenses and assess their viability. (3) Damages exposure — what categories of damages could be sought, and what is the realistic range? (4) Settlement considerations — what factors weigh in favor of and against early settlement? Present your analysis as a litigation risk memo with a bottom-line risk rating: High, Medium, or Low. Caveat: This is preliminary analysis for internal discussion, not legal advice."
+
+## Critical Safeguards for Financial and Legal Prompting
+
+### The Verification Imperative
+
+Every financial figure and legal citation produced by AI must be verified against primary sources. A 2024 analysis by Thomson Reuters found that AI-generated legal research contained material errors in approximately 15% of cases — often citing real cases with fabricated holdings, or conflating provisions from different jurisdictions.
+
+**Prompting to reduce (not eliminate) errors:**
+
+"When citing specific statutes, regulations, or case law, provide the full citation so I can verify it. If you are not certain that a specific legal authority exists or says what you describe, explicitly state your uncertainty rather than presenting it as fact."
+
+### Audit Trails and Documentation
+
+For regulated industries, the ability to explain how an analysis was produced is as important as the analysis itself. Save your prompt chains, not just the outputs. If a regulator asks how you arrived at a compliance determination, "AI told us" is not an acceptable answer. A documented prompt chain showing the analytical framework, inputs, and step-by-step reasoning is.
+
+### Scope Limitations
+
+Always define what AI-assisted analysis is and is not. Internal first drafts for human review? Yes. Client-facing deliverables without attorney or analyst review? Never. The prompt itself should include scope language:
+
+"This analysis is for internal use as a first draft to be reviewed and refined by [qualified professional]. It should not be treated as final analysis, legal advice, or financial recommendation."
+
+### Confidentiality Protocols
+
+Financial and legal work involves highly sensitive information. Only use enterprise-grade AI tools with appropriate data handling agreements. Never paste client financial data, privileged legal communications, or material non-public information into consumer AI tools.
+
+> **Key takeaway:** Financial and legal prompt engineering demands a different mindset than creative or marketing prompting. Precision, verification, uncertainty flagging, and scope limitations aren't optional extras — they're fundamental requirements. AI accelerates the analytical process but does not replace the professional judgment that makes the final output trustworthy.
+
+## Sources
+
+- Allen & Overy (2024). "Harvey AI: Impact on Legal Service Delivery." A&O Shearman Innovation Report.
+- Thomson Reuters (2024). "AI Accuracy in Legal Research: A Benchmarking Study." Thomson Reuters Institute.
+- McKinsey & Company (2024). "Generative AI in Financial Services: Opportunities and Risks." McKinsey Global Institute.
+- Deloitte (2024). "AI in Audit and Assurance: Practical Frameworks." Deloitte Audit Innovation.

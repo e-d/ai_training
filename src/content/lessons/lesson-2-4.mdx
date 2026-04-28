@@ -1,0 +1,111 @@
+---
+title: "The AI Adoption Process"
+slug: "the-ai-adoption-process"
+course: "ai-and-business-transformation"
+order: 4
+description: "Follow a step-by-step process for moving AI from pilot to production, including governance, change management, and scaling."
+---
+
+## From Strategy to Execution
+
+Having an AI strategy is necessary but not sufficient. The gap between "we should use AI" and "AI is delivering value in production" is where most organizations stall. This lesson provides a structured process for moving AI initiatives from concept through pilot to scaled deployment — covering the organizational, technical, and governance steps that determine whether a project succeeds or joins the 80% that fail.
+
+## Phase 1: Problem Definition and Scoping
+
+### Define the Business Problem Precisely
+
+Vague objectives kill AI projects. "Use AI to improve customer experience" is not actionable. "Reduce average customer support ticket resolution time from 4 hours to 1 hour using an AI-powered triage and response system" is. Precise definitions enable precise measurement — and measurement is what separates a project from an experiment.
+
+### Scope for Quick Wins
+
+Your first AI project should be scoped to deliver measurable results within 60-90 days. Quick wins build organizational confidence, generate the internal case studies needed to secure larger budgets, and expose operational challenges — data access issues, integration hurdles, change resistance — on a small scale where they're manageable.
+
+High-probability first projects include automated document classification, customer inquiry routing, invoice processing, and anomaly detection in transaction data. These are data-rich, repetitive processes with clear success metrics.
+
+## Phase 2: Data Assessment and Preparation
+
+### Audit Your Data Foundation
+
+Before selecting any technology, conduct a rigorous data audit:
+
+- **Inventory** — What data do you collect that's relevant to the problem? Where does it live? Who owns it?
+- **Quality assessment** — Sample the data. How complete is it? Are there inconsistencies, duplicates, or systematic gaps?
+- **Accessibility review** — Can your team actually access the data programmatically, or is it trapped in legacy systems, PDF reports, or departmental spreadsheets?
+
+Budget 60-80% of your initial project timeline for data preparation and cleaning. This ratio surprises executives, but it reflects reality — models trained on poor data produce poor results regardless of algorithmic sophistication.
+
+### Build Data Pipelines
+
+Production AI requires automated data pipelines, not one-time exports. These pipelines extract data from source systems, transform it into model-ready formats, and load it into the training and inference infrastructure. Companies that skip this step create models that work during the pilot but can't be maintained or updated in production.
+
+## Phase 3: Technology Selection and Development
+
+### Choose the Right Approach
+
+The build-vs-buy decision should be driven by three factors:
+
+- **Problem uniqueness** — If dozens of vendors offer solutions for your use case, buying is almost always faster and cheaper
+- **Data sensitivity** — If your competitive advantage depends on proprietary data that can't leave your environment, custom development or on-premises deployment may be necessary
+- **In-house capability** — Building custom AI requires ML engineers, MLOps infrastructure, and ongoing maintenance commitment. If you don't have these, partnering is the pragmatic choice
+
+### Prototype and Validate
+
+Build a minimum viable model (MVM) — the simplest model that can demonstrate whether AI can solve the problem. A logistic regression model or a pre-trained foundation model fine-tuned on your data often suffices for validation. If the MVM shows promise, invest in more sophisticated approaches. If it doesn't, you've saved months of development time.
+
+## Phase 4: Pilot Deployment
+
+### Run a Controlled Pilot
+
+Deploy the model in a controlled environment with clear boundaries:
+
+- **Define the pilot scope** — Which team, location, or customer segment will use the system?
+- **Establish success criteria** — What metrics must the model hit to justify scaling? Define these before launch, not after
+- **Run in parallel** — During the pilot, run the AI system alongside existing processes so you can compare results directly
+- **Assign a human review layer** — Every AI output should be reviewed by a human during the pilot phase to catch errors, build trust, and generate feedback for model improvement
+
+### Measure Rigorously
+
+Track three categories of metrics during the pilot:
+
+- **Model performance** — Accuracy, precision, recall, false positive/negative rates
+- **Business impact** — Time saved, cost reduced, revenue generated, error rates improved
+- **User adoption** — Are the intended users actually using the system? If not, why?
+
+## Phase 5: Change Management
+
+### People Are the Hardest Part
+
+Technical deployment is rarely what kills AI projects — organizational resistance is. Employees worry about job displacement, managers distrust algorithmic recommendations, and legacy processes have political constituencies. Addressing these concerns is not optional — it's a core project requirement.
+
+JPMorgan Chase invested heavily in change management when deploying COiN, their contract-analysis AI. Rather than replacing lawyers, they repositioned the system as a tool that freed attorneys to focus on complex negotiations instead of routine document review. The result: the system now processes 12,000 commercial credit agreements per year in seconds, and attorney satisfaction improved because the tedious work was eliminated.
+
+### Communicate Transparently
+
+Effective change management for AI follows three principles:
+
+- **Explain the why** — People accept change more readily when they understand the business reason behind it
+- **Show the how** — Demonstrate the system in action, let users interact with it, and address concerns with evidence rather than promises
+- **Involve early** — Include end users in the pilot design. Their feedback improves the product and their involvement builds ownership
+
+## Phase 6: Scaling and Operationalization
+
+### Move from Pilot to Production
+
+Once the pilot proves value, build the infrastructure to scale:
+
+- **Model monitoring** — Deploy dashboards that track model performance in real time. Models degrade as real-world data drifts away from training data — without monitoring, you won't know until the damage is done
+- **Retraining pipelines** — Establish automated processes for periodically retraining models on fresh data. Uber and Airbnb retrain core models on weekly or monthly cycles
+- **Governance processes** — Define who approves model deployment, who monitors outputs, who decides when to retrain or retire a model, and how incidents are escalated
+
+### Scale Incrementally
+
+Expand to new teams, locations, or use cases one at a time. Each expansion is a mini-pilot with its own success criteria. Resist the pressure to roll out everywhere simultaneously — scaling too fast amplifies problems that were manageable at pilot scale.
+
+> **Key takeaway:** AI adoption is a structured process, not a technology purchase. Each phase — problem definition, data preparation, technology selection, pilot deployment, change management, and scaling — requires deliberate execution. Skipping phases doesn't save time; it creates the conditions for the 80% failure rate that defines the industry.
+
+## Sources
+
+- RAND Corporation (2024). "Research Brief: Failure in Machine Learning Projects." RAND.org.
+- Gartner (2023). "How to Improve Your Data Quality." Gartner Research.
+- McKinsey & Company (2025). "The State of AI: Global Survey." McKinsey Digital.
+- Son, H. (2017). "JPMorgan Software Does in Seconds What Took Lawyers 360,000 Hours." Bloomberg.

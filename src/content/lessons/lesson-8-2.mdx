@@ -1,0 +1,99 @@
+---
+title: "Designing Single-Agent Systems"
+slug: "designing-single-agent-systems"
+course: "ai-agents"
+order: 2
+description: "Learn the core design patterns for building effective single-agent systems, including ReAct, tool use, and structured planning."
+---
+
+## The Building Blocks of a Working Agent
+
+Designing a single-agent system is fundamentally different from designing traditional software. In conventional applications, developers specify every path the system can take. With agents, you define the goal, equip the system with tools, and let it reason about how to get there. This shift demands new design patterns — and getting them wrong is the difference between an agent that reliably handles customer inquiries and one that confidently sends incorrect refunds.
+
+## The ReAct Pattern: Think, Then Do
+
+The most influential design pattern in modern agent systems is ReAct — short for Reasoning plus Acting. Introduced by researchers at Princeton and Google in 2022, ReAct interleaves thinking steps with action steps in a structured loop:
+
+1. **Observe** the current state
+2. **Think** about what to do next (reasoning trace)
+3. **Act** by calling a tool or taking a step
+4. **Observe** the result
+5. **Repeat** until the goal is met
+
+This pattern matters because it makes agent behavior inspectable. When a ReAct agent processes a customer complaint, you can trace its reasoning: "The customer mentions a defective product delivered on March 3. I should look up order #4521 in the order system. The order shows a Widget Pro shipped on March 1. The return window is 30 days, so a return is eligible. I'll initiate a return label and draft a response."
+
+Compare this with a black-box approach where the agent jumps directly to an answer without visible reasoning. The ReAct pattern doesn't just improve reliability — it gives your compliance and quality teams the audit trail they need to trust the system.
+
+Anthropic's research on Claude's agent behavior found that ReAct-style prompting improved task completion rates by 30-40% on complex multi-step tasks compared to direct prompting without reasoning traces.
+
+## Tool Use: Giving Agents Hands
+
+An agent without tools is a philosopher — it can reason about the world but cannot change it. Tool use is what transforms a language model into a functional agent.
+
+Tools are structured interfaces that connect the agent to external systems. Common enterprise tool categories include:
+
+- **Data retrieval tools:** Query customer databases, search knowledge bases, pull CRM records
+- **Action tools:** Send emails, create tickets, update records, trigger workflows
+- **Computation tools:** Run calculations, execute code, generate reports
+- **Communication tools:** Post to Slack channels, schedule calendar events, send notifications
+
+The design principle is clear boundaries. Each tool should do one thing well and return structured results the agent can reason about. Klarna's AI assistant — which handles two-thirds of the company's customer service chats, equivalent to the work of 700 full-time agents — connects to roughly 30 specialized tools for order lookup, refund processing, product search, and escalation routing. No single tool is complex; the intelligence is in how the agent chains them together.
+
+### Tool Design Best Practices
+
+**Descriptive naming.** A tool called `get_order_status` tells the agent when to use it. A tool called `api_call_7` does not. Agents choose tools based on descriptions, so clarity directly affects performance.
+
+**Constrained outputs.** Tools should return structured data (JSON, typed objects) rather than free text. This prevents the agent from misinterpreting results.
+
+**Error handling.** Tools must return meaningful errors. "Order not found for ID 4521" lets the agent recover. A raw HTTP 500 error does not.
+
+**Guardrails on actions.** Destructive tools (deleting records, processing payments, sending external communications) should require confirmation steps or human approval. Shopify's agent framework enforces this by categorizing tools into "read" and "write" tiers with different authorization requirements.
+
+## Planning: How Agents Tackle Complex Tasks
+
+Simple tasks don't need planning — "look up this order" is a single tool call. But real business problems are multi-step: "Research this customer's complaint history, identify recurring issues, draft a resolution plan, and schedule a follow-up." Planning is how agents decompose complex goals into executable sequences.
+
+### Plan-and-Execute
+
+The most common planning pattern separates the planning phase from execution. The agent first generates a complete plan, then executes each step sequentially. This works well for predictable workflows where the steps are known in advance — like processing an insurance claim or onboarding a new vendor.
+
+Cognition Labs' Devin, an AI software engineering agent, uses plan-and-execute extensively. When given a coding task, Devin first outlines its approach (understand the codebase, identify relevant files, plan the implementation, write code, test), then works through each step methodically.
+
+### Adaptive Planning
+
+Real-world tasks rarely go exactly to plan. An adaptive planning agent starts with an initial plan but revises it as new information emerges. If a customer service agent discovers mid-conversation that a product has been recalled, it needs to abandon its original "process a standard return" plan and switch to a recall-specific workflow.
+
+The key design decision is how often to replan. Replanning after every step maximizes flexibility but increases latency and cost. Replanning only when something unexpected happens is more efficient but requires the agent to recognize when its plan has gone off-track. Most production systems use a hybrid: follow the plan until an observation contradicts expectations, then replan.
+
+## Context Management: The Hidden Challenge
+
+Single agents are constrained by their context window — the amount of information they can consider simultaneously. Even with models supporting 200,000-token contexts, a production agent processing high volumes hits this limit fast.
+
+Effective context management strategies include:
+
+- **Summarization:** Periodically compress conversation history and intermediate results into concise summaries
+- **Retrieval-augmented generation (RAG):** Store knowledge externally and retrieve only what's relevant to the current step
+- **Scratchpad patterns:** Maintain a structured working memory that the agent reads and updates, separate from the full conversation
+
+Intercom's Fin AI agent, which resolves over 50% of customer conversations without human intervention, uses a layered context system: the current conversation in immediate context, relevant knowledge articles retrieved via RAG, and customer history pulled on-demand from their data platform.
+
+## When One Agent Isn't Enough
+
+Single-agent systems work well when the task domain is bounded and the required tools number in the dozens. But they start to break down when:
+
+- The task requires expertise across multiple domains (legal review AND financial analysis AND customer communication)
+- The number of tools exceeds what the model can reliably select from (typically 20-30 tools before accuracy drops)
+- The workflow requires parallel processing (researching multiple leads simultaneously)
+
+These limitations are not failures — they're the design boundary where single-agent systems hand off to multi-agent architectures, covered in Lesson 4.
+
+> **Key takeaway:** Effective single-agent design relies on proven patterns — ReAct for auditable reasoning, structured tool use for real-world actions, and planning strategies for complex tasks. The art is matching the pattern to the problem: simple tasks need simple loops, while complex workflows need planning with adaptive replanning. Design your tools with clear boundaries and your context management with production volumes in mind.
+
+## Sources
+
+- Yao, S. et al. (2022). "ReAct: Synergizing Reasoning and Acting in Language Models." *International Conference on Learning Representations (ICLR)*.
+- Anthropic (2024). "Building Effective Agents." Anthropic Research Blog.
+- Klarna (2024). "Klarna AI Assistant Handles Two-Thirds of Customer Service Chats." Klarna Press Release.
+- Cognition Labs (2024). "Introducing Devin: The First AI Software Engineer." Cognition Blog.
+- Intercom (2024). "Fin AI Agent: Resolution Rates and Architecture." Intercom Engineering Blog.
+- Shopify (2024). "Building AI Agents for Commerce." Shopify Engineering.

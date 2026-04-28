@@ -1,0 +1,116 @@
+---
+title: "Designing AI Agents"
+slug: "designing-ai-agents"
+course: "ai-agents"
+order: 3
+description: "Master the practical design decisions for agent systems — from prompt architecture and memory design to error handling and human-in-the-loop integration."
+---
+
+## From Pattern to Production
+
+Understanding agent patterns is one thing. Designing a system that works reliably at enterprise scale — handling thousands of interactions daily without embarrassing failures — is another challenge entirely. This lesson covers the practical design decisions that separate a compelling demo from a production-grade agent.
+
+## Prompt Architecture: The Agent's Operating System
+
+The system prompt is the most important design artifact in any agent system. It defines the agent's identity, capabilities, constraints, and behavioral rules. A poorly written system prompt produces an agent that's creative but unreliable. A well-structured one produces consistent, auditable behavior.
+
+Production system prompts typically include five layers:
+
+### 1. Identity and Role
+
+Define who the agent is and what it's responsible for. "You are a customer support agent for Acme Corp's enterprise software products" is specific enough to guide behavior. "You are a helpful AI assistant" is not.
+
+### 2. Available Tools and When to Use Them
+
+Don't just list tools — describe the conditions under which each should be used. "Use `lookup_order` when the customer references an order number or asks about a purchase. Use `search_knowledge_base` when the customer asks a product question that isn't about a specific order." Anthropic's tool-use documentation emphasizes that clear tool descriptions improve selection accuracy by 25-35%.
+
+### 3. Behavioral Constraints
+
+Define what the agent must never do. "Never promise a refund without verifying the order is within the return window. Never share another customer's information. Never make claims about product capabilities that aren't in the knowledge base." These constraints are your first line of defense against harmful agent behavior.
+
+### 4. Escalation Rules
+
+Every agent needs to know when to stop trying and involve a human. "Escalate to a human agent if: the customer expresses frustration three times, the issue involves a billing dispute over $500, or you cannot resolve the issue within five exchanges." Clear escalation rules prevent agents from stubbornly pursuing dead-end solutions.
+
+### 5. Output Format
+
+Specify how the agent should structure its responses. Should it use formal or conversational tone? Should it include reference numbers? Should it summarize the resolution before closing? Format consistency builds customer trust and makes quality monitoring possible.
+
+## Memory Architecture: What the Agent Remembers
+
+Memory design determines whether your agent treats every interaction as a fresh start or builds useful context over time. There are three types of memory that production agents typically need:
+
+### Working Memory
+
+The current task context — what the customer said, what tools returned, what the plan is. This lives in the model's context window and is the easiest to manage. The challenge is keeping it focused. An agent processing a complex request might accumulate dozens of tool results; loading all of them into context wastes tokens and can confuse the model. The solution is selective attention — only keeping the most recent and relevant observations in working memory.
+
+### Episodic Memory
+
+Records of past interactions. When a customer calls back about an issue they raised last week, episodic memory lets the agent say, "I see you contacted us on April 15 about your billing discrepancy. Let me check the status of that resolution." Amazon's customer service AI uses episodic memory across channels — so an issue raised via chat is visible when the customer calls by phone.
+
+### Semantic Memory
+
+General knowledge about the domain. Product specifications, policy documents, troubleshooting guides, and FAQs. This is typically implemented via RAG (retrieval-augmented generation) — storing documents in a vector database and retrieving relevant passages at query time. The design decision isn't whether to use RAG but how to chunk and index your documents for maximum retrieval accuracy.
+
+Sierra AI, co-founded by former Salesforce CEO Bret Taylor, builds enterprise agent platforms where semantic memory is continuously updated from company knowledge bases, ensuring agents always reference current policies rather than outdated training data.
+
+## Error Handling: When Things Go Wrong
+
+Things will go wrong. Models hallucinate. APIs time out. Tool calls return unexpected data. The quality of your error handling determines whether these inevitable failures result in a graceful recovery or a catastrophic customer experience.
+
+### Retry with Backoff
+
+When a tool call fails due to a transient error (API timeout, rate limit), the agent should retry with increasing delays rather than immediately failing. Most production frameworks implement this automatically, but the agent's system prompt should include instructions for communicating delays to users: "I'm having trouble accessing your order details. Let me try again."
+
+### Fallback Strategies
+
+When the primary approach fails, the agent needs alternatives. If the order lookup API is down, can the agent ask the customer for their order details directly? If the knowledge base search returns no results, can the agent escalate to a specialist rather than guessing? Design fallback paths for every critical tool.
+
+### Graceful Degradation
+
+Not every failure requires stopping. If a customer service agent can't access the product catalog to verify a specification, it can still process the return request and note that the specification question needs follow-up. Partial resolution is almost always better than complete failure.
+
+### Hallucination Detection
+
+The highest-risk failure mode for business agents is confident fabrication. An agent that invents a refund policy or makes up a product specification can create legal liability. Mitigation strategies include:
+
+- **Grounding responses in retrieved data:** Require the agent to cite specific tool results or knowledge base passages
+- **Confidence thresholds:** When the agent is uncertain, it should say so rather than guess
+- **Output validation:** Post-processing that checks agent responses against known constraints (e.g., quoted prices must match the product database)
+
+## Human-in-the-Loop: The Essential Design Pattern
+
+The most important design pattern for enterprise agents isn't technical — it's organizational. Human-in-the-loop (HITL) design determines where and how humans maintain oversight of agent behavior.
+
+### Approval Gates
+
+High-stakes actions require human approval before execution. A financial services agent can draft a loan modification proposal, but a human officer must approve it before the terms are offered to the customer. Morgan Stanley's AI assistant operates this way — it researches, synthesizes, and recommends, but financial advisors make the decisions.
+
+### Review Queues
+
+Agents that handle high volumes generate outputs faster than humans can review in real time. Review queues let quality teams audit a statistically significant sample of agent actions after the fact. If the error rate rises above a threshold, the system can automatically reduce the agent's autonomy level.
+
+### Escalation Paths
+
+Not every situation is one the agent should handle. Emotional customers, legal disputes, VIP accounts, and novel scenarios should route to humans. The design challenge is making escalation seamless — the human should receive the full context the agent gathered, not start from scratch.
+
+Zendesk's 2024 research found that the highest-rated customer service AI implementations were those with transparent handoff — where customers knew they were being transferred to a human and the human had full conversation context. The lowest-rated were those that attempted to hide the boundary between AI and human.
+
+## Testing Agent Systems
+
+Traditional software testing verifies outputs against expected results. Agent testing is harder because agents can take different valid paths to the same outcome. Effective agent testing includes:
+
+- **Scenario testing:** Present the agent with realistic scenarios and verify it reaches acceptable outcomes, even if the path varies
+- **Boundary testing:** Test edge cases where the agent should escalate, refuse, or ask for clarification
+- **Adversarial testing:** Attempt to get the agent to violate its constraints through prompt injection, social engineering, or unusual inputs
+- **Regression testing:** When you update the system prompt or tools, verify that previously passing scenarios still work
+
+> **Key takeaway:** Production-grade agent design goes beyond choosing the right patterns — it requires deliberate decisions about prompt architecture, memory systems, error handling, and human oversight. The organizations that succeed with agents are those that design for failure as carefully as they design for success, and that treat human-in-the-loop not as a limitation but as a core feature.
+
+## Sources
+
+- Anthropic (2024). "Tool Use Best Practices." Anthropic Documentation.
+- Morgan Stanley (2024). "AI at Morgan Stanley: Augmenting Financial Advisors." Morgan Stanley Technology Blog.
+- Sierra AI (2024). "Building Conversational AI Agents for the Enterprise." Sierra Blog.
+- Zendesk (2024). "CX Trends 2024: AI-Powered Customer Experiences." Zendesk Research.
+- Amazon (2024). "Generative AI in Customer Service: Cross-Channel Intelligence." AWS Machine Learning Blog.

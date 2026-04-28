@@ -1,0 +1,138 @@
+{
+  "title": "Course 5: Prompt Engineering — Chihuahuas in the Time of AI",
+  "slug": "course-5-quiz",
+  "course": "prompt-engineering",
+  "description": "Test your understanding of prompt engineering techniques — from foundational prompting principles to advanced strategies for marketing, legal, financial, and data analysis workflows.",
+  "questions": [
+    {
+      "id": 1,
+      "scenario": "Your company just deployed Claude for all 500 employees in your professional services firm. After two weeks, you notice wildly inconsistent results: some teams rave about AI-generated client proposals while others complain the outputs are 'useless generic filler.' Both groups are using the same AI model. You pull sample prompts from each group to investigate.",
+      "question": "What is the most likely explanation for the inconsistent results across teams?",
+      "choices": [
+        "The AI model performs better for certain industries and worse for others — teams with poor results should switch to a different model",
+        "The teams producing poor results are using vague, unstructured prompts without role context, format specifications, or examples — while the successful teams are using detailed, well-crafted prompts",
+        "The teams with poor results have slower internet connections, which degrades AI output quality",
+        "AI performance is inherently random — inconsistent results are normal and cannot be improved through training"
+      ],
+      "correctIndex": 1,
+      "explanation": "Research from Boston Consulting Group found that output quality varied by up to 40% based solely on how workers phrased their requests. The four components of effective prompts — role/context, task specification, format constraints, and examples — are what separate useful outputs from generic filler. Same model, same data, dramatically different results based on prompt quality."
+    },
+    {
+      "id": 2,
+      "scenario": "You're a VP of Sales preparing for a board meeting. You ask AI: 'What are the biggest risks to our Q4 revenue target?' The AI generates a confident, well-written response listing five risks with supporting arguments. You notice the response includes a statistic claiming 'Gartner predicts 45% of enterprise software deals will slip from Q4 to Q1 in 2025' — a very specific claim you've never seen before.",
+      "question": "What should you do about this specific statistic before including it in your board presentation?",
+      "choices": [
+        "Include it — AI models are trained on real data, so the statistic is almost certainly accurate",
+        "Verify the statistic independently against the original source, because LLMs can generate plausible-sounding but fabricated facts, citations, and statistics",
+        "Remove all statistics from the AI output and replace them with your own — AI is unreliable with numbers",
+        "Ask the AI if the statistic is accurate — it will correct itself if the original response was wrong"
+      ],
+      "correctIndex": 1,
+      "explanation": "LLM hallucination is a well-documented phenomenon — Stanford HAI found that AI hallucinated verifiable facts in 3-5% of business-context responses, and users failed to catch hallucinations 60% of the time. Specific statistics with named sources are particularly risky because they sound authoritative. The correct approach is independent verification against the cited source. Asking the AI to self-verify is unreliable — it may simply reaffirm its own fabrication."
+    },
+    {
+      "id": 3,
+      "scenario": "A private equity firm needs to evaluate an acquisition target. An associate suggests using AI to 'analyze the target company and tell us if we should buy it.' The managing director knows this single-prompt approach won't produce useful due diligence. She wants to design a prompt chain instead.",
+      "question": "What is the correct structure for a cumulative prompt chain for this due diligence analysis?",
+      "choices": [
+        "Send one comprehensive prompt that includes all financial data, market data, and the analysis request — modern AI can handle complex multi-part tasks in a single prompt",
+        "Start with a foundation prompt to extract and organize financial data, then an analysis prompt to identify risks and patterns, then a market context prompt to benchmark against peers, then a synthesis prompt to draft the investment memo — each building on the previous output",
+        "Run the same analysis prompt five times and average the results to reduce AI variability",
+        "Use AI only for the final memo writing — have humans do all the analysis manually and use AI to format the output"
+      ],
+      "correctIndex": 1,
+      "explanation": "Cumulative prompting breaks complex tasks into sequential steps: foundation prompts extract and organize data, analysis prompts identify patterns and risks, and synthesis prompts produce actionable deliverables. Each step builds on the last, producing depth that no single prompt can achieve. Accenture found that consulting teams using structured prompt chains completed deliverables 40% faster than teams using ad-hoc single prompts."
+    },
+    {
+      "id": 4,
+      "scenario": "Your marketing team is using AI to generate blog content for SEO. After three months, organic traffic from AI-generated posts is flat — despite publishing twice as much content as before. A competitor publishing half as many posts is outranking you consistently. You audit both your prompts and your competitor's content.",
+      "question": "What is the most likely cause of your poor SEO performance despite increased AI-generated content volume?",
+      "choices": [
+        "Google's algorithm penalizes all AI-generated content — you should stop using AI for content creation entirely",
+        "Your prompts likely produce generic content without specific keyword targeting, search intent alignment, or original insights — while your competitor uses AI to enhance original thinking and research rather than replace it",
+        "You need to publish even more content to outrank competitors — volume always wins in SEO",
+        "The AI model you're using is inferior for SEO content — switching to a different model will fix the rankings"
+      ],
+      "correctIndex": 1,
+      "explanation": "Google's March 2024 core update targeted low-quality AI-generated content, reducing visibility by up to 40% for sites publishing generic AI output. HubSpot found that AI-generated content only outperformed in SEO when prompts included specific keyword targets and search intent guidance. The winning approach is using AI to accelerate original thinking — not to mass-produce generic content."
+    },
+    {
+      "id": 5,
+      "scenario": "Your legal team is reviewing a 50-page vendor contract. A junior attorney uses AI to identify risky provisions and produces a detailed analysis in 30 minutes — work that would typically take 4 hours. The senior partner reviews the AI output and finds it identified 8 out of 10 genuinely problematic provisions, but also flagged 3 provisions as 'high risk' that are actually market-standard terms.",
+      "question": "What does this result tell you about the appropriate role of AI in legal contract review?",
+      "choices": [
+        "AI caught 80% of the issues in 12.5% of the time — the false positives are an acceptable trade-off and human review is unnecessary",
+        "AI is unreliable for legal work — the false positives prove it shouldn't be used for contract review",
+        "AI is effective as an accelerator for the first-pass review, significantly reducing time while catching most issues — but attorney verification of AI findings remains essential before any output is shared with clients or used for decisions",
+        "The junior attorney should refine the prompt until AI achieves 100% accuracy before using it for any future reviews"
+      ],
+      "correctIndex": 2,
+      "explanation": "Allen & Overy reported that their AI tool Harvey reduced initial contract review time by 50%, but emphasized that every AI-generated review undergoes attorney verification. Thomson Reuters found material errors in approximately 15% of AI-generated legal research. AI accelerates the first pass — it does not replace professional judgment. The 80% hit rate with significant time savings is valuable, but the remaining review and false positive correction is where professional expertise remains essential."
+    },
+    {
+      "id": 6,
+      "scenario": "You ask AI to help analyze your company's quarterly financial performance. Your prompt is: 'Our revenue was $12M in Q1 with 20% growth, and Q2 growth was 15%. What's our Q2 revenue?' The AI responds immediately with '$14.4M.' You suspect this might be wrong.",
+      "question": "What prompting technique would most improve the accuracy of this financial calculation?",
+      "choices": [
+        "Ask the same question three times and take the most common answer",
+        "Use chain-of-thought prompting — ask the AI to 'think step by step, showing your calculations at each stage' so you can verify each step of the reasoning",
+        "Add 'please be accurate' to the prompt — this instruction improves mathematical performance",
+        "Switch to a larger AI model — mathematical errors are purely a function of model size"
+      ],
+      "correctIndex": 1,
+      "explanation": "The correct answer is $13.8M ($12M × 1.15 = $13.8M). The AI likely applied 20% growth to $12M instead of recognizing that $12M already reflects Q1 growth. Chain-of-thought prompting, introduced by Wei et al. (2022), forces the model to show each calculation step, making errors visible and verifiable. This technique improved accuracy on math problems by over 40% in research studies. For financial analysis, always require the AI to show its work."
+    },
+    {
+      "id": 7,
+      "scenario": "Your team is using AI to classify 10,000 customer support tickets into categories: Billing, Technical, Feature Request, and Complaint. Using a simple prompt ('Classify this ticket'), the AI achieves about 72% accuracy. You need at least 90% accuracy for the automated routing to be useful.",
+      "question": "Which prompting technique is most likely to close the accuracy gap from 72% to 90%+?",
+      "choices": [
+        "Run the classification twice and only accept tickets where both runs agree",
+        "Use few-shot prompting — provide 3-5 examples of correctly classified tickets for each category, including ambiguous edge cases, so the AI understands your specific classification criteria",
+        "Increase the temperature setting on the AI model to make it more creative in its classifications",
+        "Add 'be more accurate' to the prompt instructions"
+      ],
+      "correctIndex": 1,
+      "explanation": "Google Brain research demonstrated that few-shot prompting improved classification accuracy by 15-30% compared to zero-shot approaches. The key is choosing examples that represent edge cases — not just obvious ones. For support ticket classification, including an ambiguous ticket (like a billing complaint that's also a feature request) shows the AI how your organization handles gray areas. The examples teach the model your specific classification logic."
+    },
+    {
+      "id": 8,
+      "scenario": "You're the CMO and you ask AI: 'Don't you think our new brand positioning is stronger than the competition?' The AI responds with an enthusiastic analysis of why your positioning is excellent, listing five reasons it outperforms competitors. Your VP of Strategy reads the same analysis and says, 'This just told you what you wanted to hear.'",
+      "question": "What prompting mistake caused the AI to produce an uncritical, one-sided analysis?",
+      "choices": [
+        "The AI model has a technical defect that makes it overly positive — this is a known bug",
+        "Sycophancy bias — the leading question ('Don't you think...is stronger') prompted the AI to agree with you. A neutral prompt asking for both strengths and weaknesses, or assigning a devil's advocate role, would produce more balanced analysis",
+        "The AI doesn't have enough data about your competitors to provide a fair comparison",
+        "AI is not capable of critical analysis — it can only generate positive assessments"
+      ],
+      "correctIndex": 1,
+      "explanation": "LLMs exhibit sycophancy bias — they tend to agree with the user's stated or implied position. Leading questions like 'Don't you think X is good?' will almost always generate agreement. The fix is structural: frame prompts neutrally ('Identify three strengths and three weaknesses'), assign a critical role ('You are a skeptical board member — poke holes in this strategy'), or explicitly request balanced analysis."
+    },
+    {
+      "id": 9,
+      "scenario": "Your data analytics team uploads a CSV of 12 months of sales data to an AI tool and prompts: 'Analyze this data and tell us what's interesting.' The AI produces a long response full of descriptive statistics — averages, totals, and percentage breakdowns — but nothing the team can act on. The head of analytics is frustrated.",
+      "question": "How should the team restructure their prompt to get actionable insights instead of descriptive statistics?",
+      "choices": [
+        "Upload more data — 12 months isn't enough for meaningful analysis",
+        "Start with a data briefing prompt to understand the data's structure and quality, then ask specific analytical questions focused on business decisions — like 'What is driving the decline in enterprise customer retention?' — rather than the open-ended 'What's interesting?'",
+        "Switch to a specialized analytics tool — AI language models cannot perform useful data analysis",
+        "Ask the AI to generate charts instead of text — visual analysis is always more actionable"
+      ],
+      "correctIndex": 1,
+      "explanation": "The open-ended 'analyze this data' prompt produces generic descriptive statistics because the AI has no context about what business decisions the analysis should inform. Effective data analysis prompting starts with a data briefing prompt (understand structure, quality, limitations), then progresses to specific analytical questions tied to business decisions. 'What is driving retention decline in the enterprise segment?' produces actionable insight; 'What's interesting?' produces a statistics textbook."
+    },
+    {
+      "id": 10,
+      "scenario": "Your organization is rolling out AI tools company-wide. The IT team wants to deploy consumer-grade AI tools because they're free. The legal team is concerned because employees will inevitably paste sensitive data — client financials, employee records, proprietary strategies — into their prompts. The CEO asks you to break the tie.",
+      "question": "What is the most appropriate policy recommendation for enterprise AI deployment?",
+      "choices": [
+        "Ban AI tools entirely until regulations are clearer — the risk of data leakage outweighs the productivity benefits",
+        "Allow consumer tools but train employees not to paste sensitive data — personal responsibility is sufficient",
+        "Deploy enterprise-grade AI tools with proper data handling agreements that don't train on inputs, establish clear policies on what data can and cannot be shared with AI systems, and provide prompt engineering training so employees get value without exposing sensitive information",
+        "Allow unrestricted use of any AI tool — the productivity gains justify the data risk"
+      ],
+      "correctIndex": 2,
+      "explanation": "Enterprise-grade AI tools (like Azure OpenAI or Anthropic's Claude for enterprise) provide contractual guarantees that inputs are not used for training. Consumer free-tier tools may not offer the same protections. The right approach combines technology guardrails (enterprise tools with data handling agreements), policy guardrails (clear rules on what data can be shared), and capability building (prompt engineering training). Banning AI forfeits productivity gains; relying solely on personal responsibility invites data breaches."
+    }
+  ]
+}

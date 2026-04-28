@@ -1,0 +1,138 @@
+{
+  "title": "Course 7: LLM-Based Apps — RAGs to Riches",
+  "slug": "course-7-quiz",
+  "course": "llm-based-apps",
+  "description": "Test your understanding of LLM application architectures, vector databases, LangChain, RAG pipelines, and user interface design with 10 scenario-based questions.",
+  "questions": [
+    {
+      "id": 1,
+      "scenario": "Your company wants to build an AI assistant that answers customer questions about product specifications. The product catalog contains 50,000 items and changes weekly. A vendor proposes fine-tuning a custom LLM on your product data. Your CTO suggests a RAG-based approach instead.",
+      "question": "Why is RAG a better fit than fine-tuning for this use case?",
+      "choices": [
+        "Fine-tuning is always inferior to RAG regardless of the use case",
+        "RAG retrieves current data at query time, so weekly catalog changes are reflected immediately without retraining — while a fine-tuned model would need expensive retraining every time the catalog updates",
+        "RAG is cheaper to build initially, so it's the better choice for any budget-conscious project",
+        "Fine-tuned models can't handle product data because they're designed for general text only"
+      ],
+      "correctIndex": 1,
+      "explanation": "RAG separates the model's language ability from the organization's data. When your data changes frequently — like a product catalog updated weekly — RAG reflects those changes immediately because it retrieves current documents at query time. Fine-tuning bakes knowledge into the model's weights, requiring costly retraining every time the data changes. RAG isn't universally better than fine-tuning, but it's clearly superior when the underlying data is dynamic."
+    },
+    {
+      "id": 2,
+      "scenario": "Your data science team built a RAG system for internal policy questions. Early tests looked great, but after deploying to 2,000 employees, users report that the system frequently returns wrong answers. The team confirms the LLM is performing well — the problem is that retrieved document chunks are often irrelevant to the question being asked.",
+      "question": "What is the most likely root cause and the best first step to fix it?",
+      "choices": [
+        "Replace the LLM with a more powerful model that can work with irrelevant context",
+        "Add more documents to the vector database to increase the chances of finding relevant matches",
+        "Review and improve the chunking strategy — the documents are likely being split in ways that destroy context, causing the embedding vectors to poorly represent the actual content",
+        "Switch to a different vector database vendor with better search performance"
+      ],
+      "correctIndex": 2,
+      "explanation": "When the LLM performs well but retrieval is poor, the problem is almost always in the data preparation pipeline — specifically chunking. If documents are chunked at arbitrary points (mid-paragraph, mid-thought), the resulting embeddings capture a confused mix of topics rather than clear, retrievable concepts. Fixing chunking strategy — using semantic boundaries, appropriate chunk sizes, and overlap — typically produces larger accuracy improvements than changing the model, the database, or adding more data."
+    },
+    {
+      "id": 3,
+      "scenario": "You're evaluating vector database options for your company's first RAG application. Your organization already runs PostgreSQL for its primary database. A vendor is pitching Pinecone, a purpose-built vector database, at $50,000/year. Your DBA says the free pgvector extension would work fine on your existing PostgreSQL infrastructure.",
+      "question": "How should you evaluate this build-vs-buy decision?",
+      "choices": [
+        "Always choose the purpose-built solution — pgvector is a compromise that will limit your AI capabilities",
+        "Always choose pgvector — there's no reason to pay for a separate database when your existing one can do the job",
+        "Evaluate based on your scale and performance requirements. For a first RAG application with moderate query volume, pgvector avoids infrastructure complexity. If you need sub-50ms latency at billions of vectors, a purpose-built solution is justified.",
+        "Choose whichever option your data science team prefers, since they'll be the primary users"
+      ],
+      "correctIndex": 2,
+      "explanation": "The right choice depends on your specific requirements, not on which technology is more impressive. Purpose-built vector databases outperform add-on solutions by 2-5x on latency and throughput benchmarks — but for many enterprise use cases, pgvector's performance is more than sufficient. Starting with pgvector on existing infrastructure reduces complexity and cost for a first application. You can always migrate to a purpose-built solution later if scale demands it."
+    },
+    {
+      "id": 4,
+      "scenario": "Your team is building an LLM-powered contract analysis tool. The workflow requires: (1) extracting key terms from a contract, (2) comparing those terms against your standard template, (3) flagging deviations, and (4) drafting a summary memo for the legal team. A junior developer proposes sending the entire contract to the LLM with a single prompt asking it to do all four steps at once.",
+      "question": "Why is a prompt chaining approach preferable to a single-prompt approach for this workflow?",
+      "choices": [
+        "LLMs can't process documents longer than a few pages, so the contract needs to be split across multiple prompts",
+        "Each step can be individually tested, validated, and retried on failure — and human review can be inserted between steps. A single prompt produces an opaque all-or-nothing result that's impossible to audit or debug.",
+        "Prompt chaining uses less compute resources because each individual call is smaller",
+        "Single prompts always produce lower quality output than chained prompts"
+      ],
+      "correctIndex": 1,
+      "explanation": "Prompt chaining decomposes complex workflows into discrete, auditable steps. If step 2 (comparison) fails, you can retry it without re-running extraction. You can insert human review between flagging deviations and drafting the memo. You can log each step's input and output for compliance purposes. A single-prompt approach produces one monolithic output with no visibility into intermediate reasoning — unacceptable for legal work where auditability matters."
+    },
+    {
+      "id": 5,
+      "scenario": "Your company's internal AI assistant uses direct API calls to a single LLM provider. Last month, that provider had a 4-hour outage during business hours, and your assistant was completely unavailable. The CEO wants to ensure this never happens again.",
+      "question": "What architectural change best addresses this reliability concern?",
+      "choices": [
+        "Negotiate a higher SLA tier with your current provider that guarantees 99.99% uptime",
+        "Build your own LLM infrastructure on-premises so you don't depend on external providers",
+        "Use an orchestration framework like LangChain that abstracts the model provider, enabling automatic failover to a secondary model from a different provider during outages",
+        "Keep the current architecture but add a static FAQ page as a backup during outages"
+      ],
+      "correctIndex": 2,
+      "explanation": "Orchestration frameworks like LangChain abstract the model provider behind a standardized interface. This means your application can be configured with a primary model and one or more fallbacks from different providers. During an outage, the framework automatically routes requests to the backup model. This multi-provider architecture is why 85% of enterprise AI teams use models from at least two providers — not because one model is always better, but because provider diversification ensures resilience."
+    },
+    {
+      "id": 6,
+      "scenario": "Your team deployed an internal knowledge assistant with RAG. Users report that when they ask questions, the system sometimes returns five retrieved passages that all say essentially the same thing, leaving gaps in the answer because other relevant perspectives weren't retrieved.",
+      "question": "Which retrieval strategy would most directly address this problem?",
+      "choices": [
+        "Increase the number of retrieved passages from 5 to 20 to capture more diverse results",
+        "Use Maximal Marginal Relevance (MMR) retrieval, which balances similarity to the query with diversity among the retrieved results — reducing redundancy and broadening coverage",
+        "Switch to a more expensive embedding model to improve the quality of the vector representations",
+        "Rewrite the system prompt to instruct the LLM to ignore redundant information"
+      ],
+      "correctIndex": 1,
+      "explanation": "Maximal Marginal Relevance (MMR) is specifically designed to solve this problem. Standard similarity search returns the K most similar chunks — which often means retrieving near-duplicates that all cover the same narrow aspect. MMR balances relevance (similarity to the query) with diversity (dissimilarity to already-selected chunks), ensuring retrieved results cover different facets of the topic. Simply retrieving more passages amplifies the same redundancy problem."
+    },
+    {
+      "id": 7,
+      "scenario": "Your company built an LLM-powered customer support tool. Internal testing showed 90% accuracy. But after launch, customer satisfaction scores dropped. Investigating, you find that users perceive the tool as slow and untrustworthy — even though response accuracy hasn't changed from the testing phase.",
+      "question": "What is the most likely interface-level cause of poor user perception despite good accuracy?",
+      "choices": [
+        "The tool isn't using streaming responses — users are waiting 10-15 seconds staring at a blank screen before seeing any output, perceiving the system as broken even when it eventually delivers accurate answers",
+        "The accuracy metric was wrong — 90% isn't actually high enough for customer support",
+        "Customers prefer human support and will reject any AI tool regardless of its quality",
+        "The tool's visual design doesn't match the company's brand guidelines, creating a trust gap"
+      ],
+      "correctIndex": 0,
+      "explanation": "Streaming is the single most impactful interface decision for LLM applications. Without it, users experience 5-30 seconds of dead time before any response appears. Research shows users perceive anything over 10 seconds as a system failure. With streaming, text begins appearing within 200-300 milliseconds, keeping perceived latency within acceptable limits. Every major LLM product uses streaming — if your tool doesn't, users will perceive it as inferior to their consumer AI experiences regardless of accuracy."
+    },
+    {
+      "id": 8,
+      "scenario": "Your organization is building a RAG system for its 50,000-page regulatory compliance library. The documents range from short policy memos to 200-page regulatory guidance documents. A team member suggests using fixed-size chunking at 500 tokens per chunk for all documents to keep things simple.",
+      "question": "What is the main risk of using a single fixed-size chunking strategy for this diverse document set?",
+      "choices": [
+        "500 tokens is too large — chunks should always be under 100 tokens for precise retrieval",
+        "Fixed-size chunking ignores document structure, splitting mid-section or mid-paragraph. A regulatory guidance document chunked at arbitrary 500-token intervals will produce chunks that blend content from different regulatory topics, creating misleading embeddings that degrade retrieval quality.",
+        "Fixed-size chunking is always inferior and should never be used in any RAG application",
+        "The 500-token size will exceed the embedding model's maximum input length"
+      ],
+      "correctIndex": 1,
+      "explanation": "Fixed-size chunking treats all text as a uniform stream of tokens, ignoring natural document structure like section headings, topic boundaries, and paragraph breaks. For regulatory documents — where a chunk that mixes content from two different regulations could produce a dangerously misleading retrieval — this is especially risky. Better approaches include recursive splitting that respects paragraph and section boundaries, or semantic chunking that identifies topic shifts. The chunking strategy should match the document structure."
+    },
+    {
+      "id": 9,
+      "scenario": "Your legal team is nervous about deploying an LLM-powered research assistant because they've read about AI hallucinations. They want guarantees that the system will never generate inaccurate information. The technical team says they can add a reranking step to improve retrieval accuracy.",
+      "question": "How should you set expectations about hallucination risk and the role of reranking?",
+      "choices": [
+        "Reranking eliminates hallucination risk entirely by ensuring only perfectly relevant documents are retrieved",
+        "Hallucination can never be fully eliminated, but reranking reduces it by improving retrieval precision — ensuring the model receives more relevant context. Combined with source citations, confidence indicators, and human review workflows, the system can be made reliable enough for professional use without requiring perfection.",
+        "The legal team is right to refuse — LLM applications are too unreliable for legal research and shouldn't be deployed",
+        "Hallucination is only a problem with older models. Current models like GPT-4 and Claude don't hallucinate"
+      ],
+      "correctIndex": 1,
+      "explanation": "No technique eliminates hallucination entirely — but a well-designed system manages the risk to acceptable levels. Reranking improves retrieval precision by 15-30%, meaning the model receives more relevant context and is less likely to fabricate information. But the system also needs source citations (so lawyers can verify claims), confidence indicators (so uncertainty is visible), and human review workflows (so high-stakes outputs are checked). The goal isn't zero hallucination — it's a system where hallucinations are rare, detectable, and caught before they cause harm."
+    },
+    {
+      "id": 10,
+      "scenario": "Your CEO attended a demo of a competitor's AI-powered internal assistant and was impressed by how employees could ask it anything about company operations. She wants your team to build the same thing in 6 weeks. Your CTO estimates 6 months based on the data preparation work required — ingesting documents from SharePoint, Confluence, Salesforce, and three legacy databases.",
+      "question": "Who is closer to a realistic timeline, and why?",
+      "choices": [
+        "The CEO — modern tools like LangChain and Streamlit make it possible to build a fully functional enterprise assistant in 6 weeks",
+        "Neither — the project should be outsourced to a consulting firm that specializes in rapid AI deployment",
+        "The CTO is closer to reality. The model and interface can be prototyped quickly, but document ingestion from six heterogeneous data sources — with inconsistent formats, access controls, and data quality issues — is the dominant engineering challenge. A realistic plan would ship a narrow prototype in 6 weeks covering one data source, then expand incrementally.",
+        "The CTO is overestimating — data ingestion is a solved problem that modern ETL tools handle automatically"
+      ],
+      "correctIndex": 2,
+      "explanation": "The hardest part of building a RAG system is rarely the model or the interface — it's the data pipeline. Ingesting documents from six different sources means dealing with six different APIs, authentication methods, data formats, and quality levels. PDFs with tables, Confluence pages with nested content, legacy databases with undocumented schemas — each requires custom ingestion logic. The smart approach is to prototype with one well-understood data source in 6 weeks, prove value, and then expand systematically. This matches the incremental deployment strategy that successful AI projects follow."
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+---
+title: "Image Prompting"
+slug: "image-prompting"
+course: "prompt-engineering"
+order: 4
+description: "Learn how to use multimodal AI to analyze, interpret, and generate images for business applications — from document processing to visual content creation."
+---
+
+## AI That Sees: The Multimodal Shift
+
+Text-only AI was transformative. Multimodal AI — models that can process and generate images alongside text — is the next multiplier. Today's leading models, including GPT-4o, Claude, and Gemini, can analyze photographs, interpret charts, read handwritten documents, extract data from screenshots, and generate images from text descriptions. For business leaders, this means an entirely new category of tasks can now be AI-assisted.
+
+## Image Analysis: Getting AI to Read What It Sees
+
+The most immediate business value of image prompting isn't generation — it's analysis. You can upload a chart, a whiteboard photo, a product image, or a scanned document and ask the AI to interpret it.
+
+### Prompting for Chart and Graph Analysis
+
+**Weak prompt:** "What does this chart show?" *(uploads a revenue chart)*
+
+**Strong prompt:** "This is a quarterly revenue chart for our company from Q1 2023 to Q4 2025. Analyze the chart and tell me: (1) What is the overall revenue trend? (2) Are there any quarters with unusual spikes or dips? (3) What is the approximate compound quarterly growth rate? (4) Based on the visual trend, what would you project for Q1 2026? Present your analysis in a table format."
+
+The strong prompt gives the model context about what the chart represents and specifies exactly what insights you need. Without context, the model might describe the visual elements ("This is a bar chart with blue bars...") rather than analyzing the business implications.
+
+### Document and Receipt Processing
+
+Multimodal AI can extract structured data from unstructured visual documents — invoices, receipts, contracts, business cards, and handwritten notes.
+
+**Example prompt:** "This is a photograph of a vendor invoice. Extract the following fields into a structured table: Vendor name, Invoice number, Invoice date, Line items (description, quantity, unit price, total), Subtotal, Tax, Total amount due, Payment terms. If any field is unclear or partially obscured, note it as 'uncertain' and explain what you can see."
+
+Companies like Klarna use multimodal AI to process customer-submitted receipts for price-match guarantees, reducing manual review time by 80%. The key to reliable extraction is specifying every field you need and instructing the model to flag uncertainty rather than guess.
+
+### Product and Competitive Analysis
+
+Upload product images — yours and competitors' — and prompt the AI to conduct visual competitive analysis.
+
+**Example prompt:** "I'm uploading two product images: Image 1 is our company's latest packaging design. Image 2 is our main competitor's equivalent product. Compare the two designs across: (1) Visual hierarchy — what does the eye see first? (2) Brand messaging clarity, (3) Color psychology and shelf appeal, (4) Information density, (5) Overall professional quality. Be specific about what each design does well and where it falls short."
+
+## Image Generation: From Concept to Visual
+
+AI image generation tools — DALL-E 3, Midjourney, Adobe Firefly, and Stable Diffusion — create images from text descriptions. The quality of the generated image depends almost entirely on the quality of the prompt.
+
+### The Structure of an Effective Image Prompt
+
+Image generation prompts work best when they specify five elements:
+
+1. **Subject** — What is in the image?
+2. **Style** — Photorealistic, illustration, watercolor, corporate, minimalist?
+3. **Composition** — Close-up, wide shot, overhead view, centered?
+4. **Lighting and mood** — Bright and optimistic, moody and dramatic, soft and natural?
+5. **Context and setting** — Where is this? What's in the background?
+
+**Weak prompt:** "A picture of a business meeting."
+
+**Strong prompt:** "A photorealistic image of four diverse professionals collaborating around a modern conference table in a bright, glass-walled office. One person is pointing at a large wall-mounted display showing a data dashboard. The lighting is warm and natural, coming from floor-to-ceiling windows. The mood is energetic and collaborative. Shot from a slightly elevated angle to show the table layout and digital display."
+
+### Iterative Refinement for Image Generation
+
+Just as with text prompting, image generation is iterative. The first result is rarely final. Effective refinement follows a pattern:
+
+1. **Generate the initial image** with a detailed prompt
+2. **Evaluate** what's right and what's wrong
+3. **Refine with specifics** — "Keep the composition but change the lighting to cooler tones and make the data dashboard show a line chart instead of a bar chart"
+4. **Use negative prompts** when available — "No stock photo aesthetic, no clipart style, no artificial smiles"
+
+Adobe reported in 2024 that marketing teams using AI image generation with structured prompt workflows reduced creative production time by 60% for social media content and 40% for email campaign visuals, while maintaining brand consistency scores comparable to fully custom photography.
+
+## Business Applications of Image Prompting
+
+### Marketing and Brand
+
+- Generate social media visuals for A/B testing without commissioning custom photography
+- Create product mockups and concept visuals for stakeholder presentations
+- Analyze competitor visual branding across channels
+
+### Operations and Quality Control
+
+- Upload manufacturing images for defect detection analysis
+- Analyze warehouse layout photos for optimization suggestions
+- Process visual inspection reports and extract structured findings
+
+### Training and Documentation
+
+- Upload whiteboard photos from strategy sessions and ask AI to convert them into structured meeting notes
+- Analyze training screenshots to create step-by-step documentation
+- Extract flow diagrams from photos and convert to structured text descriptions
+
+### Real Estate and Facilities
+
+- Upload property photos for condition assessment
+- Generate architectural visualization concepts from text descriptions
+- Analyze space utilization from overhead facility photographs
+
+## Limitations and Ethical Considerations
+
+### Accuracy Limitations
+
+Multimodal AI is not infallible. Models can misread text in images, misinterpret chart data, and miss details in complex visuals. For any business-critical image analysis, treat AI output as a first draft that requires human verification.
+
+### Copyright and Ownership
+
+AI-generated images raise unresolved legal questions about copyright. In the United States, the Copyright Office has ruled that purely AI-generated images without significant human creative input are not copyrightable. For business use, this means AI-generated visuals are best suited for internal use, social media, and prototyping — not for assets requiring strong IP protection.
+
+### Bias in Visual Generation
+
+Image generation models can reflect and amplify biases present in their training data. Prompts for "a CEO" may disproportionately generate images of certain demographics. Intentional diversity in prompts — specifying diverse representation — is a responsible practice, but organizations should audit generated imagery before external publication.
+
+### Deepfakes and Misuse
+
+The same technology that enables legitimate business image generation can create convincing fake images. Business leaders should be aware that visual evidence is no longer inherently trustworthy and should implement verification processes for externally sourced visual materials.
+
+> **Key takeaway:** Image prompting transforms AI from a text-only tool into a visual analyst, designer, and interpreter. The same principles of good prompting — specificity, context, format constraints, and iteration — apply to visual tasks. The business applications span from operational efficiency to creative production, but always require human oversight for accuracy, brand consistency, and ethical considerations.
+
+## Sources
+
+- Adobe (2024). "AI in Creative Workflows: Enterprise Adoption Study." Adobe for Business Research.
+- Klarna (2024). "AI-Powered Receipt Processing and Customer Experience." Klarna Engineering Blog.
+- U.S. Copyright Office (2023). "Copyright Registration Guidance: Works Containing Material Generated by Artificial Intelligence." Federal Register, 88(51).
+- OpenAI (2024). "DALL-E 3: Improving Image Generation Through Better Prompting." OpenAI Research Blog.

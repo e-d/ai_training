@@ -1,0 +1,104 @@
+---
+title: "Designing Multi-Agent Systems"
+slug: "designing-multi-agent-systems"
+course: "ai-agents"
+order: 4
+description: "Learn how multiple AI agents collaborate, delegate, and coordinate to handle complex workflows that exceed the capability of any single agent."
+---
+
+## Why Multiple Agents?
+
+In Lesson 2, we explored the limits of single-agent systems: domain complexity that exceeds one model's expertise, tool counts that degrade selection accuracy, and workflows that benefit from parallel execution. Multi-agent systems address these limits by dividing work among specialized agents that coordinate toward a shared goal.
+
+The analogy is organizational design. A startup founder handles sales, engineering, and finance personally. A scaled company has specialized departments with clear roles, communication protocols, and management hierarchy. Multi-agent systems follow the same principle — and many of the same design challenges.
+
+## Orchestration Patterns
+
+How agents coordinate is the defining design decision in multi-agent systems. Three patterns dominate enterprise deployments:
+
+### Supervisor Pattern
+
+One agent acts as the manager, decomposing tasks and delegating to specialist agents. The supervisor receives the initial request, creates a plan, assigns sub-tasks, collects results, and synthesizes the final output.
+
+Microsoft's AutoGen framework popularized this pattern. In a typical AutoGen deployment, a supervisor agent receives a business analysis request and delegates to a data retrieval agent (pull the numbers), an analysis agent (run the statistical models), and a writing agent (produce the report). The supervisor reviews each contribution and assembles the final deliverable.
+
+**When to use it:** Tasks with clear decomposition, where a central coordinator adds value by maintaining the big picture. Works well for report generation, research synthesis, and multi-step approval workflows.
+
+**Watch out for:** The supervisor becomes a bottleneck. If it misunderstands the task, every downstream agent works on the wrong problem. Supervisor agents need to be your most capable and well-prompted models.
+
+### Pipeline Pattern
+
+Agents are arranged in a sequential chain, where each agent's output becomes the next agent's input. This mirrors manufacturing assembly lines — each station adds value in a specific way.
+
+A legal document review pipeline might flow: Document Ingestion Agent (extract text and metadata) to Clause Analysis Agent (flag non-standard terms) to Risk Assessment Agent (score risk level) to Summary Agent (produce executive brief). Each agent is a specialist that doesn't need to understand the full pipeline.
+
+Harvey AI, the legal AI platform used by Allen & Overy and other major law firms, uses pipeline architectures for due diligence workflows. Documents flow through specialized analysis stages, with each stage adding structured annotations that downstream stages consume.
+
+**When to use it:** Linear workflows where the output of each step naturally feeds the next. Document processing, content creation, and data enrichment pipelines are natural fits.
+
+**Watch out for:** Error propagation. A mistake in the first agent corrupts every downstream output. Pipeline systems need validation gates between stages.
+
+### Swarm Pattern
+
+Agents operate as peers without a central coordinator, communicating directly with each other and self-organizing around tasks. OpenAI's Swarm framework and CrewAI's collaborative mode implement this pattern.
+
+In a swarm, agents announce capabilities and claim tasks they're suited for. A customer success swarm might include a Technical Support Agent, a Billing Agent, a Product Specialist Agent, and a Relationship Manager Agent. When a customer issue arrives, the most relevant agent takes the lead and pulls in others as needed — the Technical Support Agent handles the bug report but hands off to the Billing Agent when the conversation shifts to a refund request.
+
+**When to use it:** Dynamic environments where task boundaries are unclear and agents need to flexibly collaborate. Customer service, incident response, and creative projects benefit from swarm flexibility.
+
+**Watch out for:** Coordination overhead. Without a supervisor, agents can duplicate work, create loops, or fail to reach consensus. Swarms need well-defined communication protocols and conflict resolution rules.
+
+## Communication Between Agents
+
+Multi-agent effectiveness depends on how agents share information. Three communication models serve different needs:
+
+### Message Passing
+
+Agents send structured messages to specific recipients. This is the most common model and works well when communication paths are predictable. Each message includes the sender, recipient, content, and context. LangGraph implements message passing through typed state objects that agents read from and write to.
+
+### Shared State
+
+All agents read from and write to a common state object — like a shared whiteboard. This simplifies coordination when multiple agents need visibility into the same evolving context. The risk is state conflicts — two agents updating the same field simultaneously. Production systems use locking or versioning to prevent this.
+
+### Event-Driven Communication
+
+Agents publish events ("order status retrieved," "risk assessment complete") to a message bus, and other agents subscribe to events they care about. This decouples agents from each other — the publishing agent doesn't need to know who's listening. Amazon's Step Functions and event-driven microservice patterns translate directly to multi-agent architectures.
+
+## Memory in Multi-Agent Systems
+
+Memory becomes significantly more complex with multiple agents. Each agent has its own working memory, but the system also needs shared memory — the collective context that any agent can access.
+
+### Shared Knowledge Base
+
+A common retrieval-augmented generation (RAG) system that all agents query. This ensures consistency — every agent references the same product specifications, policies, and customer data. The challenge is access control: a billing agent should access payment records, but a product recommendation agent should not.
+
+### Conversation History
+
+When customers interact with a multi-agent system, the conversation must flow seamlessly across agent handoffs. The receiving agent needs the full context of what the previous agent discussed, what tools were called, and what the customer's emotional state is. Drift (now Salesloft AI) found that maintaining continuous conversation context across agent transitions increased customer satisfaction scores by 23%.
+
+### Collective Learning
+
+The most advanced multi-agent systems allow agents to learn from each other's experiences. When one agent discovers a new solution to a recurring problem, that knowledge propagates to the other agents. This is still an emerging capability — most production systems update shared knowledge bases through human-curated processes rather than automated agent-to-agent learning.
+
+## Scaling Considerations
+
+Multi-agent systems introduce operational complexity that single agents don't:
+
+**Cost management.** Every agent interaction consumes API tokens. A supervisor making three delegation calls, each to an agent that makes five tool calls, generates 15-20 API calls for a single user request. Cost monitoring and optimization (using smaller models for simpler agent roles, caching common queries) is essential.
+
+**Latency.** Sequential agent handoffs add latency. A pipeline with four agents, each taking 2-3 seconds, delivers results in 8-12 seconds — acceptable for background processing but frustrating for real-time customer interactions. Parallel execution where possible (running the analysis and visualization agents simultaneously) mitigates this.
+
+**Observability.** When something goes wrong in a multi-agent system, debugging requires tracing the request across every agent interaction. LangSmith, Arize AI, and Weights & Biases provide observability platforms specifically designed for multi-agent tracing — showing which agent made which decision and where the chain broke.
+
+**Failure isolation.** One failing agent shouldn't bring down the system. Circuit breaker patterns (temporarily removing a failing agent from the pool) and graceful degradation (completing the task with reduced capability when one specialist is unavailable) are production requirements.
+
+> **Key takeaway:** Multi-agent systems extend AI capability by dividing complex work among specialists — supervised by a coordinator, arranged in pipelines, or self-organizing in swarms. The design choice depends on your workflow structure, but every multi-agent system must solve for communication, shared memory, cost control, and failure isolation. Think of it as organizational design for artificial intelligence.
+
+## Sources
+
+- Microsoft Research (2024). "AutoGen: Enabling Multi-Agent Conversations." Microsoft Research Blog.
+- OpenAI (2024). "Swarm: An Educational Framework for Multi-Agent Orchestration." OpenAI GitHub.
+- Harvey AI (2024). "AI-Powered Legal Workflows at Scale." Harvey Blog.
+- CrewAI (2024). "Multi-Agent Collaboration Framework." CrewAI Documentation.
+- LangChain (2024). "LangGraph: Building Stateful Multi-Agent Applications." LangChain Blog.
+- Salesloft (2024). "Conversational AI: Context Continuity and Customer Satisfaction." Salesloft Research.

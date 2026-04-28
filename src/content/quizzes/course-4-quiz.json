@@ -1,0 +1,138 @@
+{
+  "title": "Course 4: AI Leadership and Management — Are You a Model Citizen?",
+  "slug": "course-4-quiz",
+  "course": "ai-leadership-and-management",
+  "description": "Test your understanding of AI leadership, risk management, governance, and strategic decision-making with 10 scenario-based questions.",
+  "questions": [
+    {
+      "id": 1,
+      "scenario": "Your company is rolling out an AI-powered scheduling tool across all departments. The pilot in the marketing department went well, but now the operations team is openly resistant. The operations VP tells you, 'My people don't need a machine telling them how to do their jobs.' Meanwhile, you've noticed that several operations team members are quietly using ChatGPT on their personal devices to help with their work.",
+      "question": "What does the gap between public resistance and private AI usage reveal, and how should you address it?",
+      "choices": [
+        "It reveals that the operations team is being dishonest — mandate the tool and discipline anyone who resists",
+        "It reveals a trust deficit — employees see AI's value but fear that official adoption will make them look replaceable. Address the fear directly by clarifying how roles will evolve, and engage the VP as an early adopter to build credibility",
+        "It reveals that employees prefer consumer AI tools over enterprise tools — switch to ChatGPT for all departments",
+        "It reveals that the pilot was not representative — go back to the drawing board and redesign the tool"
+      ],
+      "correctIndex": 1,
+      "explanation": "Microsoft's 2024 Work Trend Index found that 52% of employees who use AI at work are reluctant to admit it for fear of appearing replaceable. The gap between shadow AI usage and public resistance signals a trust deficit, not a technology problem. Leaders must address the underlying fear — clarify that AI changes tasks within roles rather than eliminating roles — and activate managers as credible advocates who model AI adoption rather than mandate it from above."
+    },
+    {
+      "id": 2,
+      "scenario": "You've been CEO for two years and have built your leadership reputation on decisive, data-driven decision-making. Your board wants an AI strategy within 90 days. Your CTO says the technology is evolving too fast to commit to a specific platform. Your CFO wants a guaranteed ROI before approving any budget. Your VP of Sales says the team doesn't need AI. You're getting conflicting advice from every direction.",
+      "question": "What leadership approach is most appropriate for navigating this situation?",
+      "choices": [
+        "Make a decisive call on a platform and strategy within 30 days to demonstrate leadership strength",
+        "Delay until the technology landscape stabilizes and you can make a fully informed decision",
+        "Adopt an adaptive leadership approach — acknowledge the uncertainty openly, commission a 60-day pilot with clear KPIs to generate data, and use the results to build alignment across the executive team",
+        "Hire an external AI consulting firm to make the decision for you"
+      ],
+      "correctIndex": 2,
+      "explanation": "Adaptive leadership, developed by Heifetz and Linsky, distinguishes between technical problems (known solutions) and adaptive challenges (problems requiring new learning). AI strategy is an adaptive challenge — no single expert has the answer. Premature decisiveness risks committing to the wrong path. Indefinite delay loses the learning advantage of experimentation. A bounded pilot generates real data that resolves executive disagreements with evidence rather than opinion."
+    },
+    {
+      "id": 3,
+      "scenario": "Your data science team has built an AI model that predicts which customers are likely to churn. In pilot testing with one sales region, the model correctly identified 78% of at-risk customers two weeks before they actually churned, and targeted interventions retained 40% of them. The CMO wants to roll it out to all 8 sales regions immediately to capture the full retention benefit.",
+      "question": "What is the most prudent approach to scaling this successful pilot?",
+      "choices": [
+        "Roll out to all 8 regions simultaneously — the pilot data proves the model works, and delay costs you customers",
+        "Expand to 2-3 regions first, treating each as a mini-pilot with its own success criteria, because different regions may have different data patterns, customer behaviors, and integration requirements",
+        "Rebuild the model from scratch using data from all regions before deploying anywhere",
+        "Wait a full year to confirm the pilot results hold before expanding"
+      ],
+      "correctIndex": 1,
+      "explanation": "Scaling AI is not 'doing the pilot bigger.' Different regions may have different data formats, quality levels, customer behavior patterns, and integration requirements that the single-region pilot didn't test. Expanding incrementally — 2-3 regions at a time — discovers and addresses these variations before they compound across the entire organization. The goal is fast enough to capture value, slow enough to maintain quality."
+    },
+    {
+      "id": 4,
+      "scenario": "Your company wants to build an AI-powered customer service assistant. The VP of Customer Service wants it to handle all inquiries autonomously to reduce headcount. The CTO recommends starting with a RAG-based system that retrieves answers from your knowledge base. Your legal team is concerned about the AI giving customers incorrect policy information. The CFO wants to know the total cost before approving anything.",
+      "question": "Given these competing stakeholder concerns, what is the right approach?",
+      "choices": [
+        "Build a fully autonomous agent to maximize cost savings — that's the whole point of AI",
+        "Start with a supervised assistant that drafts responses for human review, deploy RAG architecture to ground answers in verified documentation, and present a three-scenario business case that includes integration, change management, and ongoing operations costs — not just technology costs",
+        "Purchase an off-the-shelf chatbot to avoid the complexity of custom development",
+        "Delay until the legal concerns are fully resolved before beginning any development"
+      ],
+      "correctIndex": 1,
+      "explanation": "This question integrates concepts from multiple lessons. Starting supervised (not autonomous) addresses the legal concern about incorrect information. RAG architecture grounds the AI in verified company documentation, reducing hallucination risk. A three-scenario business case with full cost accounting — technology, data, people, integration, change management, and ongoing operations — addresses the CFO's concern honestly. Starting with full autonomy risks costly errors; delaying risks competitive disadvantage."
+    },
+    {
+      "id": 5,
+      "scenario": "Your AI team presents a business case for an AI-powered invoice processing system. The projected cost is $400,000 for implementation, and they estimate it will save 5,000 hours of manual processing annually (at $50/hour = $250,000/year). They calculate an ROI of 62.5% in Year 1 and project the system will 'pay for itself in under two years.'",
+      "question": "What critical problems should you identify in this ROI calculation?",
+      "choices": [
+        "The ROI looks solid — approve the project as presented",
+        "The calculation likely excludes data preparation, integration, change management, and ongoing operations costs, which typically add 60-100% to the technology cost. It also doesn't compare AI to simpler process improvements, and the 5,000 saved hours only convert to real savings if that time is redirected to productive work",
+        "The hourly rate of $50 is too low — recalculate with a higher rate to make the case stronger",
+        "The project should be rejected because the payback period is too long"
+      ],
+      "correctIndex": 1,
+      "explanation": "Deloitte found that 76% of organizations underestimate total AI costs by 40-60%. This business case shows only Layer 1 costs (technology) and ignores Layers 2-5 (data, people, integration, and operations). It compares AI to zero rather than to simpler alternatives. And it assumes saved labor hours automatically convert to dollar savings — but only if those hours are redirected to productive work. A proper business case would include conservative, expected, and optimistic scenarios with full cost accounting."
+    },
+    {
+      "id": 6,
+      "scenario": "Your company deployed an AI-powered product recommendation engine six months ago. Revenue from recommended products increased 18% — a clear success. But your data analyst just discovered that the system disproportionately recommends premium products to users from high-income zip codes and budget products to users from lower-income zip codes, even when browsing behavior is identical.",
+      "question": "How should you respond to this finding?",
+      "choices": [
+        "This is just good personalization — the AI is matching products to likely purchasing power",
+        "Remove zip code data from the model inputs, which will eliminate the bias",
+        "Immediately investigate the full scope of the bias, implement fairness monitoring across demographic proxies, determine whether the pattern violates anti-discrimination regulations, and establish ongoing bias auditing as part of the model's governance",
+        "Shut down the recommendation engine entirely until the bias is eliminated"
+      ],
+      "correctIndex": 2,
+      "explanation": "As the Apple Card incident demonstrated, removing a protected variable from model inputs does not guarantee fair outputs — correlated proxy variables can reproduce the same bias. A comprehensive response requires investigating the full scope (which user groups are affected and how), implementing continuous fairness monitoring, assessing regulatory exposure, and building bias auditing into ongoing governance. Shutting down a revenue-generating system entirely is an overreaction; ignoring the bias creates legal and reputational risk."
+    },
+    {
+      "id": 7,
+      "scenario": "Your company's AI-powered demand forecasting model has been in production for eight months. It was 15% more accurate than the old spreadsheet method when deployed. Over the past two months, forecast accuracy has been declining steadily, and last month the model underperformed the old spreadsheet method. The data science team says the model code hasn't changed.",
+      "question": "What is the most likely cause, and what risk management process should have prevented this?",
+      "choices": [
+        "The model was poorly built from the start, and the initial performance was a fluke — rebuild from scratch",
+        "Model drift — real-world data patterns have shifted away from the training data. Continuous accuracy monitoring with alert thresholds and automated retraining pipelines should have detected the degradation weeks earlier and triggered retraining before performance fell below acceptable levels",
+        "A competitor has changed their pricing strategy, making all forecasting models inaccurate",
+        "The data science team must have accidentally changed the model without documenting it"
+      ],
+      "correctIndex": 1,
+      "explanation": "Model drift is the gradual degradation of AI performance as real-world data shifts away from training data. Markets change, customer behavior evolves, and new patterns emerge that the original training data didn't capture. Production AI requires continuous monitoring — tracking predictions against actual outcomes with alert thresholds that trigger investigation when performance drops. Companies like Uber and Airbnb retrain core models on weekly or monthly cycles. Without monitoring and automated retraining, every model eventually becomes stale."
+    },
+    {
+      "id": 8,
+      "scenario": "You discover that multiple employees across the company have been uploading confidential customer data, proprietary product roadmaps, and draft financial reports to various public AI tools like ChatGPT and free AI transcription services. There is no company policy on AI tool usage. The legal team is alarmed about potential data breaches and IP exposure.",
+      "question": "What is the most effective response?",
+      "choices": [
+        "Ban all AI tool usage immediately and terminate any employee who violated data security",
+        "Ignore it — the data is probably fine, and banning AI will make the company uncompetitive",
+        "Establish an AI acceptable-use policy that classifies data by sensitivity level, provides approved AI tools with appropriate security controls for each level, offers training on safe AI usage, and creates a clear process for requesting new AI tools",
+        "Require all AI usage to go through the IT department for manual approval before each use"
+      ],
+      "correctIndex": 2,
+      "explanation": "Samsung faced exactly this scenario in 2023 when engineers uploaded proprietary code to ChatGPT, leading to a company-wide ban. But blanket bans are counterproductive — employees circumvent them with personal devices, creating shadow AI that's even harder to govern. The effective approach is an acceptable-use policy that acknowledges AI's value, classifies data sensitivity, provides approved tools with enterprise security, and trains employees on responsible use. This balances innovation with risk management."
+    },
+    {
+      "id": 9,
+      "scenario": "Your company operates in both the EU and the United States. You use an AI system for screening job applicants — it analyzes resumes, scores candidates, and recommends a shortlist. Your legal team just informed you that under the EU AI Act, this system is classified as 'high-risk AI' and must comply with mandatory requirements including bias testing, human oversight, transparency, and technical documentation.",
+      "question": "What is the most strategically sound response?",
+      "choices": [
+        "Apply EU AI Act compliance only to EU operations and maintain the current system for U.S. operations",
+        "Shut down the AI screening system in the EU and use it only in the U.S., where regulations are less strict",
+        "Build EU AI Act compliance requirements — bias testing, human oversight, transparency, and documentation — into the global system, because these requirements represent governance best practices and U.S. regulations are moving in the same direction",
+        "Challenge the EU AI Act classification in court before making any changes"
+      ],
+      "correctIndex": 2,
+      "explanation": "Maintaining dual governance systems — one for the EU and one for the U.S. — is operationally expensive and strategically short-sighted. The U.S. regulatory trajectory (Colorado AI Act, EEOC guidance on AI in hiring, state-level legislation) is converging toward the same requirements. Building compliance into the global system creates operational consistency, reduces long-term cost, and positions the organization ahead of regulations that are coming regardless. The EU AI Act's requirements for high-risk AI are, at their core, just good governance."
+    },
+    {
+      "id": 10,
+      "scenario": "Your board of directors asks you to present a 3-year AI strategy. The board chair wants 'big bets on transformative AI.' The audit committee chair wants 'risk management first.' A board member who is a tech CEO wants 'agentic AI across the enterprise.' Another board member warns that 'AI is overhyped and the company shouldn't waste money chasing trends.'",
+      "question": "How should you frame the AI strategy to address these competing board perspectives?",
+      "choices": [
+        "Align with the board chair's vision for big bets — the chair's opinion carries the most weight",
+        "Focus the strategy entirely on risk management to satisfy the audit committee — you can always invest later",
+        "Present a balanced strategy that builds foundational capabilities (clean data, skilled teams, governance frameworks) in Year 1, scales proven use cases with measured ROI in Year 2, and explores transformative applications including agents in Year 3 — with risk-tiered governance throughout and three-scenario financial projections for each phase",
+        "Commission an external consulting firm to develop the strategy and present their recommendations"
+      ],
+      "correctIndex": 2,
+      "explanation": "This question synthesizes the entire course. A phased strategy addresses every board perspective: foundational capabilities satisfy the risk-focused members by ensuring governance is built in from the start; measured ROI in Year 2 satisfies the skeptic with evidence; transformative investments in Year 3 satisfy the ambitious members; and risk-tiered governance throughout ensures oversight scales with ambition. Three-scenario financial projections (conservative, expected, optimistic) provide honest cost accounting. The strategy succeeds because it's neither recklessly aggressive nor paralyzed by caution."
+    }
+  ]
+}

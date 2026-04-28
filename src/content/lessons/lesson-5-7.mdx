@@ -1,0 +1,112 @@
+---
+title: "Prompting for Data Analysis"
+slug: "prompting-for-data-analysis"
+course: "prompt-engineering"
+order: 7
+description: "Learn how to use prompt engineering to transform raw data into business insights — from exploratory analysis and visualization to statistical testing and executive reporting."
+---
+
+## Turning Data Into Decisions Without Writing Code
+
+Most business leaders are drowning in data and starving for insight. They have dashboards, spreadsheets, and databases — but translating raw numbers into strategic decisions still requires either technical skill or a bottleneck request to the data team. Prompt engineering changes this equation. With the right prompts, business users can conduct exploratory analysis, identify trends, generate visualizations, and produce data-driven recommendations — often without writing a single line of code.
+
+## Exploratory Data Analysis Prompts
+
+Exploratory data analysis (EDA) is the process of examining data to understand its structure, spot patterns, and identify anomalies before conducting formal analysis. It's the step most business users skip — and the step where AI adds the most value.
+
+### The Data Briefing Prompt
+
+Before any analysis, give the AI context about what the data represents.
+
+**Example prompt:**
+
+"I'm sharing a CSV file with 12 months of sales data for our e-commerce business. The columns are: Date, Product_Category, Region, Units_Sold, Revenue, Customer_Type (New vs Returning), Marketing_Channel. Before we begin analysis, examine the data and tell me: (1) How many rows and columns are in the dataset? (2) Are there any missing values? If so, in which columns and what percentage? (3) What are the data types for each column? (4) What are the basic summary statistics for numeric columns (mean, median, min, max, standard deviation)? (5) Are there any obvious outliers or data quality issues? Present findings in a structured format."
+
+This prompt establishes a clean analytical foundation. Skipping it — and jumping straight to "What are our trends?" — is like asking a doctor for a diagnosis before they've examined the patient.
+
+### Pattern Discovery Prompts
+
+**Example prompt:**
+
+"Using the sales data, identify the five most significant patterns or trends. For each pattern: (1) Describe the pattern specifically, with supporting numbers, (2) Explain why this pattern matters for business decision-making, (3) Rate your confidence in the pattern (High, Medium, Low) based on the data volume and consistency, (4) Suggest what additional data would help confirm or refute the pattern. Prioritize patterns that are actionable — trends that someone could make a business decision about — over interesting but purely descriptive observations."
+
+The instruction to rate confidence and suggest validation is crucial. It prevents the AI from presenting weak correlations with the same authority as robust trends.
+
+## Statistical Analysis Prompts
+
+### Hypothesis Testing
+
+**Example prompt:**
+
+"Our marketing team claims that customers acquired through email campaigns have a 20% higher lifetime value than customers acquired through social media ads. Using the attached customer data, test this hypothesis. (1) State the null and alternative hypotheses formally, (2) Choose and justify an appropriate statistical test, (3) Execute the test step by step, showing your calculations, (4) Report the results including the test statistic, p-value, and confidence interval, (5) Interpret the results in plain business language — do the data support the marketing team's claim? (6) Note any limitations of the analysis (sample size, potential confounding variables, time period limitations)."
+
+Chain-of-thought prompting is essential for statistical analysis. Without it, the AI might jump to a conclusion without showing its work — and you'd have no way to verify the reasoning.
+
+### Correlation and Causation Analysis
+
+**Example prompt:**
+
+"Our operations team noticed that customer satisfaction scores dropped in the same months that we reduced call center staffing. They believe the staffing cuts caused the satisfaction decline. Analyze the attached monthly data (satisfaction scores, staffing levels, call volume, wait times, resolution rates) and: (1) Calculate the correlation between staffing levels and satisfaction scores, (2) Identify other variables that might explain the satisfaction decline, (3) Test whether the relationship holds after controlling for call volume and seasonal effects, (4) Explicitly distinguish between what the data shows (correlation) and what it doesn't prove (causation), (5) Recommend what additional analysis or data would be needed to establish a causal relationship."
+
+This prompt explicitly asks the AI to distinguish correlation from causation — a distinction that AI handles well when prompted but often glosses over when not.
+
+## Data Visualization Prompts
+
+### Choosing the Right Chart
+
+**Example prompt:**
+
+"I need to present three findings to our executive team: (1) Revenue has grown 45% over 8 quarters but growth rate is decelerating, (2) Our top 3 product categories account for 78% of revenue, and the concentration is increasing, (3) Customer acquisition cost varies dramatically by marketing channel, from $15 to $180. For each finding, recommend: (a) The best chart type and explain why, (b) The specific design choices that will make the insight immediately obvious (color, labels, annotations), (c) One common visualization mistake to avoid for this type of data. I'll be creating the charts in Excel."
+
+### Generating Visualization Code
+
+For users with access to tools like Python or R through AI coding assistants:
+
+**Example prompt:**
+
+"Write Python code using matplotlib and pandas to create a dashboard with four charts from the attached sales data: (1) Top left: Monthly revenue trend line with a 3-month moving average overlay, (2) Top right: Revenue breakdown by product category (horizontal bar chart, sorted by revenue), (3) Bottom left: New vs. returning customer revenue over time (stacked area chart), (4) Bottom right: Revenue by region (treemap or proportional bar). Use a clean, professional color palette. Add appropriate titles, labels, and a main dashboard title. Size the figure for a PowerPoint slide (16:9 ratio)."
+
+Gartner reported in 2024 that 60% of data and analytics teams were using AI-assisted tools for data exploration and visualization, up from 15% in 2022. The most productive teams used AI not to replace their visualization tools but to accelerate the decision-making about what to visualize and how.
+
+## Executive Reporting Prompts
+
+### From Analysis to Narrative
+
+**Example prompt:**
+
+"I've completed an analysis of our Q3 sales performance. Here are the raw findings: [paste findings]. Transform these into an executive summary for our quarterly business review. Structure: (1) Headline — one sentence summarizing the quarter's performance, (2) Three Key Wins — specific achievements with supporting numbers, (3) Two Concerns — areas underperforming expectations, with context on why and recommended actions, (4) Outlook — data-driven expectations for Q4 based on current trends. Tone: confident but honest. Length: one page maximum. The audience is our CEO and board members — they want the 'so what,' not the methodology."
+
+### The Decision-Ready Prompt
+
+The ultimate goal of data analysis is to inform decisions. The best prompt engineers design their final prompt to frame the output as a decision input.
+
+**Example prompt:**
+
+"Based on our complete analysis of customer churn data, prepare a decision brief for our VP of Customer Success. The brief should answer: (1) What is our current churn rate and how does it compare to industry benchmarks? (2) What are the top 3 predictors of churn that we identified? (3) For each predictor, what specific intervention could reduce churn and what is the estimated revenue impact? (4) What would it cost to implement these interventions vs. the cost of continued churn at current rates? (5) Bottom line recommendation: Which intervention should we prioritize first and why? Include the specific data points that support each recommendation. The VP should be able to make a resource allocation decision based on this brief alone."
+
+## Common Data Analysis Prompting Mistakes
+
+### Mistake 1: No Data Context
+
+Uploading data without explaining what it represents, how it was collected, or what the columns mean. The AI will guess — and often guess wrong.
+
+### Mistake 2: Asking for Analysis Without Specifying Questions
+
+"Analyze this data" produces generic descriptive statistics. "What is driving the decline in customer retention for our enterprise segment in the Northeast region?" produces actionable insight.
+
+### Mistake 3: Trusting AI Math Without Verification
+
+LLMs are language models, not calculators. They can get arithmetic wrong, especially with large numbers or multi-step calculations. For any quantitative analysis that informs a business decision, verify the key calculations independently. Prompt the model to show its work so you can check it.
+
+### Mistake 4: Ignoring Sample Size and Data Quality
+
+AI will analyze whatever you give it, even if the dataset is too small for meaningful conclusions or riddled with quality issues. Always start with the data briefing prompt to understand your data's limitations before drawing conclusions.
+
+> **Key takeaway:** Prompt engineering turns every business leader into a data analyst — not by replacing statistical rigor, but by making it accessible. The key is structured prompting that starts with data understanding, progresses through systematic analysis, and ends with decision-ready outputs. Always verify quantitative results, acknowledge data limitations, and frame findings in terms of business decisions rather than abstract statistics.
+
+## Sources
+
+- Gartner (2024). "AI in Data and Analytics: Enterprise Adoption Trends." Gartner Research.
+- Harvard Business Review (2024). "The Rise of the AI-Augmented Analyst." HBR Analytics.
+- Tableau (2024). "State of Data Visualization in the Enterprise." Tableau Research.
+- McKinsey & Company (2024). "Turning Data Into Value: Analytics in the Age of AI." McKinsey Analytics.

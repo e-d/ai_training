@@ -1,0 +1,77 @@
+---
+title: "LLM Application Approaches"
+slug: "llm-application-approaches"
+course: "llm-based-apps"
+order: 1
+description: "Understand the spectrum of approaches for building LLM-powered applications, from simple API calls to fully autonomous agent systems."
+---
+
+## Beyond the Chat Window
+
+When most business leaders think about large language models, they picture a chat interface — type a question, get an answer. But the real commercial value of LLMs lies in the applications built around them. The chat window is just the tip of the iceberg; underneath it sit engineering patterns that determine whether an LLM application is a toy demo or a production system handling millions of requests.
+
+Understanding these approaches doesn't require writing code. It requires understanding the trade-offs — cost, accuracy, latency, and control — that determine which approach fits which business problem.
+
+## Direct API Integration: The Starting Line
+
+The simplest way to build an LLM application is to call a model's API directly. Your software sends a prompt, the model returns a response, and your application does something with it. This is how most companies start.
+
+Stripe, for example, uses direct API calls to GPT-4 for its documentation assistant, which helps developers find the right API endpoints and troubleshoot integration issues. The system takes a developer's question, adds relevant context from Stripe's documentation, and sends it to the model. Simple, effective, and deployed to millions of users.
+
+Direct API integration works well when the task is straightforward: summarize this document, classify this support ticket, extract these fields from an invoice. Klarna reported in 2024 that its AI assistant, built on direct OpenAI API integration, handled 2.3 million customer conversations in its first month — performing the equivalent work of 700 full-time agents.
+
+The limitation is that direct API calls treat the model as a stateless oracle. Each request is independent. The model has no memory of previous interactions, no ability to take actions in other systems, and no mechanism for multi-step reasoning beyond what fits in a single prompt.
+
+## Prompt Chaining: Structured Multi-Step Workflows
+
+When a single prompt isn't enough, developers chain multiple prompts together — where the output of one becomes the input to the next. This is prompt chaining, and it's the workhorse pattern behind most production LLM applications.
+
+Consider how a legal technology company might process a contract. Step one: extract all parties, dates, and obligations. Step two: compare extracted terms against a standard template. Step three: flag deviations and draft a summary for the attorney. Each step uses a different prompt optimized for that specific task, and the chain produces a structured output that no single prompt could reliably generate.
+
+Thomson Reuters uses a variant of this approach in its CoCounsel legal AI platform. Rather than asking one model to "analyze this contract," the system decomposes the analysis into discrete steps — each with its own prompt, validation logic, and error handling. This decomposition is what makes the output reliable enough for legal professionals to act on.
+
+Prompt chaining gives you control. If step two fails, you can retry it without re-running the entire chain. You can insert human review between steps. You can log each step's input and output for audit purposes. The trade-off is increased latency and cost — each step is a separate API call.
+
+## Retrieval-Augmented Generation: Grounding Responses in Facts
+
+One of the biggest risks with LLMs is hallucination — generating confident-sounding text that is factually wrong. Retrieval-Augmented Generation, or RAG, addresses this by giving the model access to a curated knowledge base. Before generating a response, the system retrieves relevant documents and includes them in the prompt, so the model's answer is grounded in actual source material.
+
+Morgan Stanley deployed one of the most visible enterprise RAG systems in 2023 — an internal assistant that gives its 16,000 financial advisors instant access to the firm's roughly 100,000 research reports and documents. Instead of searching through files manually, advisors ask questions in natural language and receive answers with citations pointing back to the source documents.
+
+RAG is now the dominant architecture for enterprise LLM applications. A 2024 survey by Databricks found that 60% of enterprise LLM applications use some form of retrieval augmentation. The pattern works because it separates what the model knows (general language ability) from what your organization knows (proprietary data), and combines them at query time.
+
+### When RAG Falls Short
+
+RAG is not a magic bullet. Its quality depends entirely on the retrieval step — if the system pulls the wrong documents, the model generates wrong answers with high confidence. Retrieval quality depends on how well your documents are chunked, indexed, and matched to queries. Poor retrieval infrastructure makes the entire system unreliable.
+
+## Autonomous Agents: LLMs That Take Action
+
+The frontier of LLM applications is agentic — systems where the model doesn't just generate text but plans and executes multi-step tasks using external tools. An agent might search the web, query a database, call an API, write and execute code, and iterate on its own output.
+
+Salesforce's Einstein Copilot, launched in 2024, exemplifies the agent approach in a business context. Rather than simply answering questions about CRM data, it can execute actions — update opportunity records, generate personalized email sequences, create follow-up tasks — across the Salesforce platform. The model reasons about what actions to take, in what order, and with what parameters.
+
+The promise of agents is enormous: they can handle workflows that previously required human coordination across multiple systems. The risk is equally significant. Agents that act autonomously can make mistakes that compound — an agent that misunderstands a task might take a dozen wrong actions before anyone notices. This is why production agent systems include guardrails: bounded action spaces, human approval at critical checkpoints, and comprehensive logging.
+
+Deloitte's 2024 analysis of enterprise AI deployments found that organizations using agentic architectures reported 3x higher productivity gains than those using simple prompt-response patterns — but also 2x higher implementation costs and longer time to production.
+
+## Choosing the Right Approach
+
+The right approach depends on your use case, not on what's most technically impressive:
+
+- **Direct API calls** for single-step tasks with clear inputs and outputs — classification, summarization, extraction
+- **Prompt chaining** for structured multi-step workflows where reliability and auditability matter
+- **RAG** for any application where accuracy matters and the model needs access to proprietary or current information
+- **Agents** for complex workflows that span multiple systems and require dynamic decision-making
+
+Most mature organizations use all four patterns across different applications. The skill is matching the pattern to the problem.
+
+> **Key takeaway:** LLM applications range from simple API calls to autonomous agents, each with distinct trade-offs in cost, complexity, accuracy, and control. The most effective organizations don't default to the most sophisticated approach — they match the architecture to the business problem.
+
+## Sources
+
+- Klarna (2024). "Klarna AI Assistant Handles 2.3M Conversations in First Month." Klarna Press Release.
+- Thomson Reuters (2024). "CoCounsel: AI-Assisted Legal Research." Thomson Reuters Product Documentation.
+- Morgan Stanley (2023). "Morgan Stanley Wealth Management Deploys GPT-4 to Organize Its Vast Knowledge Base." Morgan Stanley Newsroom.
+- Databricks (2024). "State of Data + AI: Enterprise LLM Adoption Survey." Databricks Research.
+- Salesforce (2024). "Einstein Copilot: Conversational AI for CRM." Salesforce Product Announcement.
+- Deloitte (2024). "The State of Generative AI in the Enterprise." Deloitte AI Institute.

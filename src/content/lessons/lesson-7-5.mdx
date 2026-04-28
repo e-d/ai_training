@@ -1,0 +1,95 @@
+---
+title: "RAG Using LangChain"
+slug: "rag-using-langchain"
+course: "llm-based-apps"
+order: 5
+description: "Understand how Retrieval-Augmented Generation works end-to-end in LangChain, and learn the strategies that separate high-quality RAG systems from unreliable ones."
+---
+
+## RAG: The Enterprise Killer App
+
+If one pattern defines enterprise LLM applications in 2024 and 2025, it's Retrieval-Augmented Generation. RAG is how organizations give LLMs access to proprietary knowledge — internal documents, policies, product catalogs, research reports — without fine-tuning the model itself. And LangChain is the most common framework for building RAG systems.
+
+The appeal is straightforward: LLMs are extraordinary at understanding and generating language, but they know nothing about your organization's specific data. RAG bridges that gap. A 2024 survey by Gradient Flow found that 67% of organizations building LLM applications had deployed or were actively building RAG systems, making it the single most common LLM application pattern in enterprise IT.
+
+## The RAG Pipeline, Step by Step
+
+A RAG system built with LangChain follows a clear pipeline. Understanding each stage — and where things can go wrong — is essential for business leaders overseeing these projects.
+
+### Step 1: Document Ingestion
+
+Before your RAG system can answer questions, it needs to ingest your documents. LangChain provides document loaders for over 160 data sources: PDFs, Word documents, PowerPoint presentations, web pages, Confluence wikis, Notion databases, Slack messages, SharePoint libraries, and databases.
+
+The ingestion step extracts text from these sources and standardizes it into a common format. This sounds simple but is often the hardest engineering challenge. A PDF might have tables that don't extract cleanly. A Confluence wiki might have nested pages with inconsistent formatting. A Slack channel might have thousands of messages where only a fraction are relevant. The quality of your ingestion pipeline directly determines the quality of your RAG system.
+
+### Step 2: Chunking
+
+Once documents are extracted, they're split into chunks — pieces sized to fit into the model's context window while preserving enough meaning to be useful when retrieved. LangChain provides multiple chunking strategies:
+
+- **Fixed-size chunking** splits text at regular intervals (e.g., every 500 tokens) with optional overlap between chunks. Simple but crude — chunks often split mid-paragraph or mid-thought.
+- **Recursive character splitting** tries to split at natural boundaries — paragraph breaks first, then sentence breaks, then word breaks — progressively falling back to less natural splits only when necessary. This is LangChain's most commonly used splitter.
+- **Semantic chunking** uses an embedding model to identify topic shifts and places chunk boundaries at those natural breakpoints. More computationally expensive but produces higher-quality chunks.
+- **Document-specific splitting** handles structured formats like Markdown, HTML, and code with awareness of their structure — splitting at headings, sections, or function boundaries.
+
+A study by Anthropic in 2024 found that chunking strategy had a larger impact on RAG accuracy than the choice of embedding model — a finding that surprised many technical teams but confirmed what practitioners had observed: garbage in at the chunking stage means garbage out at the retrieval stage.
+
+### Step 3: Embedding and Storage
+
+Each chunk is converted to a vector using an embedding model and stored in a vector database. LangChain integrates with every major vector database — Pinecone, Weaviate, Qdrant, Chroma, pgvector, Milvus, and others — through a standardized interface. This means the application code doesn't change if you switch vector databases later.
+
+The embedding model choice matters. OpenAI's text-embedding-3 models are the most widely used, but Cohere's Embed v3 and open-source models like BGE and E5 offer competitive quality at different price points. Organizations handling sensitive data often choose open-source embedding models that can run on-premises, so document content never leaves their infrastructure.
+
+### Step 4: Retrieval
+
+When a user asks a question, the system embeds the question using the same model, queries the vector database for the most similar chunks, and returns them. LangChain's retrieval interface supports several strategies beyond basic similarity search:
+
+- **Maximal Marginal Relevance (MMR)** balances similarity with diversity — ensuring retrieved chunks cover different aspects of the topic rather than returning five chunks that all say the same thing
+- **Self-query retrieval** uses the LLM to extract structured filters from the user's question before searching. "What was our Q3 revenue?" would automatically add a metadata filter for Q3 date ranges
+- **Ensemble retrieval** combines vector similarity search with traditional keyword search (BM25) and merges the results, capturing both semantic and lexical matches
+- **Multi-query retrieval** generates multiple reformulations of the user's question and retrieves documents for each, expanding coverage of the topic
+
+### Step 5: Generation
+
+The retrieved chunks are assembled into a prompt along with the user's question and system instructions, then sent to the LLM. The model generates an answer grounded in the retrieved context. LangChain's chain abstraction handles the assembly, including token budget management — ensuring the total prompt fits within the model's context window by trimming less relevant chunks if necessary.
+
+## Advanced RAG Patterns
+
+Basic RAG — retrieve chunks, stuff them in a prompt, generate — works for simple use cases. Production systems typically implement additional patterns:
+
+### Contextual Compression
+
+Not everything in a retrieved chunk is relevant to the specific question. Contextual compression runs each retrieved chunk through a lightweight model that extracts only the portions relevant to the query, reducing noise in the final prompt.
+
+### Reranking
+
+Vector similarity search is fast but imprecise. Reranking uses a specialized cross-encoder model (Cohere's Rerank API is the most popular) to re-score retrieved chunks with higher accuracy after the initial retrieval. This two-stage approach — fast but approximate vector search first, slow but precise reranking second — consistently improves answer quality. Cohere reported that adding reranking improved RAG accuracy by 15-30% across their customer deployments in 2024.
+
+### Corrective RAG
+
+What happens when retrieved documents aren't relevant? Corrective RAG adds a verification step: after retrieval, the system evaluates whether the retrieved documents actually contain information relevant to the question. If not, it can broaden the search, try a different query formulation, or tell the user it doesn't have enough information — rather than hallucinating an answer from irrelevant context.
+
+### Parent Document Retrieval
+
+Small chunks are easier to match precisely, but they lack context. Parent document retrieval stores small chunks for precise matching but retrieves the larger parent document when a match is found. The LLM gets the full context of the surrounding information, not just the narrow chunk that matched.
+
+## Measuring RAG Quality
+
+You can't improve what you can't measure. Production RAG systems track several metrics:
+
+- **Retrieval precision** — What percentage of retrieved chunks are actually relevant?
+- **Retrieval recall** — What percentage of all relevant chunks were retrieved?
+- **Faithfulness** — Does the generated answer accurately reflect the retrieved context, or does the model add information from its own training?
+- **Answer relevance** — Does the generated answer actually address the user's question?
+
+The RAGAS framework (Retrieval-Augmented Generation Assessment), which integrates with LangChain, automates these evaluations. Organizations that implement automated evaluation catch quality regressions before they reach users — essential when your RAG system serves thousands of queries daily.
+
+> **Key takeaway:** RAG is the most common and commercially valuable LLM application pattern, but its quality depends on the entire pipeline — document ingestion, chunking, embedding, retrieval strategy, and evaluation. The organizations that get the best results invest as much in retrieval quality as in model selection.
+
+## Sources
+
+- Gradient Flow (2024). "Enterprise LLM Application Survey: RAG Adoption Trends." Gradient Flow Research.
+- Anthropic (2024). "Best Practices for Retrieval-Augmented Generation." Anthropic Documentation.
+- Cohere (2024). "Rerank: Improving RAG Accuracy with Cross-Encoder Reranking." Cohere Blog.
+- LangChain (2024). "RAG with LangChain: A Complete Guide." LangChain Documentation.
+- RAGAS (2024). "RAGAS: Automated Evaluation of Retrieval-Augmented Generation." RAGAS Documentation.
+- Lewis, P. et al. (2020). "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks." *Advances in Neural Information Processing Systems*, 33.

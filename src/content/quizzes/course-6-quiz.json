@@ -1,0 +1,138 @@
+{
+  "title": "Course 6: Adopting AI in Your Organization — AI Implementation in the Wild",
+  "slug": "course-6-quiz",
+  "course": "adopting-ai-in-your-organization",
+  "description": "Test your understanding of AI adoption strategy, technology decisions, team building, risk management, and governance with 10 scenario-based questions drawn from real-world implementation challenges.",
+  "questions": [
+    {
+      "id": 1,
+      "scenario": "Your company is a mid-size healthcare provider considering its first AI deployment. The CTO proposes building a custom diagnostic imaging model from scratch, arguing it will give the company a competitive edge. The VP of Engineering counters that the company's patient data is stored across four incompatible systems with no unified API layer, and the radiology department uses three different imaging formats.",
+      "question": "What should the organization prioritize before committing to the custom model build?",
+      "choices": [
+        "Proceed with the custom build — the competitive advantage of proprietary AI justifies the investment regardless of data readiness",
+        "Invest in data infrastructure first — unify data access, standardize formats, and assess data quality before selecting any AI approach",
+        "Purchase an off-the-shelf diagnostic AI product that can work with any data format",
+        "Hire a team of ML engineers and let them determine the best path forward"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI strategy starts with data readiness, not model selection. With patient data scattered across four incompatible systems and inconsistent imaging formats, the organization lacks the data foundation required for any AI initiative — custom or purchased. Unifying data access, standardizing formats, and auditing data quality is the prerequisite that determines which AI approach is even feasible. Skipping this step is the most common reason AI projects fail."
+    },
+    {
+      "id": 2,
+      "scenario": "Your retail company deploys an AI customer service chatbot using a frontier model API (GPT-4 class). It handles 50,000 conversations per month effectively. But your CFO flags that API costs are $18,000 per month and growing with volume. Most conversations are routine — order status, return policies, store hours — with only 15% involving complex issues requiring nuanced reasoning.",
+      "question": "What is the most cost-effective architecture change to reduce costs without degrading customer experience?",
+      "choices": [
+        "Replace the frontier model entirely with a rule-based chatbot to eliminate API costs",
+        "Implement a tiered model architecture — route routine queries to a small, inexpensive model and escalate only complex issues to the frontier model",
+        "Reduce chatbot availability to business hours only to cut conversation volume",
+        "Negotiate a volume discount with the API provider"
+      ],
+      "correctIndex": 1,
+      "explanation": "Not every query requires frontier-model intelligence. A tiered architecture routes the 85% of routine conversations (order status, return policies, store hours) to a small language model costing 10-100x less per query, while reserving the frontier model for the 15% of complex issues that require nuanced reasoning. This can reduce costs by 70-80% while maintaining quality where it matters most. Right-sizing the model to the task is a core technology consideration for AI adoption."
+    },
+    {
+      "id": 3,
+      "scenario": "Your legal department wants AI to help attorneys research case law and draft legal memoranda. They tried a general-purpose AI model, but it occasionally cited nonexistent cases — a problem discovered only after an attorney nearly submitted a brief with fabricated citations. The legal team wants AI assistance but cannot tolerate hallucinated citations.",
+      "question": "Which architectural approach best addresses the hallucination problem for this legal use case?",
+      "choices": [
+        "Fine-tune a model specifically on legal documents to eliminate hallucinations",
+        "Deploy a Retrieval-Augmented Generation (RAG) system that retrieves actual case law from a verified legal database before generating responses, with source citations for every claim",
+        "Add a disclaimer to all AI outputs stating they should be verified manually",
+        "Switch to a more expensive frontier model, which will have lower hallucination rates"
+      ],
+      "correctIndex": 1,
+      "explanation": "RAG architecture directly addresses hallucination by grounding the model's responses in retrieved documents from a verified knowledge base — in this case, an actual legal database. The model generates responses based on real case law it retrieved, not information it 'remembers' from training. Source citations create an audit trail attorneys can verify. Fine-tuning does not eliminate hallucinations. Disclaimers don't prevent the underlying problem. And more expensive models still hallucinate — they just do it less often."
+    },
+    {
+      "id": 4,
+      "scenario": "Your insurance company wants to fine-tune an AI model to process claims using industry-specific terminology and your company's particular policy structures. The ML team estimates LoRA fine-tuning would cost $8,000 and take two weeks, while full fine-tuning would cost $200,000 and take three months. However, the team has only collected 400 examples of correctly processed claims so far.",
+      "question": "What is the most appropriate next step?",
+      "choices": [
+        "Proceed with full fine-tuning to get the best possible model quality",
+        "Proceed with LoRA fine-tuning since it's cheaper and the 400 examples should be sufficient",
+        "Before any fine-tuning, exhaust prompt engineering and RAG approaches — and if fine-tuning is still needed, build the training dataset to at least 1,000-2,000 high-quality examples first",
+        "Abandon fine-tuning entirely and use only general-purpose models"
+      ],
+      "correctIndex": 2,
+      "explanation": "Fine-tuning should be the last lever, not the first. Most organizations should exhaust prompt engineering and RAG approaches before investing in fine-tuning. Additionally, 400 training examples is insufficient — LoRA fine-tuning typically requires 1,000-10,000 high-quality examples to produce reliable results. Proceeding with insufficient data produces a model that is confidently wrong in your domain. The correct sequence is: optimize prompts, implement RAG, then fine-tune only if those approaches don't meet requirements — with adequate training data."
+    },
+    {
+      "id": 5,
+      "scenario": "Your company is six months into its AI journey. You have two ML engineers, one data engineer, and a project manager running AI initiatives. Every department is requesting AI projects, but the team is overwhelmed and projects are delayed by months. The CEO wants to accelerate AI adoption across the organization.",
+      "question": "What organizational change would most effectively accelerate AI adoption?",
+      "choices": [
+        "Hire 10 more ML engineers to increase the team's capacity",
+        "Outsource all AI development to a consulting firm to bypass the talent bottleneck",
+        "Implement a hub-and-spoke model — keep the central team for standards and shared infrastructure, while training and embedding AI-literate staff in business units to execute unit-specific projects",
+        "Prioritize projects by executive seniority to ensure the most important initiatives are completed first"
+      ],
+      "correctIndex": 2,
+      "explanation": "A hub-and-spoke model addresses both the bottleneck and the scalability problem. The central team sets standards, builds shared infrastructure, and provides consulting support, while embedded specialists in business units execute projects using those shared resources. This combines the consistency of centralization with the responsiveness of distribution. Hiring 10 ML engineers is unrealistic given talent scarcity and expensive. Outsourcing builds no internal capability. Executive-priority queuing doesn't increase throughput."
+    },
+    {
+      "id": 6,
+      "scenario": "A Salesforce survey reveals that 55% of your employees are already using ChatGPT and other AI tools for work tasks — without company approval, guidelines, or oversight. The CISO is alarmed about data security. The legal team worries about intellectual property exposure. But employees say the tools make them significantly more productive.",
+      "question": "What is the most effective organizational response to this shadow AI situation?",
+      "choices": [
+        "Immediately ban all external AI tool usage and enforce the ban with network blocking",
+        "Ignore the issue — employees are being more productive, and the risk is theoretical",
+        "Develop and deploy an AI usage policy that classifies data by sensitivity, approves specific tools for specific use cases, provides training, and establishes incident reporting — turning shadow AI into governed AI",
+        "Allow unrestricted AI use but require employees to sign a liability waiver"
+      ],
+      "correctIndex": 2,
+      "explanation": "Banning AI tools drives usage underground and sacrifices genuine productivity gains. Ignoring the issue leaves the organization exposed to real data security and IP risks. The effective response is a governance framework: classify data so employees know what can and cannot be shared with AI tools, approve specific tools that meet security requirements, train employees on responsible use, and establish clear incident reporting. This preserves the productivity benefits while managing risk — turning shadow AI into governed AI."
+    },
+    {
+      "id": 7,
+      "scenario": "Your company deployed an AI-powered loan approval system three months ago. The vendor reported 94% accuracy on their benchmark dataset. In production, the system approves loans correctly 91% of the time overall. However, your compliance team's audit reveals that approval accuracy is 95% for applicants in high-income zip codes but only 79% for applicants in lower-income zip codes — a disparity that correlates with racial demographics.",
+      "question": "What should the organization do in response to these findings?",
+      "choices": [
+        "The 91% overall accuracy exceeds the vendor benchmark, so no action is needed",
+        "Immediately shut down the system and return to fully manual loan processing",
+        "Conduct a thorough bias investigation — analyze the training data for demographic imbalances, implement fairness metrics alongside accuracy metrics, and retrain or adjust the model to reduce disparate performance before continuing deployment",
+        "Add a disclaimer informing applicants that AI was used in the decision"
+      ],
+      "correctIndex": 2,
+      "explanation": "A model that performs accurately overall but inequitably across demographic groups is a biased model — regardless of its aggregate accuracy score. The 16-point accuracy gap between high-income and low-income zip codes creates disparate impact that likely violates fair lending regulations and exposes the organization to legal liability. The correct response is investigation and correction: examine training data for demographic imbalances, implement fairness metrics that track performance across groups, and retrain or adjust the model. Neither ignoring the disparity nor abandoning AI entirely is responsible."
+    },
+    {
+      "id": 8,
+      "scenario": "Your CFO asks you to build the business case for an AI-powered document processing system. The vendor quotes $120,000 per year in licensing. Your team estimates the system will automate 70% of document processing work currently done by a team of 8 analysts earning $65,000 each. The CFO calculates: '70% of 8 analysts saved = 5.6 analysts = $364,000 in savings. Minus $120,000 license = $244,000 net savings in year one.'",
+      "question": "What is the most significant problem with the CFO's ROI calculation?",
+      "choices": [
+        "The vendor licensing cost is too high and should be negotiated down",
+        "The calculation only includes licensing cost — it omits data preparation, integration, training, change management, ongoing monitoring, and human review costs, and it assumes 100% of 'saved' analyst time translates to headcount reduction",
+        "The 70% automation rate is too conservative — modern AI can likely handle 95% of documents",
+        "The ROI should be calculated over three years, not one year"
+      ],
+      "correctIndex": 1,
+      "explanation": "The CFO's calculation captures licensing cost but misses the iceberg of costs below the surface: data preparation (60-80% of project effort), integration with existing systems (30-50% of project budget), employee training and change management, ongoing monitoring and retraining, and human review of the 30% the AI can't handle. Additionally, 'saving' 5.6 analysts' worth of work doesn't mean 5.6 positions are eliminated — those employees may handle increased volume or be redirected to higher-value work. Realistic total cost of ownership is typically 3-5x the vendor license."
+    },
+    {
+      "id": 9,
+      "scenario": "Your company operates in both the EU and the United States. You are deploying an AI system that scores job applicants to help hiring managers prioritize candidates. The system uses resume data, assessment scores, and structured interview ratings. Your legal team notes that the EU AI Act classifies AI in employment decisions as 'high-risk,' requiring conformity assessments, bias testing, human oversight, and documentation.",
+      "question": "How should the organization approach compliance for this deployment?",
+      "choices": [
+        "Deploy the system only in U.S. operations where the EU AI Act doesn't apply, avoiding the compliance burden entirely",
+        "Build EU AI Act compliance requirements — bias testing, human oversight, transparency, and documentation — into the system globally, using the highest standard as the baseline for all deployments",
+        "Wait until EU enforcement begins in 2027 before making changes",
+        "Remove the AI scoring system and use only manual candidate review"
+      ],
+      "correctIndex": 1,
+      "explanation": "Building to the highest regulatory standard globally is both the most practical and most responsible approach. Operating different compliance standards in different regions creates engineering complexity, governance confusion, and risk that non-compliant practices leak across borders. The EU AI Act's requirements — bias testing, human oversight, transparency, and documentation — are good practices regardless of legal mandate. Colorado and other U.S. states are passing similar laws, so U.S.-only deployment doesn't avoid the compliance trajectory. Waiting until enforcement risks penalties up to 35 million euros or 7% of global revenue."
+    },
+    {
+      "id": 10,
+      "scenario": "At a board meeting, one director advocates investing $5 million in building a custom agentic AI platform, arguing the company must be a first-mover. Another director warns that the technology is too immature and proposes waiting 2-3 years until it's proven. The CEO asks you to recommend a strategy that balances urgency with prudence.",
+      "question": "What is the most strategically sound recommendation?",
+      "choices": [
+        "Invest the $5 million in the custom agentic AI platform to secure first-mover advantage before competitors",
+        "Wait 2-3 years until agentic AI technology matures and best practices emerge",
+        "Invest in foundational capabilities now — clean data infrastructure, AI-literate workforce, governance frameworks, and modular architecture — so the organization can adopt agentic AI and other emerging technologies rapidly as they mature",
+        "Split the investment: $2.5 million on agentic AI and $2.5 million on current AI optimization"
+      ],
+      "correctIndex": 2,
+      "explanation": "Betting heavily on a specific immature technology risks the investment if the technology evolves differently than expected. Waiting means falling behind on the foundational capabilities that enable any AI adoption. The winning strategy is investing in foundations — clean and accessible data, skilled teams, established governance, modular architectures, and a culture of AI collaboration — that pay off regardless of which specific technologies mature first. Organizations with strong foundations adopt new AI capabilities 2-3x faster than those that must build foundations and adopt technology simultaneously."
+    }
+  ]
+}

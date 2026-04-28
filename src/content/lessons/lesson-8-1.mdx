@@ -1,0 +1,75 @@
+---
+title: "Foundations of AI Agents"
+slug: "foundations-of-ai-agents"
+course: "ai-agents"
+order: 1
+description: "Understand what AI agents are, how they differ from traditional AI tools, and why they represent the next major shift in enterprise technology."
+---
+
+## What Makes an Agent an Agent?
+
+The word "agent" has become one of the most overused terms in enterprise technology. Vendors slap it on everything from glorified chatbots to simple automation scripts. But a genuine AI agent is something specific — and understanding the distinction matters because it determines whether your organization invests in real capability or expensive branding.
+
+An AI agent is a software system that perceives its environment, reasons about what to do, takes actions, and learns from the results — all in pursuit of a goal that a human has defined but not step-by-step scripted. The key difference from traditional AI tools: an agent decides *how* to accomplish a task, not just *whether* a piece of data matches a pattern.
+
+When you ask ChatGPT to summarize an email, that's a tool. When you deploy a system that monitors your inbox, identifies emails requiring action, drafts responses, checks your calendar for scheduling conflicts, and flags items needing your personal judgment — that's an agent. The distinction isn't intelligence. It's autonomy combined with reasoning.
+
+## The Anatomy of an AI Agent
+
+Every functional AI agent, regardless of its domain, shares four core components:
+
+### Perception
+
+Agents need to sense their environment. For a customer service agent, perception means reading incoming tickets, customer history, product documentation, and conversation context. For an IT operations agent, it means ingesting system logs, performance metrics, and alert feeds. Perception converts raw data into a representation the agent can reason about.
+
+### Reasoning
+
+This is where large language models changed everything. Before LLMs, agent reasoning was limited to predefined logic — decision trees, rule engines, or narrow ML classifiers. LLMs give agents general-purpose reasoning: the ability to interpret ambiguous situations, weigh tradeoffs, and construct plans for problems they've never seen before. Google DeepMind's research on language model agents describes this as "the ability to use language as a substrate for thought and action."
+
+### Action
+
+An agent that can reason but cannot act is just an advisor. Real agents take actions — calling APIs, writing to databases, sending messages, generating documents, executing code, or triggering workflows. The tool-use capability in models like Claude and GPT-4 formalizes this: the model generates structured function calls that external systems execute, then feeds the results back into its reasoning loop.
+
+### Memory
+
+Without memory, an agent starts from scratch every interaction. Production agents need both short-term memory (the context of the current task) and long-term memory (accumulated knowledge from past interactions). Salesforce's Einstein AI agents, for example, maintain customer interaction histories across sessions so that each engagement builds on the last rather than repeating questions the customer already answered.
+
+## From Scripts to Autonomy: A Spectrum
+
+Agents don't operate at a single level of independence. Think of a spectrum with five levels:
+
+- **Level 1 — Tool Use:** The AI executes a single action when asked. Example: "Translate this paragraph to Spanish."
+- **Level 2 — Workflow Automation:** The AI follows a predefined multi-step process. Example: a document processing pipeline that extracts, classifies, and routes invoices.
+- **Level 3 — Guided Autonomy:** The AI decides its own steps within boundaries but checks in with humans at key decision points. Example: a coding agent that writes and tests code, then submits pull requests for human review.
+- **Level 4 — Supervised Autonomy:** The AI operates independently with human oversight reviewing outcomes after the fact. Example: an IT agent that auto-remediates common incidents and logs all actions for audit.
+- **Level 5 — Full Autonomy:** The AI plans, executes, and adjusts without human intervention within its defined domain. Example: algorithmic trading systems (though these predate modern AI agents).
+
+Most enterprise deployments today sit at Levels 2 and 3. The business value is already enormous — McKinsey estimates that agentic AI could automate 60-70% of employee tasks across industries by 2030. But the governance complexity increases at each level, which is why responsible organizations climb the spectrum deliberately rather than leaping to full autonomy.
+
+## Why Agents Now?
+
+Three converging forces made practical AI agents possible in 2024-2025:
+
+**Foundation model capability.** Models like Claude 3.5, GPT-4, and Gemini can reason about complex multi-step problems, use tools through function calling, and maintain coherent context across long interactions. Before 2023, no model could reliably do all three simultaneously.
+
+**Infrastructure maturity.** Frameworks like LangChain, CrewAI, AutoGen, and Amazon Bedrock Agents provide the scaffolding for building agent systems — tool integration, memory management, orchestration, and observability — without building everything from scratch.
+
+**Economic pressure.** Labor markets remain tight in knowledge-work sectors. Deloitte's 2024 survey found that 82% of executives expect AI agents to "substantially transform" their workforce within three years. The business case for systems that handle routine cognitive work is no longer speculative.
+
+## What Agents Are Not
+
+Clarity about boundaries prevents costly misapplication:
+
+- **Agents are not replacements for employees.** They are force multipliers. The most successful deployments pair agents with humans — handling volume and routine while escalating judgment calls.
+- **Agents are not infallible.** LLMs hallucinate. Tool calls fail. Plans go off-track. Production agents need monitoring, error handling, and graceful degradation.
+- **Agents are not general intelligence.** Today's agents excel in defined domains with clear toolsets. An agent that manages IT tickets cannot spontaneously learn to manage sales pipelines.
+
+> **Key takeaway:** An AI agent is defined by its ability to perceive, reason, act, and remember — operating with degrees of autonomy to accomplish goals that humans define but don't step-by-step script. The technology is real and the business case is strong, but successful deployment requires understanding that agents sit on a spectrum of independence, and the right level depends on the task, the risk, and the maturity of your governance.
+
+## Sources
+
+- Google DeepMind (2024). "Language Agents: Foundations, Prospects, and Risks." arXiv preprint.
+- McKinsey & Company (2024). "The Economic Potential of Generative AI: The Next Productivity Frontier." McKinsey Global Institute.
+- Deloitte (2024). "State of Generative AI in the Enterprise: Q4 2024." Deloitte AI Institute.
+- Salesforce (2024). "Einstein AI Agents: Architecture and Design Principles." Salesforce Engineering Blog.
+- Anthropic (2024). "Tool Use and Function Calling in Claude." Anthropic Documentation.

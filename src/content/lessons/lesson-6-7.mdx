@@ -1,0 +1,114 @@
+---
+title: "Evaluation and Benchmarks"
+slug: "evaluation-and-benchmarks"
+course: "adopting-ai-in-your-organization"
+order: 7
+description: "Learn how to evaluate AI model performance using industry benchmarks, custom metrics, and structured testing frameworks that go beyond vendor-reported accuracy."
+---
+
+## You Can't Manage What You Can't Measure
+
+One of the most dangerous moments in an AI project is when the team says, "It seems to work well." Subjective impressions are unreliable measures of AI performance. A model that handles 90% of cases perfectly but fails catastrophically on the other 10% will seem excellent in a casual demo and disastrous in production. Rigorous evaluation is what separates AI projects that deliver sustained value from those that produce impressive demos followed by painful surprises.
+
+## Understanding AI Benchmarks
+
+The AI industry uses standardized benchmarks to compare model capabilities across providers. Understanding these benchmarks helps business leaders interpret vendor claims and make informed purchasing decisions.
+
+### Common Benchmark Categories
+
+**Language understanding and reasoning** — Benchmarks like MMLU (Massive Multitask Language Understanding) test a model's knowledge across 57 academic subjects, from history to advanced mathematics. When a vendor says their model "achieves 90% on MMLU," they're claiming strong general knowledge. But MMLU scores don't predict how the model will handle your specific insurance claims or legal contracts.
+
+**Code generation** — HumanEval and SWE-bench measure a model's ability to write correct code. HumanEval tests isolated function-writing. SWE-bench tests the ability to solve real GitHub issues in full codebases — a much harder and more realistic test. As of early 2025, the best models solve roughly 40-50% of SWE-bench problems, illustrating how far AI code generation still has to go on complex, real-world tasks.
+
+**Mathematical reasoning** — GSM8K tests grade-school math word problems. MATH tests competition-level mathematics. These benchmarks matter for any application involving quantitative reasoning — financial analysis, engineering calculations, or scientific research.
+
+**Safety and alignment** — Benchmarks like TruthfulQA measure a model's tendency to repeat common misconceptions, while various red-teaming benchmarks test resistance to producing harmful content.
+
+### The Benchmark Caveat
+
+Benchmarks are useful for comparing models but dangerous as predictors of real-world performance. Every benchmark measures a specific capability under controlled conditions. Your production environment has none of those controls — messy inputs, edge cases, adversarial users, and domain-specific language that no benchmark covers.
+
+Google DeepMind researchers published a 2024 paper noting that performance on standard benchmarks can overstate real-world capability by 15-30%, particularly for domain-specific applications. The gap between benchmark performance and production performance is where most AI disappointments live.
+
+## Building Your Own Evaluation Framework
+
+Vendor benchmarks tell you whether a model is generally capable. Your own evaluation framework tells you whether it works for your specific use case. Building this framework is one of the highest-value activities in any AI project.
+
+### Step 1: Define Success Metrics
+
+Start by defining what "good" looks like in measurable terms. Common metrics include:
+
+- **Accuracy** — What percentage of outputs are correct? Define "correct" precisely. For a document classification system, accuracy might mean assigning the correct category. For a summarization system, accuracy is harder to define and may require human evaluation.
+
+- **Precision and recall** — Precision measures how often the model is right when it makes a positive prediction. Recall measures how often it catches actual positive cases. In fraud detection, high recall is critical (catch all fraud) even at the cost of precision (some false alarms). In medical diagnosis, both must be high.
+
+- **Latency** — How quickly does the model respond? A customer-facing chatbot needs sub-2-second responses. A batch document processing system can tolerate minutes per document.
+
+- **Cost per query** — What does each AI interaction cost in compute and API fees? This determines whether the system is economically viable at scale.
+
+- **User satisfaction** — Do the people using the AI system find it helpful? Ultimately, this is the metric that determines adoption.
+
+### Step 2: Build a Test Dataset
+
+Create a curated set of test cases that represent the full range of scenarios your AI system will encounter in production. This test set should include:
+
+- **Common cases** — The everyday scenarios that represent 80% of usage
+- **Edge cases** — Unusual but important scenarios that test the model's limits
+- **Adversarial cases** — Inputs designed to break the model or trigger failure modes
+- **Failure cases from production** — Real examples where the model previously produced incorrect outputs
+
+The test dataset should be large enough to produce statistically significant results — typically 500-2,000 examples for most enterprise applications. And it must be updated regularly as new failure modes are discovered.
+
+### Step 3: Establish a Baseline
+
+Before deploying AI, measure current performance using whatever process exists today — human performance, rule-based system performance, or the performance of a simpler model. Without a baseline, you cannot quantify improvement.
+
+When Duolingo introduced AI-generated content, they measured the existing human content creation process: time per lesson, error rate, learner engagement, and learning outcomes. This baseline made it possible to demonstrate that AI-generated lessons achieved 95% of the quality at 20% of the cost.
+
+### Step 4: Automate Evaluation
+
+Manual evaluation doesn't scale. Build automated evaluation pipelines that run your test dataset against the model on a regular schedule — daily for production systems, on every model update, and before any deployment. These pipelines should produce dashboards that the business team (not just engineers) can read.
+
+A growing practice is **LLM-as-judge** — using a more capable AI model to evaluate the outputs of the model you're deploying. Anthropic, OpenAI, and Google have all published research on using frontier models to grade other models' outputs, with agreement rates of 80-90% compared to human evaluators for many tasks.
+
+## Evaluation in Production: Monitoring After Deployment
+
+Evaluation doesn't end at deployment. Production monitoring tracks model performance on live data, catching degradation that test datasets miss:
+
+### Performance Metrics
+
+Track accuracy, latency, and error rates in real time. Set alerting thresholds so the team is notified when performance drops below acceptable levels. Uber's ML platform, Michelangelo, monitors thousands of models in production and automatically alerts teams when prediction accuracy drifts beyond configured thresholds.
+
+### Drift Detection
+
+Monitor whether the distribution of production inputs is changing relative to the training data. If customers start asking questions in a different language, about new products, or using unfamiliar terminology, model performance will degrade even though the model itself hasn't changed.
+
+### User Feedback Loops
+
+Integrate feedback mechanisms — thumbs up/down, rating scales, correction workflows — into AI-powered applications. This feedback serves dual purposes: it identifies failures in real time, and it generates labeled data for future model improvements.
+
+### A/B Testing
+
+When deploying model updates, route a percentage of traffic to the new model and compare performance against the existing version. This prevents regressions and provides statistically valid evidence that the new model is an improvement.
+
+## The Evaluation Maturity Model
+
+Organizations progress through evaluation maturity:
+
+1. **Ad hoc** — Team members manually check a few outputs and say "looks good"
+2. **Structured** — A defined test set is run against the model before deployment
+3. **Automated** — Evaluation runs automatically on every model change with pass/fail criteria
+4. **Continuous** — Production monitoring, drift detection, user feedback, and A/B testing operate as an integrated system
+
+Most organizations are at level 1 or 2. Getting to level 3 is the minimum for production AI. Level 4 is where sustained AI value lives.
+
+> **Key takeaway:** Vendor benchmarks provide a starting point but don't predict performance on your data. Build your own evaluation framework with defined success metrics, curated test datasets, automated pipelines, and production monitoring. The rigor of your evaluation directly determines the reliability of your AI deployment.
+
+## Sources
+
+- Hendrycks, D. et al. (2021). "Measuring Massive Multitask Language Understanding." *International Conference on Learning Representations (ICLR)*.
+- Jimenez, C. et al. (2024). "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?" *arXiv preprint arXiv:2310.06770*.
+- Google DeepMind (2024). "Beyond Benchmarks: Evaluating AI in Real-World Applications." Google AI Research.
+- Duolingo (2024). "AI-Generated Lessons: Quality and Efficiency Benchmarks." Duolingo Engineering Blog.
+- Zheng, L. et al. (2023). "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena." *Advances in Neural Information Processing Systems*, 36.
+- Uber Engineering (2024). "Michelangelo: ML Platform Monitoring at Scale." Uber Engineering Blog.

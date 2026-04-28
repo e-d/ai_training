@@ -1,0 +1,104 @@
+---
+title: "AI Strategy, Data, and RAG Architecture"
+slug: "ai-strategy-data-and-rag-architecture"
+course: "adopting-ai-in-your-organization"
+order: 3
+description: "Learn how to build an AI strategy grounded in data readiness and understand Retrieval-Augmented Generation (RAG) — the architecture pattern that connects AI models to your organization's knowledge."
+---
+
+## Strategy Starts With Data, Not Models
+
+The most common mistake in AI adoption is starting with a model and searching for a problem to solve. Effective AI strategy works in the opposite direction: start with a business objective, assess the data available to support it, and then select the technology that bridges the gap. Every AI model — no matter how sophisticated — is only as useful as the data it can access.
+
+McKinsey's 2024 Global Survey on AI found that companies reporting the highest ROI from AI initiatives share a common trait: they invested in data infrastructure before model development. Organizations that skipped the data step were 2.5 times more likely to abandon their AI projects within 18 months.
+
+## The Data Readiness Framework
+
+Before selecting any AI solution, assess your organization's data across four dimensions:
+
+### Availability
+
+Do you collect the data the AI model will need? A customer churn prediction model requires historical customer behavior data — purchase frequency, support interactions, engagement patterns. If you don't collect interaction-level data, no model can predict churn accurately. Identifying data gaps early prevents months of wasted development.
+
+### Quality
+
+Is your data clean, consistent, and trustworthy? IBM estimated in 2023 that poor data quality costs U.S. businesses $3.1 trillion annually. Common quality issues include duplicate records, inconsistent formatting (is the customer "John Smith," "J. Smith," or "SMITH, JOHN"?), missing fields, and stale data that no longer reflects current reality. Data cleaning is tedious but non-negotiable.
+
+### Accessibility
+
+Can your technical team access the data programmatically? Data trapped in legacy systems, spreadsheets, or siloed departmental databases is effectively invisible to AI models. Building API layers, data pipelines, and a unified data catalog is often the most impactful infrastructure investment an organization can make.
+
+### Governance
+
+Do you know who owns each dataset, who can access it, and what use restrictions apply? Patient health records, financial transactions, and personally identifiable information all carry legal constraints on how they can be used for AI training and inference. A governance framework must be in place before data flows into any model.
+
+## Retrieval-Augmented Generation: The Architecture That Changed Everything
+
+One of the most consequential architectural innovations in applied AI is Retrieval-Augmented Generation (RAG). RAG solves a fundamental limitation of large language models: they only know what was in their training data, which has a cutoff date and doesn't include your organization's proprietary information.
+
+### How RAG Works
+
+RAG combines a retrieval system with a generation model in a two-step process:
+
+1. **Retrieve** — When a user asks a question, the system first searches a knowledge base (your company's documents, policies, product manuals, databases) for relevant information. This search uses vector embeddings — mathematical representations of meaning — to find passages that are semantically relevant, not just keyword matches.
+
+2. **Generate** — The retrieved passages are passed to the language model along with the user's question. The model generates a response grounded in the retrieved information rather than relying solely on its training data.
+
+The result is an AI system that can answer questions about your company's specific products, policies, and data — with the ability to cite its sources and stay current as your knowledge base changes.
+
+### Why RAG Matters for Business
+
+RAG solves three problems that previously made enterprise AI deployment risky:
+
+- **Hallucination reduction** — By grounding responses in retrieved documents, RAG dramatically reduces the frequency of AI-generated falsehoods. A 2024 study by researchers at Stanford found that RAG reduced hallucination rates by 40-60% compared to unaugmented models on enterprise question-answering tasks.
+
+- **Knowledge currency** — When your product catalog, policy documents, or pricing changes, you update the knowledge base. The AI immediately reflects the change without retraining, which can take weeks and cost thousands of dollars.
+
+- **Source attribution** — RAG systems can cite the specific documents that informed each response, creating an audit trail that is essential for regulated industries and builds user trust.
+
+### RAG in Practice
+
+Amazon uses RAG architecture to power internal developer tools that answer questions about the company's vast codebase and technical documentation. Instead of training a model on all of Amazon's internal code (a security and cost challenge), the system retrieves relevant code snippets and documentation at query time and generates contextual answers.
+
+Salesforce deployed a RAG-based system called Einstein Copilot that connects to each customer's CRM data in real time. When a sales representative asks "What's the status of the Acme Corp deal?", the system retrieves relevant CRM records, emails, and meeting notes before generating a comprehensive answer — without ever training on that customer's proprietary data.
+
+## Designing Your RAG Architecture
+
+A production RAG system has several components that require deliberate design:
+
+### The Knowledge Base
+
+Your knowledge base is the corpus of documents the system can search. This might include company policies, product documentation, customer support histories, research reports, or internal wikis. The quality of your RAG system is bounded by the quality and completeness of this knowledge base.
+
+**Chunking strategy** — Documents are split into smaller segments (chunks) for indexing. Chunk size matters: too large, and the model receives irrelevant context that dilutes the answer; too small, and important context is lost. Most production systems use chunks of 256-1024 tokens with overlap between adjacent chunks.
+
+### The Vector Database
+
+Chunks are converted into vector embeddings and stored in a vector database — a specialized database optimized for similarity search. Leading options include Pinecone, Weaviate, Chroma, and pgvector (a PostgreSQL extension). The choice depends on scale, latency requirements, and whether you prefer managed services or self-hosted infrastructure.
+
+### The Retrieval Pipeline
+
+The retrieval pipeline determines how many chunks to retrieve, how to rank them, and whether to apply filters (e.g., only retrieve documents from the current product version). Hybrid retrieval — combining vector similarity search with traditional keyword search — consistently outperforms either approach alone in production systems.
+
+### The Generation Layer
+
+The language model receives the retrieved chunks and the user's query, then generates a response. Prompt engineering at this layer is critical: the system prompt must instruct the model to base its response on the provided context, acknowledge when retrieved information is insufficient, and cite sources.
+
+## Common RAG Pitfalls
+
+**Garbage in, garbage out** — If your knowledge base contains outdated, contradictory, or poorly written documents, the AI will retrieve and amplify those problems. A RAG system is an argument for better documentation practices, not a substitute for them.
+
+**Retrieval failure** — Sometimes the right document exists but the retrieval system doesn't find it. This produces confidently wrong answers grounded in irrelevant context. Monitoring retrieval quality — measuring whether the correct documents appear in search results — is as important as monitoring generation quality.
+
+**Context window limits** — Language models have finite context windows. If retrieval returns too many chunks, you exceed the window and must truncate, potentially dropping the most relevant information. Ranking and filtering retrieved results is essential at scale.
+
+> **Key takeaway:** AI strategy begins with data readiness, not model selection. RAG architecture is the bridge between powerful language models and your organization's proprietary knowledge — but it requires deliberate design of the knowledge base, vector store, retrieval pipeline, and generation layer to deliver reliable results.
+
+## Sources
+
+- McKinsey & Company (2024). "The State of AI: Global Survey 2024." McKinsey Digital.
+- IBM (2023). "The Cost of Poor Data Quality." IBM Data and AI Research.
+- Lewis, P. et al. (2020). "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks." *Advances in Neural Information Processing Systems*, 33.
+- Stanford HAI (2024). "Grounding Language Models: RAG and Hallucination Reduction in Enterprise Applications." Stanford Human-Centered AI Institute.
+- Salesforce (2024). "Einstein Copilot: AI for CRM." Salesforce AI Research.
+- Amazon (2024). "Building Internal Developer Tools with RAG Architecture." Amazon Science Blog.

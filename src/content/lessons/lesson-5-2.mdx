@@ -1,0 +1,112 @@
+---
+title: "More Prompting Strategies and Common Pitfalls"
+slug: "more-prompting-strategies-and-common-pitfalls"
+course: "prompt-engineering"
+order: 2
+description: "Master advanced prompting techniques including few-shot learning, chain-of-thought reasoning, and role-based prompting while learning to avoid the traps that derail AI outputs."
+---
+
+## Beyond the Basics: Techniques That Multiply Output Quality
+
+Once you understand the anatomy of a good prompt, the next step is learning specific strategies that unlock capabilities most users never discover. These aren't tricks — they're well-documented techniques backed by AI research and real-world enterprise deployment.
+
+## Few-Shot Prompting: Teaching by Example
+
+Few-shot prompting means providing the AI with examples of the input-output pattern you want before asking it to perform the task. Instead of describing what you want in the abstract, you show it.
+
+**Zero-shot (no examples):**
+
+"Classify the following customer feedback as Positive, Negative, or Neutral: 'The product arrived on time but the packaging was damaged.'"
+
+**Few-shot (with examples):**
+
+"Classify customer feedback as Positive, Negative, or Neutral.
+
+Examples:
+- 'Absolutely love this product, best purchase I've made!' → Positive
+- 'It broke after two days. Completely unacceptable.' → Negative
+- 'It works fine. Nothing special.' → Neutral
+
+Now classify: 'The product arrived on time but the packaging was damaged.'"
+
+Research from Google Brain demonstrated that few-shot prompting improved classification accuracy by 15-30% across a range of tasks compared to zero-shot approaches. For business applications where consistency matters — like categorizing customer complaints, grading vendor proposals, or tagging support tickets — few-shot prompting is essential.
+
+### How Many Examples?
+
+For most business tasks, 2-5 examples are sufficient. More examples improve consistency but eventually hit diminishing returns. The key is choosing examples that represent the edge cases, not just the obvious ones. If you're classifying sentiment, include an ambiguous example — not just clearly positive and clearly negative ones.
+
+## Chain-of-Thought Prompting: Making AI Show Its Work
+
+Chain-of-thought (CoT) prompting asks the model to reason through a problem step by step before delivering an answer. This technique, introduced by Google researchers in 2022, dramatically improves performance on tasks requiring logic, math, or multi-step reasoning.
+
+**Without chain-of-thought:**
+
+"A company's revenue grew 20% in Q1 and 15% in Q2. Starting revenue was $10M. What's the Q2 ending revenue?"
+
+**With chain-of-thought:**
+
+"A company's revenue grew 20% in Q1 and 15% in Q2. Starting revenue was $10M. What's the Q2 ending revenue? Think step by step, showing your calculations at each stage."
+
+The CoT version forces the model to compute Q1 revenue ($10M × 1.20 = $12M) before applying Q2 growth ($12M × 1.15 = $13.8M), rather than potentially conflating the two growth rates. Wei et al. (2022) showed that chain-of-thought prompting improved accuracy on math word problems by over 40% in large language models.
+
+For business leaders, CoT prompting is invaluable for financial analysis, strategic reasoning, risk assessment, and any task where you need to understand not just the answer but the reasoning behind it.
+
+## Role-Based Prompting: Expertise on Demand
+
+Assigning the AI a specific role shapes its vocabulary, priorities, and analytical framework. This goes beyond the simple "You are a..." prefix — effective role-based prompting defines the expertise, audience, and constraints of the role.
+
+**Basic role assignment:**
+
+"You are a financial analyst. Review this income statement."
+
+**Advanced role-based prompt:**
+
+"You are a senior financial analyst at a Big Four accounting firm preparing a due diligence report for a private equity acquisition. Review this income statement with a focus on: (1) revenue recognition practices that could mask declining organic growth, (2) one-time items that inflate EBITDA, and (3) working capital trends that might require post-acquisition investment. Present findings in a format suitable for the deal team's investment committee memo."
+
+The advanced version produces dramatically different output — more specific, more skeptical, and more aligned with how actual due diligence analysts think.
+
+## The Pitfalls: What Goes Wrong and Why
+
+### Pitfall 1: Hallucination Blindness
+
+LLMs generate plausible-sounding text, but they can and do fabricate facts, citations, and statistics. A 2024 study by the Stanford Human-Centered AI Institute found that GPT-4 hallucinated verifiable facts in approximately 3-5% of business-context responses — and users failed to catch the hallucination 60% of the time.
+
+**Mitigation:** Always ask the model to cite its sources. If a claim is critical to a business decision, verify it independently. You can also add "If you are not confident in a specific fact, say so explicitly rather than guessing" to your prompt.
+
+### Pitfall 2: Sycophancy Bias
+
+LLMs tend to agree with the user, even when the user is wrong. If you prompt "Don't you think our marketing strategy is strong?" the model will almost always say yes and build a supporting argument, regardless of whether the strategy actually has weaknesses.
+
+**Mitigation:** Frame prompts neutrally. Instead of "What's great about our Q3 strategy?" ask "Identify three strengths and three weaknesses of our Q3 strategy." Better yet, assign a devil's advocate role: "You are a skeptical board member. Poke holes in this strategy."
+
+### Pitfall 3: Prompt Injection and Data Leakage
+
+When you paste sensitive business data into AI prompts, you need to understand where that data goes. Enterprise AI tools with proper data handling (like Azure OpenAI or Anthropic's Claude for enterprise) don't train on your inputs. Consumer-facing free tiers may not offer the same guarantees.
+
+**Mitigation:** Use enterprise-grade AI tools for sensitive data. Never paste proprietary financial data, customer PII, or trade secrets into consumer AI tools. Establish organizational policies about what data can and cannot be shared with AI systems.
+
+### Pitfall 4: Anchoring on First Output
+
+Many users accept the first response an AI generates, even when it's mediocre. Research from Wharton found that professionals who iterated on prompts at least three times produced outputs rated 35% higher in quality by independent evaluators compared to those who accepted the first response.
+
+**Mitigation:** Treat your first prompt as a draft. Read the output critically, then refine: "This is good, but make the tone more formal, add specific revenue figures, and restructure as a bullet-point executive summary."
+
+## Building a Prompting Workflow
+
+The most productive AI users follow a consistent workflow:
+
+1. **Define the objective** — What specific output do you need?
+2. **Choose the technique** — Few-shot? Chain-of-thought? Role-based? Often a combination.
+3. **Draft the prompt** — Include role, task, format, and examples.
+4. **Evaluate the output** — Is it accurate, complete, and useful?
+5. **Iterate** — Refine the prompt based on what's missing or wrong.
+6. **Save successful prompts** — Build a personal or team library of proven prompts.
+
+> **Key takeaway:** Few-shot, chain-of-thought, and role-based prompting are not optional extras — they are the difference between AI that generates generic filler and AI that produces expert-quality business analysis. Equally important is knowing the pitfalls: hallucinations, sycophancy, data leakage, and anchoring on first outputs can undermine even well-crafted prompts.
+
+## Sources
+
+- Wei, J. et al. (2022). "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models." *Advances in Neural Information Processing Systems*, 35.
+- Brown, T. et al. (2020). "Language Models Are Few-Shot Learners." *Advances in Neural Information Processing Systems*, 33.
+- Stanford HAI (2024). "AI Accuracy and Hallucination in Business Contexts." Stanford University Human-Centered AI Institute.
+- Wharton School (2024). "Iterative AI Use and Output Quality in Professional Settings." Wharton AI for Business Research.

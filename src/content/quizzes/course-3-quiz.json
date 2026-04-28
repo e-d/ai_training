@@ -1,0 +1,138 @@
+{
+  "title": "Course 3: AI and Augmented Productivity — NoMap Nomads",
+  "slug": "course-3-quiz",
+  "course": "ai-and-augmented-productivity",
+  "description": "Test your understanding of AI-augmented productivity, prompt engineering, and adoption strategies with 10 scenario-based questions.",
+  "questions": [
+    {
+      "id": 1,
+      "scenario": "Your company just purchased 500 enterprise AI licenses and the CTO wants to distribute them to all knowledge workers by next Monday. The plan is to send a company-wide email with login credentials and a link to the vendor's getting-started guide. No training, no workflow analysis, and no pilot have been planned.",
+      "question": "What is the most critical risk with this approach?",
+      "choices": [
+        "The vendor's getting-started guide may be outdated and confuse employees",
+        "Without workflow analysis, training, or piloting, employees won't know how AI applies to their specific roles — leading to low adoption and no measurable productivity gains",
+        "500 licenses is too many — the company should start with 50 licenses for the IT department only",
+        "Enterprise AI licenses are overpriced compared to free consumer AI tools"
+      ],
+      "correctIndex": 1,
+      "explanation": "This is the classic 'deploy and pray' failure. Distributing AI tools without workflow analysis, role-specific training, or piloting produces activity metrics (logins) but not productivity gains. Employees need to understand how AI applies to their specific tasks, and the organization needs to redesign workflows around human-AI collaboration. Tool distribution without these elements is the primary reason most AI productivity initiatives fail to deliver measurable results."
+    },
+    {
+      "id": 2,
+      "scenario": "You're coaching a marketing manager who complains that AI 'doesn't work' for writing blog posts. When you review her prompts, you find she's been typing things like 'Write a blog post about our product' and then spending 45 minutes rewriting the output from scratch.",
+      "question": "What is the most effective way to improve her results?",
+      "choices": [
+        "Switch to a more powerful AI model that produces better writing",
+        "Teach her to write specific prompts that include audience, tone, length, key messages, structure, and examples of the company's voice — then iterate on the output rather than rewriting from scratch",
+        "Assign the blog writing task to someone with more AI experience",
+        "Recommend she stop using AI for writing since it clearly doesn't match her workflow"
+      ],
+      "correctIndex": 1,
+      "explanation": "The problem isn't the AI model — it's the prompt. Vague prompts like 'write a blog post about our product' force the AI to guess at every parameter: audience, tone, length, structure, and messaging. A well-crafted prompt that specifies these elements produces a first draft that requires refinement rather than full rewriting. Research shows that structured prompts improve output quality by up to 40% compared to naive prompts — often a larger improvement than upgrading to a more expensive model."
+    },
+    {
+      "id": 3,
+      "scenario": "A consulting firm's senior partners discover that AI-generated market analyses contain occasional factual errors. Some partners want to ban AI use for client deliverables entirely. Others argue the time savings are too valuable to give up.",
+      "question": "What is the most balanced and effective response?",
+      "choices": [
+        "Ban AI from all client-facing work until the technology improves enough to eliminate errors",
+        "Continue using AI without changes since the time savings outweigh occasional errors",
+        "Implement a structured review process where AI generates first drafts and human experts verify facts, add nuance, and apply professional judgment before delivery",
+        "Allow AI use only for internal documents and ban it for anything client-facing"
+      ],
+      "correctIndex": 2,
+      "explanation": "Neither banning AI nor ignoring errors is the right response. The augmented employee model positions AI as a draft generator and humans as quality controllers. A structured review process captures the time savings of AI-generated first drafts while ensuring the accuracy and professional judgment that clients expect. Abandoning AI entirely because of correctable errors means losing significant productivity gains. The fix is process design, not technology avoidance."
+    },
+    {
+      "id": 4,
+      "scenario": "Your sales team uses AI to research prospects and draft personalized outreach emails. Individual reps report saving 2 hours per day. But your VP of Sales notices that total pipeline generation hasn't increased — reps are just leaving work earlier.",
+      "question": "What does this situation reveal about the AI deployment?",
+      "choices": [
+        "The AI tools aren't actually saving time — the reps are exaggerating their productivity gains",
+        "Individual time savings were achieved, but the organization failed to redesign workflows and expectations to channel recovered time into higher-value activities like more prospect meetings or deeper account research",
+        "Sales reps can't be trusted with AI tools and need more supervision",
+        "The company should reduce headcount since the same output is being achieved with less effort"
+      ],
+      "correctIndex": 1,
+      "explanation": "This is the 'individual optimization without system design' problem. AI saved time at the individual task level, but the organization didn't redesign workflows to capture that time for higher-value work. When productivity tools save time without clear expectations for how the saved time should be reinvested, the gains dissipate. The fix is workflow redesign: if reps save 2 hours per day, those hours should be explicitly redirected to activities like additional prospect meetings, deeper account research, or pipeline development."
+    },
+    {
+      "id": 5,
+      "scenario": "You're building the business case for an AI productivity initiative. Your CFO wants to see hard ROI numbers before approving budget. You have pilot data showing that a 15-person marketing team reduced content drafting time by 35% using AI tools over a 30-day pilot.",
+      "question": "How should you translate the pilot results into a compelling business case for the CFO?",
+      "choices": [
+        "Present the 35% time savings as the headline metric and request budget for company-wide deployment",
+        "Calculate the fully loaded cost of the saved hours (time savings x headcount x hourly cost), project the savings across all eligible teams, compare to the total cost of AI tools plus training, and define the business outcomes the recovered time will fund — such as increased content output or faster campaign cycles",
+        "Wait for a longer pilot period of at least six months before presenting any data to the CFO",
+        "Focus the business case on competitor adoption — argue that the company needs AI to keep up with industry peers"
+      ],
+      "correctIndex": 1,
+      "explanation": "CFOs respond to financial analysis, not time savings percentages. Translating pilot results into a business case requires converting time savings to cost equivalents, projecting across the eligible employee base, accounting for total cost of ownership (licenses, training, management), and — critically — defining what the recovered time will be used for. A 35% reduction in drafting time is compelling only if the business case specifies the value of what employees will do with that time instead."
+    },
+    {
+      "id": 6,
+      "scenario": "Your company is evaluating three AI tools for customer service augmentation. Tool A is the most technically advanced but requires agents to switch between three screens. Tool B has fewer features but integrates directly into the existing helpdesk interface. Tool C is a premium platform that would require replacing the current helpdesk system entirely.",
+      "question": "Which factor should weigh most heavily in the selection decision?",
+      "choices": [
+        "Technical capability — choose Tool A because superior AI features will produce the best outcomes",
+        "User experience and workflow integration — choose Tool B because agents will actually use a tool that fits naturally into their existing workflow, and adoption drives results",
+        "Cost — choose whichever tool has the lowest total price",
+        "Vendor reputation — choose the tool from the most well-known AI company"
+      ],
+      "correctIndex": 1,
+      "explanation": "The most capable AI tool in the world produces zero value if employees don't use it. User experience and workflow integration are the strongest predictors of adoption, and adoption is the strongest predictor of productivity gains. A tool that requires switching between three screens adds friction that suppresses usage. A tool that integrates into the existing workflow becomes a natural part of the agent's process. Replacing the entire helpdesk system introduces massive change management risk. Capability matters, but only after adoption is assured."
+    },
+    {
+      "id": 7,
+      "scenario": "You need to use AI to analyze 50 pages of customer feedback survey responses and produce an actionable report for the leadership team. You open your AI tool and prepare to write a prompt.",
+      "question": "Which prompt is most likely to produce a useful, actionable output?",
+      "choices": [
+        "'Analyze this customer feedback and tell me what's important.'",
+        "'Summarize the feedback into positive and negative categories.'",
+        "'You are a senior customer experience analyst. Analyze the attached survey responses from our enterprise SaaS clients. Identify the top 5 recurring themes ranked by frequency, classify each as a product issue or a service issue, and recommend one specific action for each. Present the results as a table with columns for Theme, Category, Frequency, and Recommended Action. Our Q2 priority is reducing churn among accounts over $100K ARR.'",
+        "'Read all 50 pages and give me a detailed report covering every point raised by customers.'"
+      ],
+      "correctIndex": 2,
+      "explanation": "Effective prompts follow five principles: specificity (top 5 themes, ranked by frequency), context (enterprise SaaS clients, Q2 churn priority), role assignment (senior customer experience analyst), output format (table with defined columns), and constraints (classify as product or service issue). The first prompt is too vague. The second is too simplistic. The fourth will produce an overwhelming, unfocused document. The third prompt gives the AI everything it needs to produce a directly usable deliverable."
+    },
+    {
+      "id": 8,
+      "scenario": "Six months after deploying AI productivity tools across your organization, usage dashboards show that 80% of employees have logged in at least once. The CEO declares the AI initiative a success. But when you dig into the data, you find no measurable improvement in throughput, cycle times, or quality metrics for any department.",
+      "question": "What conclusion should you draw from this data?",
+      "choices": [
+        "The AI tools are defective and should be replaced with a competitor's product",
+        "AI productivity tools simply don't work for your industry",
+        "Login metrics measure adoption, not productivity. The organization needs to measure business outcomes — throughput, cycle time, quality, and revenue impact — and likely needs to invest in workflow redesign and deeper training to convert tool access into actual productivity gains",
+        "Give it more time — productivity gains from AI take at least two years to materialize"
+      ],
+      "correctIndex": 2,
+      "explanation": "This is the measurement gap problem. Login metrics tell you how many people accessed the tool, not whether the tool improved their work. Meaningful AI productivity measurement tracks business outcomes: throughput (output volume per employee), cycle time (time from task start to completion), quality (error rates, customer satisfaction), and financial impact (revenue per employee, cost per transaction). High logins with no outcome improvement typically indicate that employees tried the tool but didn't integrate it into their workflows — a training and workflow redesign problem, not a technology problem."
+    },
+    {
+      "id": 9,
+      "scenario": "Your company successfully piloted AI writing tools with the marketing team (10 people, 35% time savings). Now you want to scale to the entire 200-person customer operations department. The operations VP wants to launch company-wide next week. Your HR director warns that customer operations staff have been anxious about AI replacing their jobs ever since the marketing pilot was announced.",
+      "question": "How should you approach the scale-up given the workforce anxiety?",
+      "choices": [
+        "Delay the rollout indefinitely until employee anxiety subsides naturally",
+        "Proceed with the company-wide launch next week but include a reassuring paragraph in the announcement email",
+        "Scale incrementally — start with a volunteer group from operations, communicate transparently that AI is augmenting roles not eliminating them, invest visibly in training as a signal of commitment to employees, publicize early wins as empowerment stories, and involve frontline staff in workflow redesign",
+        "Avoid mentioning AI at all — rebrand the tools as 'productivity assistants' so employees don't associate them with job loss"
+      ],
+      "correctIndex": 2,
+      "explanation": "Employee resistance to AI is rational and must be addressed directly, not ignored or disguised. Effective change management for AI deployment combines transparent communication (augmentation, not replacement), visible investment in upskilling (signaling commitment to the workforce), incremental rollout (building confidence through demonstrated success), early wins framed as empowerment stories, and frontline involvement in workflow design. A reassuring email is insufficient. Indefinite delay sacrifices competitive advantage. Rebranding is dishonest and will backfire when employees discover the deception."
+    },
+    {
+      "id": 10,
+      "scenario": "Your organization has been using AI productivity tools for one year. First-year results were strong: 25% average time savings on targeted tasks. You're now planning the second year of the program. Some executives argue for maintaining the current toolset and usage patterns. Others push for expanding into new use cases and upgrading to newer AI models.",
+      "question": "What strategic approach will maximize long-term productivity gains?",
+      "choices": [
+        "Maintain the current tools and usage patterns — if it isn't broken, don't fix it",
+        "Replace all current tools with the newest AI models to stay on the cutting edge",
+        "Invest in compounding: update prompt templates based on a year of learning, identify new use cases surfaced by frontline employees, expand training to underserved teams, benchmark against industry peers, and evaluate newer tools only where they address specific capability gaps",
+        "Pause the AI program for a quarter to conduct a comprehensive audit before making any changes"
+      ],
+      "correctIndex": 2,
+      "explanation": "AI productivity gains compound over time — but only if the organization actively invests in improvement. Standing still means missing the compounding effect as employees discover new applications and refine their skills. Replacing everything chases novelty over proven value. Pausing sacrifices momentum. The optimal second-year strategy builds on first-year learning: update templates, expand to new use cases identified by experienced users, train teams that haven't yet been reached, and selectively adopt new tools where they address specific gaps — not because they're new."
+    }
+  ]
+}

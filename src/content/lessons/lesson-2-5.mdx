@@ -1,0 +1,103 @@
+---
+title: "AI Adoption in Practice"
+slug: "ai-adoption-in-practice"
+course: "ai-and-business-transformation"
+order: 5
+description: "Study real-world case studies of AI adoption — what worked, what failed, and the lessons business leaders can apply."
+---
+
+## Learning from Real Deployments
+
+Theory tells you what should work. Case studies show what actually does. This lesson examines how organizations across industries have adopted AI — including the failures, because the lessons from projects that went wrong are often more valuable than the success stories.
+
+## Success Story: Starbucks Deep Brew
+
+Starbucks didn't chase AI as a buzzword — they built it into the fabric of their operations. Deep Brew, their AI platform, powers three core capabilities:
+
+- **Personalized recommendations** across the mobile app, analyzing purchase history, time of day, weather, and local store inventory to suggest orders each customer is likely to want
+- **Labor scheduling** that forecasts store traffic and optimizes staffing levels, reducing both overstaffing costs and understaffing service gaps
+- **Inventory management** across 35,000+ locations, predicting demand for individual products at individual stores to minimize waste and stockouts
+
+The strategy worked because Starbucks followed a disciplined approach: they started with a focused pilot (mobile app recommendations), proved value, then expanded to adjacent use cases. Between 2021 and 2024, loyalty program membership grew 26% — driven in part by the personalization engine that makes the app genuinely useful rather than just transactional.
+
+**Key lesson:** Start narrow, prove value, then scale to adjacent problems. Don't try to "AI everything" at once.
+
+## Success Story: John Deere's Precision Agriculture
+
+John Deere invested over $1 billion in precision agriculture AI, including the 2021 acquisition of Bear Flag Robotics for autonomous tractor technology. Their flagship AI product, See & Spray, uses computer vision mounted on sprayers to distinguish crops from weeds in real time and apply herbicide only where needed.
+
+The results are striking: See & Spray reduces herbicide usage by up to 77%, cutting costs for farmers while reducing environmental impact. The system processes images at production speed, making decisions that would be impossible for a human operator scanning hundreds of acres.
+
+Deere succeeded because they matched AI investment to a specific, measurable customer problem — farmers spend too much on herbicide and want to reduce chemical usage. The AI wasn't a feature bolted onto existing equipment; it was the solution to a problem farmers had been articulating for years.
+
+**Key lesson:** The best AI use cases solve problems customers already have. Don't build AI capabilities and then search for problems they might address.
+
+## Success Story: Cleveland Clinic's Operational AI
+
+Cleveland Clinic partnered with Palantir to deploy AI across hospital operations — not for flashy diagnostic applications, but for the unglamorous work of running a complex healthcare system efficiently.
+
+Their AI systems predict patient no-shows, enabling proactive scheduling to fill gaps. They optimize operating room scheduling, reducing surgical cancellations by 17%. And they forecast supply needs across departments, preventing both shortages and waste.
+
+These operational improvements don't make headlines, but they compound: fewer cancellations mean more procedures performed, better scheduling means shorter patient wait times, and supply optimization reduces costs across the system.
+
+**Key lesson:** AI doesn't have to be revolutionary to be valuable. Some of the highest-ROI applications automate the operational work that nobody sees but everybody depends on.
+
+## Failure Case: Amazon's AI Recruiting Tool
+
+In 2014, Amazon built an AI system to review resumes and identify top candidates. The model was trained on the company's previous 10 years of hiring data — which reflected the tech industry's historical gender imbalance. The result: the system penalized resumes that contained words like "women's" (as in "women's chess club captain") and downgraded graduates of all-women's colleges.
+
+Amazon's engineering team tried to make the model gender-neutral, but the bias was woven into the training data at a fundamental level. The system learned that male-associated patterns correlated with hiring success — because male candidates had historically been hired more often. Amazon scrapped the project entirely in 2018.
+
+**Key lessons:**
+
+- **AI inherits the biases of its training data.** If your historical data reflects inequitable practices, the model will learn to replicate those inequities
+- **Bias auditing must happen before deployment, not after.** Testing the model's outputs across demographic groups would have surfaced the gender bias before it affected real candidates
+- **Some problems require more than algorithmic fixes.** When the training data itself embodies systemic bias, no amount of technical correction can reliably neutralize it — the organization needs to address the underlying data first
+
+## Failure Case: IBM Watson for Oncology
+
+IBM promoted Watson for Oncology as a breakthrough in AI-assisted cancer treatment — a system that would analyze patient records and medical literature to recommend treatment plans. The reality fell short.
+
+Investigations revealed that Watson's recommendations were based largely on the training data and preferences of a small number of oncologists at Memorial Sloan Kettering Cancer Center, rather than broad clinical evidence. In some cases, Watson recommended treatments that were unsafe or contradicted established medical guidelines. Stat News reported in 2018 that internal IBM documents acknowledged "multiple examples of unsafe and incorrect treatment recommendations."
+
+Several hospitals that deployed Watson for Oncology — including MD Anderson Cancer Center, which spent $62 million on the project — eventually discontinued it.
+
+**Key lessons:**
+
+- **Domain expertise matters more than computing power.** Watson's failure wasn't a technology problem — it was a data and validation problem. The training data was too narrow, and the output validation was insufficient
+- **Don't oversell AI capabilities.** IBM's marketing positioned Watson as capable of things the technology couldn't deliver, eroding trust with customers and the broader market
+- **AI in high-stakes domains requires extraordinary validation.** Medical, legal, and financial AI systems need validation standards that match the consequences of error
+
+## Failure Case: Zillow's iBuying Algorithm
+
+In 2021, Zillow shut down its AI-powered home-buying division, Zillow Offers, after the algorithm overpaid for approximately 27,000 homes. The company reported a $569 million write-down and laid off 25% of its workforce.
+
+Zillow's AI model was designed to predict home values and make instant purchase offers. But the model was trained on historical data that didn't account for the rapid, unprecedented price shifts during the COVID-era housing market. When the market turned, Zillow was sitting on thousands of homes purchased at inflated prices.
+
+**Key lessons:**
+
+- **Models trained on historical data struggle with unprecedented conditions.** If the future doesn't resemble the past — and in volatile markets it often doesn't — model predictions can be catastrophically wrong
+- **High-speed automated decision-making amplifies errors.** When the model made mistakes, the automation meant those mistakes were repeated at scale before humans intervened
+- **Human oversight is not optional for high-stakes financial decisions.** Removing human judgment from half-million-dollar purchase decisions was a structural flaw, not an efficiency gain
+
+## Patterns Across the Cases
+
+The successes and failures share common themes:
+
+| Pattern | Successes | Failures |
+|---|---|---|
+| **Problem clarity** | Solved specific, measurable problems | Pursued vague or overly ambitious goals |
+| **Data quality** | Invested in data preparation and validation | Assumed existing data was sufficient |
+| **Scaling approach** | Started with focused pilots, expanded incrementally | Scaled before validating the approach |
+| **Human oversight** | Maintained human review at critical decision points | Over-automated high-stakes decisions |
+| **Expectations** | Set realistic goals tied to business metrics | Over-promised transformative capabilities |
+
+> **Key takeaway:** AI adoption succeeds when it's treated as a disciplined business initiative — with clear objectives, quality data, incremental scaling, and human oversight at decision points. It fails when organizations treat it as magic: deploy the algorithm, and transformation follows. The technology works. The question is whether the organization around it is ready.
+
+## Sources
+
+- Starbucks Corporation (2024). "Deep Brew: Powering Personalization and Efficiency." Starbucks Stories.
+- Deere & Company (2023). "See & Spray Technology: Precision Agriculture." John Deere Technology.
+- Dastin, J. (2018). "Amazon scraps secret AI recruiting tool that showed bias against women." Reuters.
+- Ross, C. & Swetlitz, I. (2018). "IBM's Watson supercomputer recommended 'unsafe and incorrect' cancer treatments." Stat News.
+- Parker, W. (2021). "Zillow Quits Home-Flipping Business, Cites Inability to Accurately Forecast Prices." Wall Street Journal.

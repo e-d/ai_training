@@ -1,0 +1,107 @@
+---
+title: "Cumulative Prompting"
+slug: "cumulative-prompting"
+course: "prompt-engineering"
+order: 3
+description: "Learn how to break complex business tasks into sequential prompt chains that build on each other, producing outputs no single prompt could achieve."
+---
+
+## Why One Prompt Is Rarely Enough
+
+The most common mistake business users make with AI is trying to accomplish everything in a single prompt. They paste in a 50-page document and ask: "Analyze this and give me a strategy." The result is predictably shallow — a generic overview that touches everything and illuminates nothing.
+
+Cumulative prompting solves this by breaking complex work into a sequence of interconnected prompts where each output feeds into the next. It mirrors how experienced analysts actually work: gather information, organize it, identify patterns, develop hypotheses, stress-test them, and then synthesize conclusions.
+
+## The Architecture of a Prompt Chain
+
+A prompt chain has three types of components:
+
+### Foundation Prompts
+
+These extract or organize the raw material. They don't ask for analysis — they ask the AI to understand, structure, and summarize the inputs.
+
+**Example — Competitive Analysis Chain, Step 1:**
+
+"I'm going to share our company's Q3 earnings report and three competitor earnings reports. For each company, extract and organize the following into a table: (1) Total revenue, (2) Revenue growth rate YoY, (3) Gross margin, (4) R&D spend as % of revenue, (5) Forward guidance language (quote the exact words used). Do not analyze or interpret — just extract and organize."
+
+### Analysis Prompts
+
+These build on the structured foundation to identify patterns, anomalies, and insights.
+
+**Step 2:**
+
+"Using the comparison table you just created, identify: (1) Which company is growing fastest and what's driving it? (2) Which company's margins are under the most pressure and why? (3) Where is our company's positioning strongest relative to competitors? (4) Where are we most vulnerable? Think step by step through each comparison."
+
+### Synthesis Prompts
+
+These combine the analysis into actionable outputs tailored to a specific audience or decision.
+
+**Step 3:**
+
+"Based on your competitive analysis, draft a one-page strategic briefing for our CEO. Structure it as: (1) Key Competitive Position (2 sentences), (2) Three Strategic Opportunities we should pursue in the next 12 months, (3) Two Competitive Threats that require immediate attention, (4) Recommended Next Steps with specific actions and timelines. Use a confident, direct tone appropriate for a C-suite audience."
+
+## Real-World Prompt Chain: Due Diligence Review
+
+Consider how a private equity firm might use cumulative prompting to review an acquisition target. A single prompt asking "Should we acquire this company?" would produce something superficial. A prompt chain transforms the workflow:
+
+**Prompt 1 — Document Intake:** "I'll share the target company's last three years of financial statements. Create a structured summary of revenue trends, margin trends, customer concentration, and capital expenditure patterns. Flag any unusual items."
+
+**Prompt 2 — Risk Identification:** "Based on the financial summary, identify the five highest-risk items for a potential acquirer. For each risk, explain: (a) what the data shows, (b) why it matters for valuation, and (c) what additional diligence questions it raises."
+
+**Prompt 3 — Market Context:** "Here is an industry report for the target's sector. How do the target's financial trends compare to industry benchmarks? Where is the company outperforming and underperforming its peers?"
+
+**Prompt 4 — Synthesis:** "You are a principal at a private equity firm presenting to the investment committee. Using the financial analysis, risk assessment, and market comparison from our previous discussion, draft a 2-page investment memo with a clear recommendation: proceed to final diligence, proceed with reservations (list them), or pass. Include key assumptions and conditions."
+
+Each prompt produces output that would be impossible without the preceding steps. The final memo is grounded in structured data, systematic risk analysis, and market context — not a single-shot guess.
+
+## Managing Context Through Long Chains
+
+As prompt chains grow longer, context management becomes critical. LLMs have finite context windows, and earlier details can lose influence as new information accumulates.
+
+### Technique 1: Explicit Summaries Between Steps
+
+After every 3-4 prompts in a chain, ask the AI to summarize the key findings so far. This "memory refresh" ensures critical details don't fade.
+
+"Before we continue, summarize the three most important findings from our analysis so far in bullet-point form."
+
+### Technique 2: Reference Anchors
+
+When a later prompt depends on a specific earlier finding, reference it explicitly rather than assuming the model remembers.
+
+**Weak:** "Given what we discussed, what should we do about pricing?"
+
+**Strong:** "In our margin analysis, you identified that our gross margin dropped from 42% to 37% over two quarters, driven primarily by raw material cost increases. Given this specific trend, evaluate three pricing strategy options..."
+
+### Technique 3: Progressive Refinement
+
+Use each step to narrow focus rather than expand it. Start broad, then progressively zoom in on the highest-value areas.
+
+Accenture reported in 2024 that consulting teams using structured prompt chains completed client deliverables 40% faster than teams using ad-hoc prompting — not because the AI was faster, but because the chain imposed analytical discipline that prevented the meandering, unfocused outputs that single prompts often produce.
+
+## When to Chain vs. When to Single-Prompt
+
+Not every task requires a chain. Use cumulative prompting when:
+
+- The task requires multiple types of analysis (financial + market + operational)
+- The output needs to synthesize information from multiple documents
+- The final deliverable needs to be grounded in evidence, not just opinion
+- You need to audit the AI's reasoning at each stage
+
+Use a single prompt when:
+
+- The task is straightforward (draft an email, summarize a one-page memo)
+- You have a well-tested prompt template that reliably produces the output you need
+- Speed matters more than depth
+
+## Building Organizational Prompt Libraries
+
+The most sophisticated AI-using organizations don't just train individuals — they build shared libraries of tested prompt chains for common workflows. Bain & Company developed internal "prompt playbooks" for due diligence, market sizing, and organizational assessment. McKinsey's internal AI tools include pre-built prompt sequences for common analytical frameworks. These aren't proprietary AI models — they're structured prompting workflows that any team member can execute consistently.
+
+> **Key takeaway:** Complex business analysis requires complex prompting — but "complex" doesn't mean "long and convoluted." It means breaking work into a deliberate sequence of prompts where each step builds on the last. The best prompt engineers think in chains, not in single shots.
+
+## Sources
+
+- Accenture (2024). "Generative AI Productivity in Professional Services." Accenture Research.
+- Wu, T. et al. (2022). "AI Chains: Transparent and Controllable Human-AI Interaction by Chaining Large Language Model Prompts." *ACM CHI Conference on Human Factors in Computing Systems*.
+- Bain & Company (2024). "Scaling AI in Management Consulting." Bain Technology Report.
+- McKinsey & Company (2024). "Lilli: McKinsey's Internal AI Platform." McKinsey Digital Blog.

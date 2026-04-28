@@ -1,0 +1,92 @@
+---
+title: "Technology Considerations for Adopting AI, Part 2"
+slug: "technology-considerations-for-adopting-ai-part-2"
+course: "adopting-ai-in-your-organization"
+order: 2
+description: "Explore model selection, vendor evaluation, security requirements, and the technical due diligence that separates successful AI deployments from costly experiments."
+---
+
+## Choosing the Right Model for the Job
+
+Not every AI problem requires the most powerful model available. In fact, deploying an oversized model is one of the most common and expensive mistakes organizations make. The model selection decision requires matching your use case's complexity to the right tier of AI capability — and understanding the tradeoffs between performance, cost, latency, and control.
+
+### The Model Spectrum
+
+AI models range from compact, task-specific systems to massive general-purpose foundation models, with meaningful options at every point in between:
+
+- **Small language models (SLMs)** — Models like Microsoft's Phi-3 or Google's Gemma with 2-7 billion parameters. These run on modest hardware, respond in milliseconds, and handle focused tasks like classification, extraction, and short-form generation well. They cost a fraction of large models to operate.
+
+- **Mid-range models** — Models like Claude Haiku, GPT-4o mini, or Mistral 7B that balance capability with efficiency. These handle most business applications — document summarization, customer inquiry routing, content drafting — at 10-20x lower cost than frontier models.
+
+- **Frontier models** — Models like Claude Opus, GPT-4, and Gemini Ultra that offer the highest reasoning capability. These are appropriate for complex analysis, multi-step planning, and tasks requiring nuanced judgment — but cost significantly more per query and respond more slowly.
+
+Stripe's fraud detection team illustrates thoughtful model selection. They use small, fast models for initial transaction scoring (sub-10ms latency required), mid-range models for suspicious transaction review, and frontier models only for complex dispute resolution cases requiring multi-document reasoning. This tiered approach processes over 1 billion API requests daily while keeping inference costs manageable.
+
+## Vendor Evaluation: Beyond the Demo
+
+Every AI vendor's demo is impressive. The question is whether the product performs in your environment, with your data, at your scale. Rigorous vendor evaluation follows a structured process:
+
+### Technical Due Diligence Checklist
+
+**Model performance on your data** — Request a proof-of-concept using your actual data, not the vendor's curated demo dataset. A model that scores 95% accuracy on the vendor's benchmark may score 72% on your messy, domain-specific data.
+
+**Latency under load** — Test at your expected peak traffic, not the vendor's quoted performance under ideal conditions. Anthropic, OpenAI, and Google all publish latency benchmarks, but real-world performance varies by prompt length, concurrency, and region.
+
+**Data handling and privacy** — Where does your data go? Is it used for model training? Does the vendor offer data processing agreements (DPAs) that meet your compliance requirements? In 2024, Samsung banned employee use of ChatGPT after engineers accidentally uploaded proprietary semiconductor code. Your vendor agreement must address data sovereignty before deployment.
+
+**Uptime and reliability** — AI API outages directly impact your operations. Review the vendor's historical uptime (status pages are public for major providers), SLA terms, and what happens to your application when the API is unavailable. Fallback strategies — local model backup, graceful degradation, queue-and-retry — should be designed before production deployment.
+
+**Vendor lock-in risk** — How portable is your implementation? If you build on a proprietary API and the vendor raises prices 300% (as has happened), can you switch? Abstracting your AI calls behind an internal interface layer reduces switching costs and preserves flexibility.
+
+### The Total Cost of Ownership Trap
+
+Vendor pricing looks simple — per-token, per-API-call, per-seat. But total cost of ownership includes integration development, prompt engineering, monitoring, and the ongoing cost of managing edge cases the model handles poorly. Accenture's 2024 Technology Vision report found that enterprises typically underestimate AI operating costs by 40-60% when evaluating vendors based on list pricing alone.
+
+## Security Architecture for AI Systems
+
+AI introduces security concerns that traditional application security frameworks don't fully address. Your security team needs to evaluate threats specific to AI systems:
+
+### Prompt Injection
+
+Malicious users craft inputs that manipulate the AI model into ignoring its instructions and performing unauthorized actions. A customer support chatbot, for example, could be tricked into revealing internal pricing data or system prompts. Mitigation requires input validation, output filtering, and architectural separation between the model and sensitive systems.
+
+### Data Poisoning
+
+If your model learns from user interactions or feedback, an adversary could deliberately introduce corrupted data to degrade model performance. This is particularly relevant for recommendation systems and any model with an online learning component. Defense requires data validation pipelines and anomaly detection on training inputs.
+
+### Model Exfiltration
+
+Competitors or adversaries may attempt to reverse-engineer your custom model by systematically querying it and analyzing responses. This is a real concern for organizations whose AI models represent significant intellectual property. Rate limiting, query pattern monitoring, and watermarking model outputs are standard countermeasures.
+
+### Access Control
+
+AI systems often need broad data access to function — a customer service AI may need to read account information, order history, and support tickets. Implementing least-privilege access, where the AI can only access data relevant to the current task, prevents a compromised model from becoming a gateway to your entire data estate.
+
+The OWASP Top 10 for LLM Applications, published in 2023 and updated in 2024, provides a comprehensive framework for AI-specific security threats. It should be required reading for any security team evaluating AI deployments.
+
+## Open Source vs. Proprietary Models
+
+The open-source AI ecosystem has matured rapidly. Meta's Llama 3.1, Mistral's models, and Stability AI's image generation models offer near-frontier performance with the advantage of full control over deployment, data handling, and customization.
+
+**Choose open source** when you need to run models on your own infrastructure for data privacy, when you require deep customization through fine-tuning, or when vendor dependency is unacceptable for your use case. The tradeoff is that you own the operational burden — hosting, scaling, monitoring, and security are your responsibility.
+
+**Choose proprietary APIs** when speed to deployment matters more than customization, when you lack the infrastructure team to host models, or when the vendor's safety and moderation layers are valuable for your use case. The tradeoff is dependency on the vendor's pricing, availability, and product decisions.
+
+Increasingly, organizations use both. Airbnb uses proprietary APIs for customer-facing features where reliability and safety are paramount, while running open-source models internally for data analysis, search relevance tuning, and developer productivity tools where full data control is required.
+
+## Proof of Concept Before Commitment
+
+No amount of vendor evaluation replaces a real proof of concept (PoC). A well-structured PoC takes 4-8 weeks, uses real data, tests against specific success criteria, and involves the business stakeholders who will ultimately use the system — not just the technology team.
+
+Define success criteria before the PoC begins: What accuracy threshold matters? What latency is acceptable? What edge cases must be handled correctly? Without predefined criteria, every PoC "succeeds" in the demo and fails in production.
+
+> **Key takeaway:** Model selection, vendor evaluation, and security architecture are technical decisions with strategic consequences. Right-sizing your model saves money without sacrificing performance. Rigorous vendor evaluation prevents costly lock-in. And AI-specific security threats require defenses your existing security framework may not cover.
+
+## Sources
+
+- Stripe (2024). "Machine Learning at Stripe: Fraud Detection at Scale." Stripe Engineering Blog.
+- Samsung (2023). "Samsung Bans ChatGPT Use After Data Leak Incidents." Bloomberg Technology.
+- Accenture (2024). "Technology Vision 2024: Human by Design." Accenture Research.
+- OWASP (2024). "OWASP Top 10 for Large Language Model Applications v1.1." OWASP Foundation.
+- Meta AI (2024). "Llama 3.1: Open Foundation and Fine-Tuned Models." Meta AI Research.
+- Airbnb (2024). "How Airbnb Uses AI: A Hybrid Approach." Airbnb Tech Blog.
