@@ -6,4 +6,53 @@ order: 6
 description: "Navigate the ethical challenges of AI adoption, from bias and fairness to privacy and accountability."
 ---
 
-Content for this lesson is coming soon. Check back for guidance on building AI systems that are fair, transparent, and trustworthy.
+## Why Ethics Matter for AI Adoption
+
+AI systems make consequential decisions — who gets a loan, who gets hired, how long someone spends in jail. When those systems are biased, opaque, or unaccountable, the damage is real and measurable. For business leaders, ethical AI isn't just a moral obligation — it's a risk management imperative. Companies that deploy AI irresponsibly face regulatory penalties, reputational harm, and eroding customer trust.
+
+## Bias and Fairness
+
+AI models learn from historical data, and historical data reflects historical inequities. When Amazon built an AI recruiting tool trained on a decade of hiring data, the system penalized résumés that included the word "women's" — as in "women's chess club captain" — because the training data reflected a male-dominated hiring history. Amazon scrapped the tool in 2018 after determining the bias couldn't be reliably corrected.
+
+The COMPAS recidivism algorithm, used by U.S. courts to predict whether defendants would reoffend, demonstrated a different failure. A 2016 ProPublica investigation found that the system falsely flagged Black defendants as high-risk at nearly twice the rate of white defendants, while simultaneously under-predicting recidivism for white defendants. The case became a landmark example of how algorithmic bias can compound systemic inequality.
+
+> **Key takeaway:** Bias isn't a bug that appears randomly — it's a direct reflection of the data and design choices behind the model. Mitigating it requires diverse training data, bias audits at every stage, and ongoing monitoring after deployment.
+
+## Transparency and Explainability
+
+Many powerful AI models — particularly deep learning systems — operate as "black boxes" where even their creators cannot fully explain how a specific decision was reached. This creates a problem when patients want to understand why an AI flagged their scan, when loan applicants need to know why they were denied, or when regulators demand accountability.
+
+Explainable AI (XAI) is a growing field focused on making model decisions interpretable. Techniques like SHAP (SHapley Additive exPlanations) and LIME (Local Interpretable Model-agnostic Explanations) provide feature-level attribution — showing which inputs most influenced a given prediction. The European Union's AI Act, which took effect in August 2024, mandates transparency requirements for high-risk AI systems, including explanations that affected individuals can understand.
+
+## Privacy Concerns
+
+AI systems require vast amounts of personal data, creating tension between model performance and individual privacy. The EU's GDPR established the "right to explanation" for automated decisions and the right to opt out of purely algorithmic decision-making. California's CCPA and similar U.S. state regulations have followed with their own frameworks.
+
+Clearview AI illustrates the stakes: the company scraped billions of photos from social media to build a facial recognition database for law enforcement — without consent. The practice triggered lawsuits, bans in several U.S. cities and the EU, and a $20 million fine from the UK's Information Commissioner's Office in 2022.
+
+## Accountability: Who Is Responsible When AI Fails?
+
+When a self-driving car causes an accident or an AI system misdiagnoses a patient, the question of liability remains largely unresolved. Is it the developer, the deploying company, or the operator who relied on the recommendation?
+
+The EU AI Act, effective August 2024, addresses this with a risk-based classification system: high-risk AI in healthcare, law enforcement, and employment must meet strict requirements for testing, documentation, and human oversight. Violations carry fines up to 35 million euros or 7% of global annual revenue.
+
+## Frameworks for Responsible AI
+
+Several frameworks guide organizations toward ethical AI deployment:
+
+- **EU AI Act** — The world's most comprehensive AI regulation, classifying systems by risk level and mandating transparency, human oversight, and bias testing for high-risk applications
+- **NIST AI Risk Management Framework** — A voluntary U.S. framework providing structured guidance for identifying, assessing, and mitigating AI risks across an organization's lifecycle
+- **Corporate AI Ethics Boards** — Companies including Microsoft, Google, and Salesforce have established internal review boards that evaluate AI projects against ethical principles before deployment
+
+## Building an Ethical AI Practice
+
+Responsible AI is an ongoing discipline, not a one-time audit. Business leaders should conduct bias audits before and after deployment, document model decisions with explainability tools, establish clear governance for who approves and can halt AI systems, and monitor continuously — model behavior drifts as input data changes over time.
+
+> **Key takeaway:** The organizations that thrive with AI will be those that treat ethics as a core engineering requirement — not an afterthought. Building trust with customers, regulators, and employees is the foundation for sustainable AI adoption.
+
+## Sources
+
+- Dastin, J. (2018). "Amazon scraps secret AI recruiting tool that showed bias against women." Reuters.
+- Angwin, J. et al. (2016). "Machine Bias." ProPublica.
+- European Parliament (2024). "Regulation (EU) 2024/1689 — The Artificial Intelligence Act." Official Journal of the European Union.
+- National Institute of Standards and Technology (2023). "AI Risk Management Framework (AI RMF 1.0)." NIST AI 100-1.
