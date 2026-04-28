@@ -21,41 +21,12 @@ interface AnswerRecord {
 }
 
 const quizResetStyle = `
-  .quiz-choice:focus,
-  .quiz-choice:focus-visible,
-  .quiz-choice:focus-within,
-  .quiz-choice:active,
-  .quiz-choice:hover {
-    outline: none !important;
-    border-color: #e2e8f0 !important;
-    box-shadow: none !important;
-    -webkit-appearance: none;
+  .quiz-choice {
+    outline: none;
   }
   .quiz-choice:hover:not(:disabled) {
     border-color: #94a3b8 !important;
     background: #f8fafc;
-  }
-  .quiz-choice.quiz-correct,
-  .quiz-choice.quiz-correct:hover {
-    background: #f0fdf4 !important;
-    border-color: #16a34a !important;
-  }
-  .quiz-choice.quiz-wrong,
-  .quiz-choice.quiz-wrong:hover {
-    background: #fef2f2 !important;
-    border-color: #dc2626 !important;
-  }
-  .quiz-choice:disabled:hover {
-    border-color: #e2e8f0 !important;
-    background: #ffffff !important;
-  }
-  .quiz-choice.quiz-correct:disabled:hover {
-    background: #f0fdf4 !important;
-    border-color: #16a34a !important;
-  }
-  .quiz-choice.quiz-wrong:disabled:hover {
-    background: #fef2f2 !important;
-    border-color: #dc2626 !important;
   }
 `;
 
@@ -75,21 +46,12 @@ export default function Quiz({ title, questions }: QuizProps) {
     }
   }, [isAnswered]);
 
-  useEffect(() => {
-    document.querySelectorAll('.quiz-choice').forEach((el) => {
-      (el as HTMLElement).blur();
-    });
-  }, [currentQuestion]);
-
   const q = questions[currentQuestion];
   const total = questions.length;
   const isCorrect = selectedAnswer === q?.correctIndex;
 
   function handleAnswer(index: number) {
     if (isAnswered) return;
-    if (document.activeElement instanceof HTMLElement) {
-      document.activeElement.blur();
-    }
     setSelectedAnswer(index);
     setIsAnswered(true);
     const correct = index === q.correctIndex;
@@ -98,9 +60,6 @@ export default function Quiz({ title, questions }: QuizProps) {
   }
 
   function handleNext() {
-    if (document.activeElement instanceof HTMLElement) {
-      document.activeElement.blur();
-    }
     if (currentQuestion + 1 >= total) {
       setIsComplete(true);
     } else {
@@ -201,22 +160,19 @@ export default function Quiz({ title, questions }: QuizProps) {
       <div style={styles.choicesList}>
         {q.choices.map((choice, i) => {
           let choiceStyle = { ...styles.choiceBtn };
-          let className = 'quiz-choice';
           if (isAnswered) {
             if (i === q.correctIndex) {
               choiceStyle = { ...choiceStyle, ...styles.choiceCorrect };
-              className += ' quiz-correct';
             } else if (i === selectedAnswer) {
               choiceStyle = { ...choiceStyle, ...styles.choiceWrong };
-              className += ' quiz-wrong';
             } else {
               choiceStyle = { ...choiceStyle, ...styles.choiceDisabled };
             }
           }
           return (
             <button
-              key={i}
-              class={className}
+              key={`${currentQuestion}-${i}`}
+              class="quiz-choice"
               style={choiceStyle}
               onClick={() => handleAnswer(i)}
               disabled={isAnswered}
