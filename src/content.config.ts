@@ -25,4 +25,24 @@ const lessons = defineCollection({
   }),
 });
 
-export const collections = { courses, lessons };
+const quizzes = defineCollection({
+  loader: glob({ pattern: '**/*.json', base: './src/content/quizzes' }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string(),
+    course: z.string(),
+    description: z.string(),
+    questions: z.array(
+      z.object({
+        id: z.number(),
+        scenario: z.string(),
+        question: z.string(),
+        choices: z.array(z.string()).length(4),
+        correctIndex: z.number().min(0).max(3),
+        explanation: z.string(),
+      })
+    ),
+  }),
+});
+
+export const collections = { courses, lessons, quizzes };

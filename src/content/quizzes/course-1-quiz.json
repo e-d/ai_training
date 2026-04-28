@@ -1,0 +1,138 @@
+{
+  "title": "Course 1: Introduction to AI — Smartcase Quiz",
+  "slug": "course-1-quiz",
+  "course": "introduction-to-artificial-intelligence",
+  "description": "Test your understanding of AI fundamentals with 10 scenario-based questions drawn from real business situations.",
+  "questions": [
+    {
+      "id": 1,
+      "scenario": "Your company has been using a rule-based system to route customer support tickets. A vendor pitches an AI solution that 'learns from past tickets to improve routing over time.' Your CFO asks you to explain what makes this different from the current system.",
+      "question": "What is the fundamental difference between the proposed AI system and a traditional rule-based system?",
+      "choices": [
+        "The AI system improves its performance by learning from data rather than following only hard-coded rules",
+        "The AI system runs faster because it uses more computing power",
+        "The AI system replaces all human support agents entirely",
+        "The AI system follows more complex rules written by advanced programmers"
+      ],
+      "correctIndex": 0,
+      "explanation": "The core distinction of AI is that it learns from data and adapts, rather than only executing pre-programmed rules. Traditional software does exactly what a programmer tells it; AI systems improve as they process more data, handling ambiguity and new patterns that rule-based systems cannot."
+    },
+    {
+      "id": 2,
+      "scenario": "A startup pitches your executive team on a 'deep learning' solution for analyzing customer call recordings. A board member asks whether you really need deep learning or if simpler machine learning would work. The vendor claims deep learning is always superior.",
+      "question": "When is deep learning the right choice over simpler machine learning approaches?",
+      "choices": [
+        "Deep learning is always better than machine learning regardless of the problem",
+        "Deep learning excels when you have large amounts of unstructured data like audio, images, or text",
+        "Deep learning should only be used when the budget exceeds $1 million",
+        "Deep learning is just a marketing term for the same technology as machine learning"
+      ],
+      "correctIndex": 1,
+      "explanation": "Deep learning is a subset of machine learning that uses layered neural networks to learn from large amounts of unstructured data. It excels with audio, images, and text — exactly the kind of data in call recordings. However, simpler ML approaches can be more efficient when data is structured or limited. The choice depends on data type and volume, not budget or blanket superiority."
+    },
+    {
+      "id": 3,
+      "scenario": "You lead operations at a mid-size retailer. Your team is overwhelmed processing customer inquiries across email, chat, and social media. You're evaluating AI solutions and see that some companies report AI chatbots resolving 65–80% of routine inquiries without human intervention.",
+      "question": "Which AI application would most directly address your customer inquiry bottleneck?",
+      "choices": [
+        "A computer vision system to monitor store foot traffic",
+        "An NLP-powered chatbot that understands and responds to customer questions across channels",
+        "A generative AI tool that creates marketing copy for social media",
+        "A robotic process automation system that automates warehouse inventory counts"
+      ],
+      "correctIndex": 1,
+      "explanation": "Natural language processing (NLP) is the AI technology behind chatbots that understand and respond to human language in text and speech. An NLP-powered chatbot directly addresses the challenge of high-volume customer inquiries across multiple channels. The other options solve different problems — foot traffic analysis, content creation, and warehouse automation — none of which target the customer service bottleneck."
+    },
+    {
+      "id": 4,
+      "scenario": "Your CTO proposes building a computer vision system to automate quality inspection on your manufacturing line. She mentions it could catch defects that human inspectors miss. The VP of Engineering asks what technology category this falls under and how it actually works.",
+      "question": "What best describes how a computer vision quality inspection system identifies defects?",
+      "choices": [
+        "It follows a checklist of defect rules programmed by engineers for each product type",
+        "It uses natural language processing to read product specification documents",
+        "It analyzes images using trained neural networks that have learned to recognize defect patterns from thousands of labeled examples",
+        "It connects to IoT sensors that measure product dimensions and weight"
+      ],
+      "correctIndex": 2,
+      "explanation": "Computer vision systems learn to identify patterns in visual data — images and video — by training on large datasets of labeled examples. For quality inspection, the system trains on images of both acceptable and defective products, learning to recognize defect patterns that may be too subtle or fast for human inspectors to catch consistently. This is different from rule-based inspection or sensor measurement."
+    },
+    {
+      "id": 5,
+      "scenario": "Your CEO returns from a conference excited about AI and wants to 'implement AI across the organization.' She asks you to lead the initiative. You know from industry research that roughly 80% of AI projects fail, primarily due to organizational — not technical — issues.",
+      "question": "What should be your first step in building an AI strategy?",
+      "choices": [
+        "Purchase the most advanced AI platform available and train the team on it",
+        "Assess organizational readiness across data infrastructure, talent, and culture before selecting any technology",
+        "Hire a team of data scientists and let them identify the best AI opportunities",
+        "Launch a company-wide AI hackathon to generate ideas from every department"
+      ],
+      "correctIndex": 1,
+      "explanation": "The biggest mistake companies make with AI is starting with the technology instead of the business problem. Before investing, you need to audit three foundations: data infrastructure (is your data clean and accessible?), talent (can your people build or manage AI?), and culture (will leadership act on algorithmic recommendations?). Companies that skip this assessment often discover months later that their data is siloed across incompatible systems."
+    },
+    {
+      "id": 6,
+      "scenario": "Your company is prioritizing AI use cases. The team has generated a long list of possibilities but needs to narrow it down. One executive pushes for a moonshot project to completely automate the legal department. Another suggests starting with automating invoice processing, which is data-rich and repetitive.",
+      "question": "Which approach to selecting AI use cases is most likely to succeed?",
+      "choices": [
+        "Start with the moonshot project because it will deliver the highest long-term ROI",
+        "Start with the data-rich, repetitive process that has a clear measurable target and can demonstrate quick wins",
+        "Implement both simultaneously to maximize the chance that at least one succeeds",
+        "Wait until competitors deploy AI first, then replicate their approach"
+      ],
+      "correctIndex": 1,
+      "explanation": "Successful AI strategy starts with high-impact use cases that are data-rich, repetitive, and currently bottlenecked by human bandwidth — like invoice processing. The problem should be specific enough to measure (e.g., 'reduce processing time from 4 hours to 1 hour'). Moonshot projects fail more often because they lack clear metrics and require organizational changes that haven't been tested. Quick wins build organizational confidence and data maturity for bigger projects later."
+    },
+    {
+      "id": 7,
+      "scenario": "Your HR department wants to deploy an AI-powered resume screening tool to speed up hiring. During evaluation, you learn that the tool was trained on your company's past 10 years of hiring data. Your workforce has historically been predominantly male in technical roles.",
+      "question": "What is the primary risk with deploying this resume screening tool?",
+      "choices": [
+        "The tool will be too slow to process a high volume of applications",
+        "The tool will learn and perpetuate historical gender bias from the training data, systematically disadvantaging female candidates",
+        "The tool will cost more than manual resume screening",
+        "The tool will not be able to read resumes in different file formats"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI models learn from historical data, and historical data reflects historical inequities. Amazon experienced exactly this problem — their AI recruiting tool penalized résumés containing words like 'women's' because the training data reflected male-dominated hiring patterns. They scrapped the tool in 2018. Mitigating bias requires diverse training data, bias audits at every stage, and ongoing monitoring after deployment."
+    },
+    {
+      "id": 8,
+      "scenario": "You've been tasked with launching your company's first AI project. Your team is debating where to begin. One manager insists you need to hire five data scientists first. Another says the existing data is 'probably fine' and wants to jump straight to selecting a vendor.",
+      "question": "Before committing to an AI project, what critical assessment step are both managers overlooking?",
+      "choices": [
+        "Checking whether competitors have already deployed similar AI solutions",
+        "Auditing your data for availability, quality, and accessibility — since poor data quality costs organizations an average of $12.9 million per year",
+        "Selecting a cloud provider for hosting the AI model",
+        "Creating a company-wide AI training program for all employees"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI runs on data, and most organizations overestimate how ready theirs is. Before committing to a project, you need to audit three dimensions: availability (do you collect the data the model needs?), quality (is it clean, consistent, and complete?), and accessibility (can your team actually get to it?). A Gartner survey found poor data quality costs organizations an average of $12.9 million per year. Cleaning your data often delivers value before the AI model even exists."
+    },
+    {
+      "id": 9,
+      "scenario": "Your company deployed a loan approval AI system six months ago. It's processing applications faster, but a journalist has reached out asking about a pattern: applicants from certain zip codes are being rejected at significantly higher rates. Your legal team is concerned about regulatory exposure.",
+      "question": "What should your organization do to address this situation responsibly?",
+      "choices": [
+        "Shut down the AI system immediately and return to fully manual processing",
+        "Conduct a bias audit of the model's decisions, examine whether zip code serves as a proxy for protected characteristics, and implement ongoing monitoring",
+        "Explain to the journalist that the algorithm is objective because it uses math, not human judgment",
+        "Add more data from the flagged zip codes to retrain the model"
+      ],
+      "correctIndex": 1,
+      "explanation": "When AI systems make consequential decisions like loan approvals, bias isn't just an ethical issue — it's a risk management imperative. Geographic data can serve as a proxy for race or income, producing discriminatory outcomes even without explicitly using protected categories. Responsible AI requires bias audits at every stage and ongoing monitoring after deployment. Simply adding more data without understanding the bias source won't fix systemic patterns."
+    },
+    {
+      "id": 10,
+      "scenario": "At a board meeting, a director mentions that AI is shifting from a tool you query to an 'agent that acts autonomously.' She points to examples of AI systems that plan multi-step tasks, use external tools, and execute workflows with minimal human oversight. She asks how the company should prepare.",
+      "question": "How should a business leader prepare their organization for the shift toward AI agents and autonomous systems?",
+      "choices": [
+        "Wait until autonomous AI is fully mature before making any investments",
+        "Replace all middle management with AI agents to reduce costs immediately",
+        "Build foundational AI capabilities now — clean data, skilled teams, and a culture of acting on algorithmic recommendations — so the organization can adopt agentic AI as it matures",
+        "Focus exclusively on multimodal AI since it will make agents obsolete"
+      ],
+      "correctIndex": 2,
+      "explanation": "The shift toward AI agents that plan, use tools, and execute workflows is one of the most significant transitions underway. But adopting agentic AI requires the same foundations as any AI initiative: clean and accessible data, skilled teams, and organizational readiness. Companies that build these capabilities now will be positioned to adopt more autonomous systems as they mature. Waiting leaves you behind; replacing people prematurely ignores the human oversight these systems still require."
+    }
+  ]
+}
