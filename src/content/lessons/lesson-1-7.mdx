@@ -6,4 +6,51 @@ order: 7
 description: "A step-by-step guide to launching your first AI project, from assembling a team to choosing the right tools."
 ---
 
-Content for this lesson is coming soon. Check back for a practical playbook to help you launch AI initiatives in your organization.
+## Start with the Problem, Not the Technology
+
+The most common mistake organizations make with AI is falling in love with a tool before identifying the problem it should solve. A 2024 RAND Corporation study found that roughly 80% of AI projects fail, and the leading causes aren't technical — they're organizational: unclear objectives, poor data quality, and lack of executive sponsorship. This lesson provides a practical six-step framework for launching your first AI initiative.
+
+## Step 1: Identify a Business Problem Worth Solving
+
+Start by listing processes that are data-rich, repetitive, and currently bottlenecked by human bandwidth. Good candidates include customer inquiry routing, invoice processing, demand forecasting, and quality inspection. The problem should be specific enough to measure — "improve customer experience" is too vague, but "reduce average support ticket resolution time from 4 hours to 1 hour" gives you a clear target.
+
+## Step 2: Assess Your Data Readiness
+
+AI runs on data, and most organizations overestimate how ready theirs is. Before committing to a project, audit three dimensions: **availability** (do you actually collect the data the model would need?), **quality** (is it clean, consistent, and complete?), and **accessibility** (can your team get to it without navigating months of bureaucratic or technical barriers?). A 2023 Gartner survey found that poor data quality costs organizations an average of $12.9 million per year — cleaning your data often delivers value before the AI model even exists.
+
+## Step 3: Assemble a Cross-Functional Team
+
+AI projects fail when they live exclusively in the IT department. Effective teams combine **data scientists or ML engineers** who build the models, **domain experts** from the business unit who understand the problem deeply, **data engineers** who manage pipelines and infrastructure, and an **executive sponsor** who can secure resources and remove organizational roadblocks. The domain experts are especially critical — they know which edge cases matter and can tell you when a model's output doesn't make sense.
+
+## Step 4: Choose Build vs. Buy vs. Partner
+
+Not every AI project requires building a model from scratch. The decision depends on three factors: how unique your problem is, how proprietary your data advantage needs to be, and how much in-house expertise you have.
+
+- **Buy (off-the-shelf)** — Best for common use cases like document classification, chatbots, or sentiment analysis where established vendors offer proven solutions
+- **Partner (managed services)** — Suitable when you have proprietary data but lack ML engineering talent; cloud providers like AWS, Google Cloud, and Azure offer pre-built AI services that you can fine-tune
+- **Build (custom)** — Worth the investment when competitive advantage depends on proprietary algorithms trained on your unique data, as with Netflix's recommendation engine or Tesla's self-driving models
+
+## Step 5: Start with a Pilot
+
+Scope your first project to deliver measurable results within 60 to 90 days. Starbucks took this approach when developing Deep Brew, its AI platform — starting with a personalized recommendation engine for the mobile app before expanding to labor scheduling and inventory management across 35,000+ locations. A successful pilot generates internal momentum and gives you the evidence to justify broader investment.
+
+> **Key takeaway:** Resist the urge to boil the ocean. A focused pilot that solves one real problem is worth more than an ambitious roadmap that never delivers.
+
+## Step 6: Measure, Learn, and Iterate
+
+Define success metrics before launch and track them rigorously. Common AI metrics include prediction accuracy, time savings, error rate reduction, and revenue impact. Equally important: monitor for model drift — the gradual degradation of AI performance as real-world data shifts away from the training data. Companies like Uber and Airbnb retrain their core models on weekly or monthly cycles to maintain accuracy.
+
+## Common Pitfalls to Avoid
+
+Even well-planned AI initiatives can stumble. Three pitfalls account for most failures:
+
+- **Ignoring change management** — AI changes workflows, and people resist what they don't understand. JPMorgan Chase invested heavily in training programs when deploying its COiN contract-analysis system, which now processes 12,000 commercial credit agreements per year in seconds instead of 360,000 hours of manual review
+- **Underestimating data quality** — Garbage in, garbage out is not a cliché in AI — it's a law. Budget 60-80% of project time for data preparation and cleaning
+- **Skipping governance** — Without clear policies on who approves model deployment, monitors outputs, and decides when to retrain or retire a model, organizations risk deploying systems that quietly degrade or produce harmful results
+
+## Sources
+
+- Rodman, E. (2024). "Why Most AI Projects Fail." RAND Corporation.
+- Gartner (2023). "How to Improve Your Data Quality." Gartner Research.
+- Starbucks (2022). "Deep Brew: The AI Behind Starbucks' Personalized Experience." Starbucks Stories.
+- Son, H. (2017). "JPMorgan Software Does in Seconds What Took Lawyers 360,000 Hours." Bloomberg.
