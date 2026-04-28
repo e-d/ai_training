@@ -42,6 +42,9 @@ export default function Quiz({ title, questions }: QuizProps) {
 
   function handleAnswer(index: number) {
     if (isAnswered) return;
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
     setSelectedAnswer(index);
     setIsAnswered(true);
     const correct = index === q.correctIndex;
@@ -50,6 +53,9 @@ export default function Quiz({ title, questions }: QuizProps) {
   }
 
   function handleNext() {
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
     if (currentQuestion + 1 >= total) {
       setIsComplete(true);
     } else {
