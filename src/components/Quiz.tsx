@@ -272,6 +272,7 @@ const styles: Record<string, Record<string, string | number>> = {
     fontSize: '0.9375rem',
     lineHeight: 1.5,
     color: '#1e293b',
+    outline: 'none',
     transition: 'border-color 0.15s ease, background 0.15s ease',
   },
   choiceCorrect: {
