@@ -34,7 +34,7 @@ export async function getStaticPaths() {
           title: 'Course Quiz',
           slug: 'quiz',
           courseSlug: course.data.slug,
-          href: `/courses/${course.data.slug}/quiz/`,
+          href: `${import.meta.env.BASE_URL}courses/${course.data.slug}/quiz/`,
         };
       }
     }
@@ -63,8 +63,8 @@ const { Content } = await render(lesson);
 <BaseLayout title={lesson.data.title} description={lesson.data.description}>
   <div class="container lesson-page">
     <Breadcrumbs items={[
-      { label: 'Home', href: '/' },
-      { label: course.data.title, href: `/courses/${course.data.slug}/` },
+      { label: 'Home', href: import.meta.env.BASE_URL },
+      { label: course.data.title, href: `${import.meta.env.BASE_URL}courses/${course.data.slug}/` },
       { label: lesson.data.title },
     ]} />
 

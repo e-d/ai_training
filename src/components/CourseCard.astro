@@ -10,10 +10,11 @@ interface Props {
 
 const { title, description, lessonCount, slug, order, status } = Astro.props;
 const isActive = status === 'active';
+const base = import.meta.env.BASE_URL;
 ---
 
 {isActive ? (
-  <a href={`/courses/${slug}/`} class="course-card course-card--active">
+  <a href={`${base}courses/${slug}/`} class="course-card course-card--active">
     <span class="course-card__number">Course {order}</span>
     <h3 class="course-card__title">{title}</h3>
     <p class="course-card__desc">{description}</p>

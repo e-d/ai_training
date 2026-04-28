@@ -8,9 +8,10 @@ interface Props {
 }
 
 const { title, description, order, slug, courseSlug } = Astro.props;
+const base = import.meta.env.BASE_URL;
 ---
 
-<a href={`/courses/${courseSlug}/lessons/${slug}/`} class="lesson-card">
+<a href={`${base}courses/${courseSlug}/lessons/${slug}/`} class="lesson-card">
   <span class="lesson-card__number">Lesson {order}</span>
   <div class="lesson-card__body">
     <h4 class="lesson-card__title">{title}</h4>

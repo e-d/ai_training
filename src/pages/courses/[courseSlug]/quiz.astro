@@ -23,8 +23,8 @@ const { quiz, course } = Astro.props;
 <BaseLayout title={quiz.data.title} description={quiz.data.description}>
   <div class="container quiz-page">
     <Breadcrumbs items={[
-      { label: 'Home', href: '/' },
-      { label: course.data.title, href: `/courses/${course.data.slug}/` },
+      { label: 'Home', href: import.meta.env.BASE_URL },
+      { label: course.data.title, href: `${import.meta.env.BASE_URL}courses/${course.data.slug}/` },
       { label: 'Quiz' },
     ]} />
 

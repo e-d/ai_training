@@ -24,7 +24,7 @@ const courseQuiz = allQuizzes.find((q) => q.data.course === course.data.slug);
 <BaseLayout title={course.data.title} description={course.data.description}>
   <div class="container course-overview">
     <Breadcrumbs items={[
-      { label: 'Home', href: '/' },
+      { label: 'Home', href: import.meta.env.BASE_URL },
       { label: course.data.title },
     ]} />
 
@@ -52,7 +52,7 @@ const courseQuiz = allQuizzes.find((q) => q.data.course === course.data.slug);
     {courseQuiz && (
       <section class="course-overview__quiz">
         <h2 class="course-overview__section-title">Test Your Knowledge</h2>
-        <a href={`/courses/${course.data.slug}/quiz/`} class="course-overview__quiz-card">
+        <a href={`${import.meta.env.BASE_URL}courses/${course.data.slug}/quiz/`} class="course-overview__quiz-card">
           <div class="course-overview__quiz-info">
             <h3 class="course-overview__quiz-title">{courseQuiz.data.title}</h3>
             <p class="course-overview__quiz-desc">{courseQuiz.data.description}</p>

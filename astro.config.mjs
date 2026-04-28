@@ -6,5 +6,7 @@ import preact from '@astrojs/preact';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://e-d.github.io',
+  base: '/ai_training/',
   integrations: [mdx(), preact()]
 });
