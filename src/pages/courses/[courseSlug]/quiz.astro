@@ -1,0 +1,63 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import Quiz from '../../../components/Quiz.tsx';
+
+export async function getStaticPaths() {
+  const allQuizzes = await getCollection('quizzes');
+  const allCourses = await getCollection('courses');
+
+  return allQuizzes.map((quiz) => {
+    const course = allCourses.find((c) => c.data.slug === quiz.data.course);
+    return {
+      params: { courseSlug: quiz.data.course },
+      props: { quiz, course },
+    };
+  });
+}
+
+const { quiz, course } = Astro.props;
+---
+
+<BaseLayout title={quiz.data.title} description={quiz.data.description}>
+  <div class="container quiz-page">
+    <Breadcrumbs items={[
+      { label: 'Home', href: '/' },
+      { label: course.data.title, href: `/courses/${course.data.slug}/` },
+      { label: 'Quiz' },
+    ]} />
+
+    <header class="quiz-page__header">
+      <h1 class="quiz-page__title">{quiz.data.title}</h1>
+      <p class="quiz-page__description">{quiz.data.description}</p>
+    </header>
+
+    <Quiz client:load title={quiz.data.title} questions={quiz.data.questions} />
+  </div>
+</BaseLayout>
+
+<style>
+  .quiz-page {
+    padding-bottom: var(--space-16);
+  }
+
+  .quiz-page__header {
+    padding: var(--space-6) 0 var(--space-8);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--space-8);
+  }
+
+  .quiz-page__title {
+    font-size: var(--text-3xl);
+    color: var(--color-primary);
+    margin-bottom: var(--space-4);
+  }
+
+  .quiz-page__description {
+    font-size: var(--text-lg);
+    color: var(--color-text-light);
+    line-height: var(--line-height-relaxed);
+    max-width: 48rem;
+  }
+</style>

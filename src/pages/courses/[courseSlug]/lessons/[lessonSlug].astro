@@ -7,6 +7,7 @@ import LessonNav from '../../../../components/LessonNav.astro';
 export async function getStaticPaths() {
   const allLessons = await getCollection('lessons');
   const allCourses = await getCollection('courses');
+  const allQuizzes = await getCollection('quizzes');
 
   const paths = [];
 
@@ -22,6 +23,22 @@ export async function getStaticPaths() {
     const prev = courseLessons[lessonIndex - 1];
     const next = courseLessons[lessonIndex + 1];
 
+    let nextLesson = next
+      ? { title: next.data.title, slug: next.data.slug, courseSlug: course.data.slug }
+      : undefined;
+
+    if (!next) {
+      const courseQuiz = allQuizzes.find((q) => q.data.course === course.data.slug);
+      if (courseQuiz) {
+        nextLesson = {
+          title: 'Course Quiz',
+          slug: 'quiz',
+          courseSlug: course.data.slug,
+          href: `/courses/${course.data.slug}/quiz/`,
+        };
+      }
+    }
+
     paths.push({
       params: {
         courseSlug: course.data.slug,
@@ -31,7 +48,7 @@ export async function getStaticPaths() {
         lesson,
         course,
         prevLesson: prev ? { title: prev.data.title, slug: prev.data.slug, courseSlug: course.data.slug } : undefined,
-        nextLesson: next ? { title: next.data.title, slug: next.data.slug, courseSlug: course.data.slug } : undefined,
+        nextLesson,
       },
     });
   }

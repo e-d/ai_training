@@ -3,6 +3,7 @@ interface LessonLink {
   title: string;
   slug: string;
   courseSlug: string;
+  href?: string;
 }
 
 interface Props {
@@ -16,7 +17,7 @@ const { prevLesson, nextLesson } = Astro.props;
 <nav aria-label="Lesson navigation" class="lesson-nav">
   <div class="lesson-nav__inner">
     {prevLesson ? (
-      <a href={`/courses/${prevLesson.courseSlug}/lessons/${prevLesson.slug}/`} class="lesson-nav__link lesson-nav__link--prev">
+      <a href={prevLesson.href || `/courses/${prevLesson.courseSlug}/lessons/${prevLesson.slug}/`} class="lesson-nav__link lesson-nav__link--prev">
         <svg class="lesson-nav__arrow" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
           <path d="M13 16l-6-6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -29,7 +30,7 @@ const { prevLesson, nextLesson } = Astro.props;
       <span />
     )}
     {nextLesson ? (
-      <a href={`/courses/${nextLesson.courseSlug}/lessons/${nextLesson.slug}/`} class="lesson-nav__link lesson-nav__link--next">
+      <a href={nextLesson.href || `/courses/${nextLesson.courseSlug}/lessons/${nextLesson.slug}/`} class="lesson-nav__link lesson-nav__link--next">
         <span class="lesson-nav__text">
           <span class="lesson-nav__label">Next</span>
           <span class="lesson-nav__title">{nextLesson.title}</span>
