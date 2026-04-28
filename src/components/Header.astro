@@ -1,0 +1,63 @@
+---
+
+---
+
+<header class="header">
+  <div class="container header-inner">
+    <a href="/" class="header-brand">AI for Business Leaders</a>
+    <nav class="header-nav" aria-label="Main navigation">
+      <a href="/" class="header-link">Courses</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4rem;
+  }
+
+  .header-brand {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+  }
+
+  .header-brand:hover {
+    color: #f1f5f9;
+  }
+
+  .header-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  .header-link {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: #cbd5e1;
+    transition: color 0.15s ease;
+  }
+
+  .header-link:hover {
+    color: #ffffff;
+  }
+
+  @media (max-width: 480px) {
+    .header-brand {
+      font-size: var(--text-lg);
+    }
+  }
+</style>
