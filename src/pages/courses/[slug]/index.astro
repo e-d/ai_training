@@ -1,0 +1,94 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import LessonCard from '../../../components/LessonCard.astro';
+
+export async function getStaticPaths() {
+  const courses = await getCollection('courses');
+  return courses.map((course) => ({
+    params: { slug: course.data.slug },
+    props: { course },
+  }));
+}
+
+const { course } = Astro.props;
+const allLessons = await getCollection('lessons');
+const lessons = allLessons
+  .filter((lesson) => lesson.data.course === course.data.slug)
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title={course.data.title} description={course.data.description}>
+  <div class="container course-overview">
+    <Breadcrumbs items={[
+      { label: 'Home', href: '/' },
+      { label: course.data.title },
+    ]} />
+
+    <header class="course-overview__header">
+      <h1 class="course-overview__title">{course.data.title}</h1>
+      <p class="course-overview__description">{course.data.description}</p>
+      <p class="course-overview__meta">{lessons.length} lessons</p>
+    </header>
+
+    <section class="course-overview__lessons">
+      <h2 class="course-overview__section-title">Lessons</h2>
+      <div class="course-overview__list">
+        {lessons.map((lesson) => (
+          <LessonCard
+            title={lesson.data.title}
+            description={lesson.data.description}
+            order={lesson.data.order}
+            slug={lesson.data.slug}
+            courseSlug={course.data.slug}
+          />
+        ))}
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .course-overview {
+    padding-bottom: var(--space-16);
+  }
+
+  .course-overview__header {
+    padding: var(--space-8) 0;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--space-8);
+  }
+
+  .course-overview__title {
+    font-size: var(--text-3xl);
+    color: var(--color-primary);
+    margin-bottom: var(--space-4);
+  }
+
+  .course-overview__description {
+    font-size: var(--text-lg);
+    color: var(--color-text-light);
+    line-height: var(--line-height-relaxed);
+    max-width: 48rem;
+    margin-bottom: var(--space-3);
+  }
+
+  .course-overview__meta {
+    font-size: var(--text-sm);
+    color: var(--color-text-light);
+    font-weight: 600;
+  }
+
+  .course-overview__section-title {
+    font-size: var(--text-2xl);
+    color: var(--color-primary);
+    margin-bottom: var(--space-6);
+  }
+
+  .course-overview__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+</style>
